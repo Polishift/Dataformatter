@@ -13,8 +13,8 @@ namespace Dataformatter.Dataprocessing.CsvParsing
         {
             var allRowsAsModels = new List<T>();
 
-            int counter = 0; //le header skip
-            List<string> currentTextRow = new List<string>();
+            var counter = 0; //le header skip
+            var currentTextRow = new List<string>();
             Console.WriteLine(fileLocation);
             using (var reader = new CsvFileReader(fileLocation))
             {
