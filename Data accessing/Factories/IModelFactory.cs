@@ -1,10 +1,6 @@
-﻿using Assets.Data.Repositories.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace Assets.Data.Factories
+namespace Dataformatter.Data_accessing.Factories
 {
     public interface IModelFactory<T>
     {

@@ -1,14 +1,13 @@
-﻿using Assets.Data.Repositories.Models;
-using Assets.Data_accessing.Factories;
-using Assets.Dataprocessing.Entities;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
+using Dataformatter.Datamodels;
+using Dataformatter.Dataprocessing.Entities;
+using Dataformatter.Data_accessing.Factories;
+using Newtonsoft.Json;
 
-namespace Assets.Dataprocessing.Processers
+namespace Dataformatter.Dataprocessing.Processers
 {
     class ElectionsProcesser : IDataProcesser<ConstituencyElectionModel>
     {

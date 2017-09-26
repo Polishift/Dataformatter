@@ -1,13 +1,9 @@
 ﻿using System;
-
-using UnityEngine;
-
-using Assets.Data.Repositories.Models;
-using Assets.Dataprocessing.Entities;
-using System.Linq;
 using System.Collections.Generic;
+using Dataformatter.Datamodels;
+using Dataformatter.Dataprocessing.Entities;
 
-namespace Assets.Data_accessing.Factories
+namespace Dataformatter.Data_accessing.Factories
 {
     class DefaultElectionEntityFactory : AbstractElectionEntityFactory
     {
@@ -15,9 +11,10 @@ namespace Assets.Data_accessing.Factories
 
         public override ElectionEntity Create(ConstituencyElectionModel rawModel)
         {
-            if(rawModel.PartyName.Equals("anti-revolutionaire partij"))
+            if (rawModel.PartyName.Equals("anti-revolutionaire partij"))
             {
-                Debug.Log("ARP in " + rawModel.Year + " vf1: " + rawModel.VoteFraction + " vf2: " + rawModel.SecondRoundVoteFraction);
+                Console.WriteLine("ARP in " + rawModel.Year + " vf1: " + rawModel.VoteFraction + " vf2: " +
+                                  rawModel.SecondRoundVoteFraction);
             }
 
             return new ElectionEntity
@@ -26,8 +23,9 @@ namespace Assets.Data_accessing.Factories
                 CountryCode = CreateCountryCode(rawModel.CountryName),
                 PartyClassification = "Unknown", //Where/How will we be doing this?
                 PartyName = rawModel.PartyName,
-                PartyCandidates = new HashSet<string>() { rawModel.CandidateName },
-                TotalVotePercentage = GetFormattedTotalVotePercentage(rawModel.VoteFraction, rawModel.SecondRoundVoteFraction),
+                PartyCandidates = new HashSet<string>() {rawModel.CandidateName},
+                TotalVotePercentage =
+                    GetFormattedTotalVotePercentage(rawModel.VoteFraction, rawModel.SecondRoundVoteFraction),
                 TotalAmountOfSeatsGained = GetFormattedSeatsGained(rawModel.SeatsGained)
             };
         }

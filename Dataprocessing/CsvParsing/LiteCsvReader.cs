@@ -1,23 +1,20 @@
-﻿
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
-using System.Collections;
-using System.Collections.Generic;
+using Dataformatter.Data_accessing.Factories;
 
-using System.Diagnostics;
-using Assets.Data.Factories;
-
-namespace Mono.Csv
+namespace Dataformatter.Dataprocessing.CsvParsing
 {
-    public static class CsvToModel<T> 
+    public static class CsvToModel<T>
     {
         public static List<T> ParseAllCsvLinesToModels(string fileLocation, IModelFactory<T> modelFactory)
         {
             var allRowsAsModels = new List<T>();
 
-            int counter = 0; //le header skip
-            List<string> currentTextRow = new List<string>();
+            var counter = 0; //le header skip
+            var currentTextRow = new List<string>();
 
             using (var reader = new CsvFileReader(fileLocation))
             {
@@ -25,7 +22,7 @@ namespace Mono.Csv
                 {
                     counter++;
 
-                    if(counter > 1)
+                    if (counter > 1)
                         allRowsAsModels.Add(modelFactory.Create(currentTextRow));
                 }
             }
@@ -45,14 +42,17 @@ namespace Mono.Csv
         /// Empty lines are interpreted as a line with zero columns.
         /// </summary>
         NoColumns,
+
         /// <summary>
         /// Empty lines are interpreted as a line with a single empty column.
         /// </summary>
         EmptyColumn,
+
         /// <summary>
         /// Empty lines are skipped over as though they did not exist.
         /// </summary>
         Ignore,
+
         /// <summary>
         /// An empty line is interpreted as the end of the input file.
         /// </summary>
@@ -68,10 +68,11 @@ namespace Mono.Csv
         /// These are special characters in CSV files. If a column contains any
         /// of these characters, the entire column is wrapped in double quotes.
         /// </summary>
-        protected char[] SpecialChars = new char[] { ',', '"', '\r', '\n' };
+        protected char[] SpecialChars = new char[] {',', '"', '\r', '\n'};
 
         // Indexes into SpecialChars for characters with specific meaning
         private const int DelimiterIndex = 0;
+
         private const int QuoteIndex = 1;
 
         /// <summary>
@@ -100,6 +101,7 @@ namespace Mono.Csv
     {
         // Private members
         private StreamReader Reader;
+
         private string CurrLine;
         private int CurrPos;
         private EmptyLineBehavior EmptyLineBehavior;
@@ -111,7 +113,7 @@ namespace Mono.Csv
         /// <param name="stream">The stream to read from</param>
         /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
         public CsvFileReader(StreamReader reader,
-                             EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
+            EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
         {
             Reader = reader;
             EmptyLineBehavior = emptyLineBehavior;
@@ -124,7 +126,7 @@ namespace Mono.Csv
         /// <param name="stream">The stream to read from</param>
         /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
         public CsvFileReader(Stream stream,
-                         EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
+            EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
         {
             Reader = new StreamReader(stream);
             EmptyLineBehavior = emptyLineBehavior;
@@ -137,15 +139,15 @@ namespace Mono.Csv
         /// <param name="path">The name of the CSV file to read from</param>
         /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
         public CsvFileReader(string path,
-                             EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
+            EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
         {
-            Reader = new StreamReader(path);
+            Reader = File.OpenText(path);
             EmptyLineBehavior = emptyLineBehavior;
         }
 
         public static List<List<string>> ReadAll(string path, Encoding encoding)
         {
-            using (var sr = new StreamReader(path, encoding))
+            using (var sr = File.OpenText(path))
             {
                 var cfr = new CsvFileReader(sr);
                 List<List<string>> dataGrid = new List<List<string>>();
@@ -165,7 +167,7 @@ namespace Mono.Csv
             List<string> row = new List<string>();
             while (this.ReadRow(row))
             {
-                    dataGrid.Add(new List<string>(row));
+                dataGrid.Add(new List<string>(row));
             }
 
             return true;
@@ -270,7 +272,7 @@ namespace Mono.Csv
                     if (nextPos < CurrLine.Length && CurrLine[nextPos] == Quote)
                         CurrPos++;
                     else
-                        break;  // Single quote ends quoted sequence
+                        break; // Single quote ends quoted sequence
                 }
                 // Add current character to the column
                 builder.Append(CurrLine[CurrPos++]);
@@ -311,106 +313,4 @@ namespace Mono.Csv
             Reader.Dispose();
         }
     }
-
-    /// <summary>
-    /// Class for writing to comma-separated-value (CSV) files.
-    /// </summary>
-    public class CsvFileWriter : CsvFileCommon, IDisposable
-    {
-        // Private members
-        private StreamWriter Writer;
-        private string OneQuote = null;
-        private string TwoQuotes = null;
-        private string QuotedFormat = null;
-
-        /// <summary>
-        /// Initializes a new instance of the CsvFileWriter class for the
-        /// specified stream.
-        /// </summary>
-        /// <param name="stream">The stream to write to</param>
-        public CsvFileWriter(StreamWriter writer)
-        {
-            Writer = writer;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the CsvFileWriter class for the
-        /// specified stream.
-        /// </summary>
-        /// <param name="stream">The stream to write to</param>
-        public CsvFileWriter(Stream stream)
-        {
-            Writer = new StreamWriter(stream);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the CsvFileWriter class for the
-        /// specified file path.
-        /// </summary>
-        /// <param name="path">The name of the CSV file to write to</param>
-        public CsvFileWriter(string path)
-        {
-            Writer = new StreamWriter(path);
-        }
-
-        public static void WriteAll(List<List<string>> dataGrid, string path, Encoding encoding)
-        {
-            using (var sw = new StreamWriter(path, false, encoding))
-            {
-                var cfw = new CsvFileWriter(sw);
-                foreach (var row in dataGrid)
-                {
-                    cfw.WriteRow(row);
-                }
-            }
-        }
-
-        public void WriteAll(List<List<string>> dataGrid)
-        {
-            foreach (List<string> row in dataGrid)
-            {
-                this.WriteRow(row);
-            }
-        }
-
-        /// <summary>
-        /// Writes a row of columns to the current CSV file.
-        /// </summary>
-        /// <param name="columns">The list of columns to write</param>
-        public void WriteRow(List<string> columns)
-        {
-            // Verify required argument
-            if (columns == null)
-                throw new ArgumentNullException("columns");
-
-            // Ensure we're using current quote character
-            if (OneQuote == null || OneQuote[0] != Quote)
-            {
-                OneQuote = String.Format("{0}", Quote);
-                TwoQuotes = String.Format("{0}{0}", Quote);
-                QuotedFormat = String.Format("{0}{{0}}{0}", Quote);
-            }
-
-            // Write each column
-            for (int i = 0; i < columns.Count; i++)
-            {
-                // Add delimiter if this isn't the first column
-                if (i > 0)
-                    Writer.Write(Delimiter);
-                // Write this column
-                if (columns[i].IndexOfAny(SpecialChars) == -1)
-                    Writer.Write(columns[i]);
-                else
-                    Writer.Write(QuotedFormat, columns[i].Replace(OneQuote, TwoQuotes));
-            }
-            Writer.Write("\r\n");
-        }
-
-        // Propagate Dispose to StreamWriter
-        public void Dispose()
-        {
-            Writer.Dispose();
-        }
-    }
-
 }

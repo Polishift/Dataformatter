@@ -1,11 +1,7 @@
-﻿using Assets.Data.Repositories.Models;
-using Assets.Dataprocessing.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Dataformatter.Datamodels;
+using Dataformatter.Dataprocessing.Entities;
 
-namespace Assets.Data_accessing.Factories
+namespace Dataformatter.Data_accessing.Factories
 {
     abstract class AbstractElectionEntityFactory
     {

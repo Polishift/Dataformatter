@@ -1,11 +1,8 @@
-﻿using Assets.Data.Repositories.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using UnityEngine;
+using Dataformatter.Datamodels;
 
-namespace Assets.Data.Factories
+namespace Dataformatter.Data_accessing.Factories
 {
     class ConstituencyElectionModelFactory : IModelFactory<ConstituencyElectionModel>
     {

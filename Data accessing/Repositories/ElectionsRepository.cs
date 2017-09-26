@@ -1,14 +1,8 @@
-﻿using Assets.Data.Factories;
-using Assets.Data.Repositories.Models;
-using Assets.Dataprocessing.CsvParsing;
-using Assets.Dataprocessing.Entities;
-using Mono.Csv;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
+using Dataformatter.Dataprocessing.CsvParsing;
+using Dataformatter.Dataprocessing.Entities;
 
-namespace Assets.Data.Repositories
+namespace Dataformatter.Data_accessing.Repositories
 {
     class ElectionsRepository : IRepository<ElectionEntity>
     {

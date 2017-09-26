@@ -1,11 +1,7 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
+using Newtonsoft.Json.Linq;
 
-namespace Assets.Dataprocessing.CsvParsing
+namespace Dataformatter.Dataprocessing.CsvParsing
 {
     public static class JsonReader<T>
     {

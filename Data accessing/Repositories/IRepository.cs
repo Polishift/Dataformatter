@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Assets.Data.Repositories
+﻿namespace Dataformatter.Data_accessing.Repositories
 {
     interface IRepository<T>
     {

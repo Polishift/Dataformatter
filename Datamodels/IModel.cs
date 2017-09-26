@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Assets.Data.Repositories.Models
+﻿namespace Dataformatter.Datamodels
 {
     interface IModel
     {
