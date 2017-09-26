@@ -7,10 +7,10 @@ namespace Dataformatter.Dataprocessing.CsvParsing
     {
         public static T[] ParseJsonToListOfObjects(string fileLocation)
         {
-            JObject rootObject = JObject.Parse(File.ReadAllText(fileLocation));
-            JArray rootArray = (JArray) rootObject[""];
+            var rootObject = JObject.Parse(File.ReadAllText(fileLocation));
+            var rootArray = (JArray) rootObject[""];
 
-            T[] objectList = rootArray.ToObject<T[]>();
+            var objectList = rootArray.ToObject<T[]>();
             return objectList;
         }
     }

@@ -11,15 +11,12 @@ namespace Dataformatter.Dataprocessing.Processers
 {
     class ElectionsProcesser : IDataProcesser<ConstituencyElectionModel>
     {
-        private const string RESULT_FILE = "Data/Processed/Elections.json";
-
-
-        public void SerializeDataToJSON(List<ConstituencyElectionModel> rawModels)
+        public void SerializeDataToJson(List<ConstituencyElectionModel> rawModels)
         {
             AbstractElectionEntityFactory electionEntityFactory = new DefaultElectionEntityFactory();
             var electionsPerParty = new Dictionary<Tuple<string, int>, ElectionEntity>();
 
-            for (int i = 0; i < rawModels.Count(); i++)
+            for (var i = 0; i < rawModels.Count; i++)
             {
                 var currentPartyAndYearCombination = new Tuple<string, int>(rawModels[i].PartyName, rawModels[i].Year);
                 var currentRowCandidate = rawModels[i].CandidateName;
@@ -29,23 +26,48 @@ namespace Dataformatter.Dataprocessing.Processers
                     //As of yet undiscovered party/year combination
                     electionsPerParty.Add(currentPartyAndYearCombination, electionEntityFactory.Create(rawModels[i]));
                 }
-                else if (electionsPerParty[currentPartyAndYearCombination].PartyCandidates.Contains(currentRowCandidate) == false)
+                else if (electionsPerParty[currentPartyAndYearCombination].PartyCandidates
+                             .Contains(currentRowCandidate) == false)
                 {
                     //Existing party/year combination, but undiscovered candidate
                     electionsPerParty[currentPartyAndYearCombination].PartyCandidates.Add(currentRowCandidate);
                 }
             }
 
-            WriteElectionEntitiesToJSON(electionsPerParty.Values.ToList());
+            WriteElectionEntitiesToJson(electionsPerParty.Values.ToList());
         }
 
-        private void WriteElectionEntitiesToJSON(List<ElectionEntity> entities)
+        private static void WriteElectionEntitiesToJson(IReadOnlyList<ElectionEntity> entities)
         {
-            using (StreamWriter file = File.CreateText(RESULT_FILE))
+            var orderedByCoutry = SortByCountry(entities);
+            Console.WriteLine(orderedByCoutry.Count);
+            foreach (var countryPair in orderedByCoutry)
             {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, entities);
+                var resultFile = "ProcessedData/Elections_" + countryPair.Key + ".json";
+
+                if (!File.Exists(resultFile))
+                    using (File.Create(resultFile))
+                    {
+                    }
+                using (var file = File.CreateText(resultFile))
+                {
+                    var serializer = new JsonSerializer();
+                    serializer.Serialize(file, countryPair.Value);
+                }
             }
+        }
+
+        private static Dictionary<string, List<ElectionEntity>> SortByCountry(IReadOnlyList<ElectionEntity> allElections)
+        {
+            var result = new Dictionary<string, List<ElectionEntity>>();
+            for (var i = 0; i < allElections.Count; i++)
+            {
+                var election = allElections[i];
+                if (!result.ContainsKey(election.CountryCode))
+                    result.Add(election.CountryCode, new List<ElectionEntity>());
+                result[election.CountryCode].Add(election);
+            }
+            return result;
         }
     }
 }

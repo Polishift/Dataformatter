@@ -19,7 +19,7 @@ namespace Dataformatter
                 electionsCsvLocation, constituencyElectionModelFactory);
             
             var processer = new ElectionsProcesser();
-            processer.SerializeDataToJSON(allElectionLinesAsModels);
+            processer.SerializeDataToJson(allElectionLinesAsModels);
         }
     }
 }

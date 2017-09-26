@@ -6,19 +6,19 @@ namespace Dataformatter.Data_accessing.Repositories
 {
     class ElectionsRepository : IRepository<ElectionEntity>
     {
-        private const string FILE_LOCATION = "Data/Processed/Elections.json";
+        private const string FileLocation = "Data/Processed/Elections.json";
 
         //Keeping one static reference instead of recalling the parser means less GC work :)
-        private static ElectionEntity[] allElections = JsonReader<ElectionEntity>.ParseJsonToListOfObjects(FILE_LOCATION);
+        private static ElectionEntity[] allElections = JsonReader<ElectionEntity>.ParseJsonToListOfObjects(FileLocation);
 
         public ElectionEntity[] GetAll()
         {
             return allElections; 
         }
 
-        public ElectionEntity[] GetByCountry(string CountryCode)
+        public ElectionEntity[] GetByCountry(string countryCode)
         {
-            return allElections.Where(e => e.CountryCode == CountryCode).ToArray();
+            return allElections.Where(e => e.CountryCode == countryCode).ToArray();
         }
 
         public ElectionEntity[] GetByYear(int year)
