@@ -11,11 +11,13 @@ namespace Dataformatter
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            var electionsCsvLocation = "Datasources//election_data.csv";
-            IModelFactory<ConstituencyElectionModel> constituencyElectionModelFactory = new ConstituencyElectionModelFactory();
-            var allElectionLinesAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(electionsCsvLocation,
+            const string electionsCsvLocation = "Datasources/Political/ElectionResults/election_data.csv";
+            IModelFactory<ConstituencyElectionModel> constituencyElectionModelFactory =
+                new ConstituencyElectionModelFactory();
+            var allElectionLinesAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
+                electionsCsvLocation,
                 constituencyElectionModelFactory);
-            ElectionsProcesser processer = new ElectionsProcesser();
+            var processer = new ElectionsProcesser();
             processer.SerializeDataToJSON(allElectionLinesAsModels);
         }
     }

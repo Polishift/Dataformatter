@@ -7,22 +7,22 @@ using Dataformatter.Data_accessing.Factories;
 
 namespace Dataformatter.Dataprocessing.CsvParsing
 {
-    public static class CsvToModel<T>
+    public static class CsvToModel<T> 
     {
         public static List<T> ParseAllCsvLinesToModels(string fileLocation, IModelFactory<T> modelFactory)
         {
             var allRowsAsModels = new List<T>();
 
-            var counter = 0; //le header skip
-            var currentTextRow = new List<string>();
-
+            int counter = 0; //le header skip
+            List<string> currentTextRow = new List<string>();
+            Console.WriteLine(fileLocation);
             using (var reader = new CsvFileReader(fileLocation))
             {
                 while (reader.ReadRow(currentTextRow)) //out arguments, wow nice programming brah
                 {
                     counter++;
 
-                    if (counter > 1)
+                    if(counter > 1)
                         allRowsAsModels.Add(modelFactory.Create(currentTextRow));
                 }
             }
@@ -42,17 +42,14 @@ namespace Dataformatter.Dataprocessing.CsvParsing
         /// Empty lines are interpreted as a line with zero columns.
         /// </summary>
         NoColumns,
-
         /// <summary>
         /// Empty lines are interpreted as a line with a single empty column.
         /// </summary>
         EmptyColumn,
-
         /// <summary>
         /// Empty lines are skipped over as though they did not exist.
         /// </summary>
         Ignore,
-
         /// <summary>
         /// An empty line is interpreted as the end of the input file.
         /// </summary>
@@ -68,11 +65,10 @@ namespace Dataformatter.Dataprocessing.CsvParsing
         /// These are special characters in CSV files. If a column contains any
         /// of these characters, the entire column is wrapped in double quotes.
         /// </summary>
-        protected char[] SpecialChars = new char[] {',', '"', '\r', '\n'};
+        protected char[] SpecialChars = new char[] { ',', '"', '\r', '\n' };
 
         // Indexes into SpecialChars for characters with specific meaning
         private const int DelimiterIndex = 0;
-
         private const int QuoteIndex = 1;
 
         /// <summary>
@@ -101,7 +97,6 @@ namespace Dataformatter.Dataprocessing.CsvParsing
     {
         // Private members
         private StreamReader Reader;
-
         private string CurrLine;
         private int CurrPos;
         private EmptyLineBehavior EmptyLineBehavior;
@@ -113,7 +108,7 @@ namespace Dataformatter.Dataprocessing.CsvParsing
         /// <param name="stream">The stream to read from</param>
         /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
         public CsvFileReader(StreamReader reader,
-            EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
+                             EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
         {
             Reader = reader;
             EmptyLineBehavior = emptyLineBehavior;
@@ -126,7 +121,7 @@ namespace Dataformatter.Dataprocessing.CsvParsing
         /// <param name="stream">The stream to read from</param>
         /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
         public CsvFileReader(Stream stream,
-            EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
+                         EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
         {
             Reader = new StreamReader(stream);
             EmptyLineBehavior = emptyLineBehavior;
@@ -139,22 +134,24 @@ namespace Dataformatter.Dataprocessing.CsvParsing
         /// <param name="path">The name of the CSV file to read from</param>
         /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
         public CsvFileReader(string path,
-            EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
+                             EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
         {
-            Reader = File.OpenText(path);
+            var stream = new FileStream(path, FileMode.Open);
+            Reader = new StreamReader(stream);
+//            Reader = new StreamReader(path);
             EmptyLineBehavior = emptyLineBehavior;
         }
 
-        public static List<List<string>> ReadAll(string path, Encoding encoding)
-        {
-            using (var sr = File.OpenText(path))
-            {
-                var cfr = new CsvFileReader(sr);
-                List<List<string>> dataGrid = new List<List<string>>();
-                if (cfr.ReadAll(dataGrid)) return dataGrid;
-            }
-            return null;
-        }
+//        public static List<List<string>> ReadAll(string path, Encoding encoding)
+//        {
+//            using (var sr = new StreamReader(path, encoding))
+//            {
+//                var cfr = new CsvFileReader(sr);
+//                List<List<string>> dataGrid = new List<List<string>>();
+//                if (cfr.ReadAll(dataGrid)) return dataGrid;
+//            }
+//            return null;
+//        }
 
         public bool ReadAll(List<List<string>> dataGrid)
         {
@@ -167,7 +164,7 @@ namespace Dataformatter.Dataprocessing.CsvParsing
             List<string> row = new List<string>();
             while (this.ReadRow(row))
             {
-                dataGrid.Add(new List<string>(row));
+                    dataGrid.Add(new List<string>(row));
             }
 
             return true;
@@ -272,7 +269,7 @@ namespace Dataformatter.Dataprocessing.CsvParsing
                     if (nextPos < CurrLine.Length && CurrLine[nextPos] == Quote)
                         CurrPos++;
                     else
-                        break; // Single quote ends quoted sequence
+                        break;  // Single quote ends quoted sequence
                 }
                 // Add current character to the column
                 builder.Append(CurrLine[CurrPos++]);

@@ -12,7 +12,7 @@ namespace Dataformatter.Data_accessing.Factories
         private const int PARTYNAME_COLUMN_INDEX = 10;
         private const int CANDIDATE_COLUMN_INDEX = 12;
 
-        private const int VOTEFRACTION_COLUMN_INDEX = 20;
+        private const int VOTEFRACTION_COLUMN_INDEX = 30;
         private const int SECOND_ROUND_VOTEFRACTION_COLUMN_INDEX = 30;
         private const int SEATSGAINED_COLUMN_INDEX = 31;
 
