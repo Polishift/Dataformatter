@@ -10,16 +10,16 @@ namespace Dataformatter
     {
         static void Main(string[] args)
         {
-            const string electionsCsvLocation = "Datasources/Political/ElectionResults/election_data.csv";
-            IModelFactory<ConstituencyElectionModel> constituencyElectionModelFactory =
-                new ConstituencyElectionModelFactory();
-            
-            var allElectionLinesAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
-                electionsCsvLocation, constituencyElectionModelFactory);
-            
-            var processer = new ElectionsProcesser();
-            processer.SerializeDataToJson(allElectionLinesAsModels);
-            
+//            const string electionsCsvLocation = "Datasources/Political/ElectionResults/election_data.csv";
+//            IModelFactory<ConstituencyElectionModel> constituencyElectionModelFactory =
+//                new ConstituencyElectionModelFactory();
+//            
+//            var allElectionLinesAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
+//                electionsCsvLocation, constituencyElectionModelFactory);
+//            
+//            var processer = new ElectionsProcesser();
+//            processer.SerializeDataToJson(allElectionLinesAsModels);
+//            
             const string partyClassificationCsvLocation = "Datasources/Political/PartyClassification/classificationData.csv";
             IModelFactory<PartyClassificationModel> partyClassificationModelFactory =
                 new PartyClassificationModelFactory();

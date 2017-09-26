@@ -40,7 +40,6 @@ namespace Dataformatter.Dataprocessing.Processers
         private static void WriteElectionEntitiesToJson(IReadOnlyList<ElectionEntity> entities)
         {
             var orderedByCoutry = SortByCountry(entities);
-            Console.WriteLine(orderedByCoutry.Count);
             foreach (var countryPair in orderedByCoutry)
             {
                 var resultFile = "ProcessedData/Elections_" + countryPair.Key + ".json";

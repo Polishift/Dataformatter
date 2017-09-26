@@ -13,42 +13,27 @@ namespace Dataformatter.Dataprocessing.Processers
     {
         public void SerializeDataToJson(List<PartyClassificationModel> rawModels)
         {
-            throw new NotImplementedException();
-        }
-
-        public void SerializeDataToJson(List<ConstituencyElectionModel> rawModels)
-        {
-            AbstractElectionEntityFactory electionEntityFactory = new DefaultElectionEntityFactory();
-            var electionsPerParty = new Dictionary<Tuple<string, int>, ElectionEntity>();
+            var entityFactory = new DefaultPartyClassificationEntityFactory();
+            var classificationPerParty = new Dictionary<int, PartyClassificationEntity>();
 
             for (var i = 0; i < rawModels.Count; i++)
             {
-                var currentPartyAndYearCombination = new Tuple<string, int>(rawModels[i].PartyName, rawModels[i].Year);
-                var currentRowCandidate = rawModels[i].CandidateName;
+                var model = rawModels[i];
+                if (classificationPerParty.ContainsKey(model.Id))
+                    continue;
 
-                if (electionsPerParty.ContainsKey(currentPartyAndYearCombination) == false)
-                {
-                    //As of yet undiscovered party/year combination
-                    electionsPerParty.Add(currentPartyAndYearCombination, electionEntityFactory.Create(rawModels[i]));
-                }
-                else if (electionsPerParty[currentPartyAndYearCombination].PartyCandidates
-                             .Contains(currentRowCandidate) == false)
-                {
-                    //Existing party/year combination, but undiscovered candidate
-                    electionsPerParty[currentPartyAndYearCombination].PartyCandidates.Add(currentRowCandidate);
-                }
+                classificationPerParty.Add(model.Id, entityFactory.Create(model));
             }
 
-            WriteElectionEntitiesToJson(electionsPerParty.Values.ToList());
+            WriteElectionEntitiesToJson(classificationPerParty.Values.ToList());
         }
 
-        private static void WriteElectionEntitiesToJson(IReadOnlyList<ElectionEntity> entities)
+        private static void WriteElectionEntitiesToJson(IReadOnlyList<PartyClassificationEntity> entities)
         {
             var orderedByCoutry = SortByCountry(entities);
-            Console.WriteLine(orderedByCoutry.Count);
             foreach (var countryPair in orderedByCoutry)
             {
-                var resultFile = "ProcessedData/Elections_" + countryPair.Key + ".json";
+                var resultFile = "ProcessedData/PartyClassification_" + countryPair.Key + ".json";
 
                 if (!File.Exists(resultFile))
                     using (File.Create(resultFile))
@@ -62,15 +47,16 @@ namespace Dataformatter.Dataprocessing.Processers
             }
         }
 
-        private static Dictionary<string, List<ElectionEntity>> SortByCountry(
-            IReadOnlyList<ElectionEntity> allElections)
+        //todo add this to helper functions to make it more generic
+        private static Dictionary<string, List<PartyClassificationEntity>> SortByCountry(
+            IReadOnlyList<PartyClassificationEntity> allElections)
         {
-            var result = new Dictionary<string, List<ElectionEntity>>();
+            var result = new Dictionary<string, List<PartyClassificationEntity>>();
             for (var i = 0; i < allElections.Count; i++)
             {
                 var election = allElections[i];
                 if (!result.ContainsKey(election.CountryCode))
-                    result.Add(election.CountryCode, new List<ElectionEntity>());
+                    result.Add(election.CountryCode, new List<PartyClassificationEntity>());
                 result[election.CountryCode].Add(election);
             }
             return result;
