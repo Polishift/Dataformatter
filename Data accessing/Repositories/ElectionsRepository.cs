@@ -6,7 +6,7 @@ namespace Dataformatter.Data_accessing.Repositories
 {
     class ElectionsRepository : IRepository<ElectionEntity>
     {
-        private const string FileLocation = "Data/Processed/Elections.json";
+        private const string FileLocation = "ProcessedData/Elections.json";
 
         //Keeping one static reference instead of recalling the parser means less GC work :)
         private static ElectionEntity[] allElections = JsonReader<ElectionEntity>.ParseJsonToListOfObjects(FileLocation);

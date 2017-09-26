@@ -16,7 +16,6 @@ namespace Dataformatter.Data_accessing.Factories
         private const int SECOND_ROUND_VOTEFRACTION_COLUMN_INDEX = 30;
         private const int SEATSGAINED_COLUMN_INDEX = 31;
 
-
         public ConstituencyElectionModel Create(List<string> csvDataRow)
         {
             return new ConstituencyElectionModel

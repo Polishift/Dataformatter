@@ -10,7 +10,6 @@ namespace Dataformatter
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             const string electionsCsvLocation = "Datasources/Political/ElectionResults/election_data.csv";
             IModelFactory<ConstituencyElectionModel> constituencyElectionModelFactory =
                 new ConstituencyElectionModelFactory();
@@ -20,6 +19,16 @@ namespace Dataformatter
             
             var processer = new ElectionsProcesser();
             processer.SerializeDataToJson(allElectionLinesAsModels);
+            
+            const string partyClassificationCsvLocation = "Datasources/Political/PartyClassification/classificationData.csv";
+            IModelFactory<PartyClassificationModel> partyClassificationModelFactory =
+                new PartyClassificationModelFactory();
+            
+            var allPartyClassificationLinesAsModels = CsvToModel<PartyClassificationModel>.ParseAllCsvLinesToModels(
+                partyClassificationCsvLocation, partyClassificationModelFactory);
+            
+            var processer2 = new PartyClassificationProcessor();
+            processer2.SerializeDataToJson(allPartyClassificationLinesAsModels);
         }
     }
 }
