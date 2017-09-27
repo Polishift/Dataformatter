@@ -7,9 +7,9 @@ using Dataformatter.Dataprocessing.Entities;
 using Dataformatter.Data_accessing.Factories;
 using Newtonsoft.Json;
 
-namespace Dataformatter.Dataprocessing.Processers
+namespace Dataformatter.Dataprocessing.Processors
 {
-    class ElectionsProcesser : IDataProcesser<ConstituencyElectionModel>
+    class ElectionsProcessor : IDataProcessor<ConstituencyElectionModel>
     {
         public void SerializeDataToJson(List<ConstituencyElectionModel> rawModels)
         {

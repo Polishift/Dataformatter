@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Dataformatter.Datamodels;
@@ -7,9 +6,9 @@ using Dataformatter.Dataprocessing.Entities;
 using Dataformatter.Data_accessing.Factories;
 using Newtonsoft.Json;
 
-namespace Dataformatter.Dataprocessing.Processers
+namespace Dataformatter.Dataprocessing.Processors
 {
-    class PartyClassificationProcessor : IDataProcesser<PartyClassificationModel>
+    class PartyClassificationProcessor : IDataProcessor<PartyClassificationModel>
     {
         public void SerializeDataToJson(List<PartyClassificationModel> rawModels)
         {
@@ -25,10 +24,10 @@ namespace Dataformatter.Dataprocessing.Processers
                 classificationPerParty.Add(model.Id, entityFactory.Create(model));
             }
 
-            WriteElectionEntitiesToJson(classificationPerParty.Values.ToList());
+            WritePartyClassificationEntitiesToJson(classificationPerParty.Values.ToList());
         }
 
-        private static void WriteElectionEntitiesToJson(IReadOnlyList<PartyClassificationEntity> entities)
+        private static void WritePartyClassificationEntitiesToJson(IReadOnlyList<PartyClassificationEntity> entities)
         {
             var orderedByCoutry = SortByCountry(entities);
             foreach (var countryPair in orderedByCoutry)
