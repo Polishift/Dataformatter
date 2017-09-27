@@ -1,9 +1,9 @@
 ﻿using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
 
-namespace Dataformatter.Data_accessing.Factories
+namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultPartyClassificationEntityFactory
+    public class DefaultPartyClassificationEntityFactory : EntityFactory
     {
         public PartyClassificationEntity Create(PartyClassificationModel rawModel)
         {
@@ -15,10 +15,6 @@ namespace Dataformatter.Data_accessing.Factories
             };
         }
 
-        //todo add this to helper functions to make it more generic
-        private static string CreateCountryCode(string fullCountryName)
-        {
-            return fullCountryName;
-        }
+        
     }
 }

@@ -2,13 +2,13 @@
 using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
 
-namespace Dataformatter.Data_accessing.Factories
+namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    class DefaultElectionEntityFactory : AbstractElectionEntityFactory
+    class DefaultElectionEntityFactory : EntityFactory
     {
         private const int MissingValueKey = -990;
 
-        public override ElectionEntity Create(ConstituencyElectionModel rawModel)
+        public ElectionEntity Create(ConstituencyElectionModel rawModel)
         { 
             return new ElectionEntity
             {
@@ -21,11 +21,6 @@ namespace Dataformatter.Data_accessing.Factories
                     GetFormattedTotalVotePercentage(rawModel.VoteFraction, rawModel.SecondRoundVoteFraction),
                 TotalAmountOfSeatsGained = GetFormattedSeatsGained(rawModel.SeatsGained)
             };
-        }
-
-        private static string CreateCountryCode(string fullCountryName) //maybe do this in a more central place?
-        {
-            return fullCountryName;
         }
 
         private static double GetFormattedTotalVotePercentage(double rawVoteFraction, double rawSecondRoundVoteFraction)

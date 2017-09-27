@@ -5,6 +5,7 @@ using System.Linq;
 using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
 using Dataformatter.Data_accessing.Factories;
+using Dataformatter.Data_accessing.Factories.EntityFactories;
 using Newtonsoft.Json;
 
 namespace Dataformatter.Dataprocessing.Processors
@@ -13,7 +14,7 @@ namespace Dataformatter.Dataprocessing.Processors
     {
         public void SerializeDataToJson(List<ConstituencyElectionModel> rawModels)
         {
-            AbstractElectionEntityFactory electionEntityFactory = new DefaultElectionEntityFactory();
+            var electionEntityFactory = new DefaultElectionEntityFactory();
             var electionsPerParty = new Dictionary<Tuple<string, int>, ElectionEntity>();
 
             for (var i = 0; i < rawModels.Count; i++)

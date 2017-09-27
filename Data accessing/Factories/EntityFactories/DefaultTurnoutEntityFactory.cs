@@ -1,9 +1,9 @@
 ﻿using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
 
-namespace Dataformatter.Data_accessing.Factories
+namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultTurnoutEntityFactory
+    public class DefaultTurnoutEntityFactory : EntityFactory
     {
         public TurnoutEntity Create(TurnoutModel rawModel)
         {
@@ -22,10 +22,6 @@ namespace Dataformatter.Data_accessing.Factories
             };
         }
 
-        //todo add this to helper functions to make it more generic
-        private static string CreateCountryCode(string fullCountryName)
-        {
-            return fullCountryName;
-        }
+        
     }
 }
