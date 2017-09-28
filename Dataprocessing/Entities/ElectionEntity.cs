@@ -2,7 +2,7 @@
 
 namespace Dataformatter.Dataprocessing.Entities
 {
-    class ElectionEntity
+    class ElectionEntity : IEntity
     {
         public int Year { get; set; }
         public string CountryCode { get; set; }

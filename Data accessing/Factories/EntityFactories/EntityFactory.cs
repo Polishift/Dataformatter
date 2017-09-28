@@ -1,21 +1,21 @@
 ﻿using System;
-using Dataformatter.Dataprocessing;
+using Dataformatter.Data_accessing.Repositories;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class EntityFactory
+    public abstract class EntityFactory
     {
-        protected static string CreateCountryCode(string fullCountryName)
+        protected string CreateCountryCode(string fullCountryName)
         {
-            var result = Iso3166.FromName(fullCountryName.ToLower()) ??
-                         (Iso3166.FromAlpha2(fullCountryName.ToUpper()) ??
-                          Iso3166.FromAlpha3(fullCountryName.ToUpper()) ??
-                          Iso3166.FromAlternativeName(fullCountryName.ToLower()));
+            var result = Iso3166Repository.FromName(fullCountryName.ToLower()) ??
+                         (Iso3166Repository.FromAlpha2(fullCountryName.ToUpper()) ??
+                          Iso3166Repository.FromAlpha3(fullCountryName.ToUpper()) ??
+                          Iso3166Repository.FromAlternativeName(fullCountryName.ToLower()));
 
             if (result == null)
                 Console.WriteLine("nothing found by " + fullCountryName);
-//            else
-//                Console.WriteLine(result);
+            //else
+               //Console.WriteLine(result);
 
             return fullCountryName;
         }

@@ -1,6 +1,6 @@
 ﻿namespace Dataformatter.Datamodels
 {
-    public class TurnoutModel
+    public class TurnoutModel : IModel
     {
         public string CountryName { get; set; }
         public string Type { get; set; }

@@ -1,6 +1,6 @@
 ﻿namespace Dataformatter.Datamodels
 {
-    interface IModel
+    public interface IModel
     {
     }
 }

@@ -8,7 +8,6 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
     {
         public TurnoutEntity Create(TurnoutModel rawModel)
         {
-            
             return new TurnoutEntity
             {
                 InvalidVotes = rawModel.InvalidVotes,

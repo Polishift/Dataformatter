@@ -42,8 +42,6 @@ namespace Dataformatter
             
             var processor3 = new TurnoutProcessor();
             processor3.SerializeDataToJson(allTurnoutModels);
-            
-            
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Dataformatter.Dataprocessing.Entities
 {
-    public class PartyClassificationEntity
+    public class PartyClassificationEntity : IEntity
     {
         public string CountryCode { get; set; }
         public string Name { get; set; }
