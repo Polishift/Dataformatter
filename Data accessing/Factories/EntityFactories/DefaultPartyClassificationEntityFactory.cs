@@ -1,4 +1,5 @@
-﻿using Dataformatter.Datamodels;
+﻿using System;
+using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories

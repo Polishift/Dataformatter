@@ -1,4 +1,5 @@
-﻿using Dataformatter.Datamodels;
+﻿using System;
+using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
@@ -7,6 +8,7 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
     {
         public TurnoutEntity Create(TurnoutModel rawModel)
         {
+            
             return new TurnoutEntity
             {
                 InvalidVotes = rawModel.InvalidVotes,
