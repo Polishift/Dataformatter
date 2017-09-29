@@ -10,7 +10,7 @@ using Dataformatter.Data_accessing.Factories.EntityFactories;
 namespace Dataformatter.Dataprocessing.Processors
 {
     class ElectionsProcessor : AbstractDataProcessor<ConstituencyElectionModel,
-                                                     ElectionEntity>
+        ElectionEntity>
     {
         public override void SerializeDataToJson(List<ConstituencyElectionModel> rawModels)
         {
@@ -34,7 +34,7 @@ namespace Dataformatter.Dataprocessing.Processors
                     electionsPerParty[currentPartyAndYearCombination].PartyCandidates.Add(currentRowCandidate);
                 }
             }
-            base.WriteEntitiesToJson("ProcessedData/Elections_", electionsPerParty.Values.ToList());
+            WriteEntitiesToJson("ProcessedData/Elections_", electionsPerParty.Values.ToList());
         }
     }
 }
