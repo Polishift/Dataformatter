@@ -5,12 +5,11 @@ namespace Dataformatter.Dataprocessing.CsvParsing
 {
     public static class JsonReader<T>
     {
-        public static T[] ParseJsonToListOfObjects(string fileLocation)
+        public static T[] ParseJsonToListOfObjects(string fileName)
         {
-            var rootObject = JObject.Parse(File.ReadAllText(fileLocation));
-            var rootArray = (JArray) rootObject[""];
-
-            var objectList = rootArray.ToObject<T[]>();
+            var fileLocation = "ProcessedData/" + fileName;
+            var rootObject = JArray.Parse(File.ReadAllText(fileLocation));
+            var objectList = rootObject.ToObject<T[]>();
             return objectList;
         }
     }

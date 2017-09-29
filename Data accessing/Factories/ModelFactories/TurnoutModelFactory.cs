@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
-using System.Runtime.InteropServices;
 using Dataformatter.Datamodels;
 
-namespace Dataformatter.Data_accessing.Factories
+namespace Dataformatter.Data_accessing.Factories.ModelFactories
 {
     public class TurnoutModelFactory : IModelFactory<TurnoutModel>
     {

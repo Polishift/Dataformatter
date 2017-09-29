@@ -6,6 +6,7 @@ using System.Text;
 
 using Dataformatter.Data_accessing.Factories;
 using Dataformatter.Datamodels;
+using Dataformatter.Data_accessing.Factories.ModelFactories;
 
 namespace Dataformatter.Dataprocessing.CsvParsing
 {
@@ -116,18 +117,18 @@ namespace Dataformatter.Dataprocessing.CsvParsing
             EmptyLineBehavior = emptyLineBehavior;
         }
 
-        /// <summary>
-        /// Initializes a new instance of the CsvFileReader class for the
-        /// specified stream.
-        /// </summary>
-        /// <param name="stream">The stream to read from</param>
-        /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
-        public CsvFileReader(Stream stream,
-                         EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
-        {
-            Reader = new StreamReader(stream);
-            EmptyLineBehavior = emptyLineBehavior;
-        }
+//        /// <summary>
+//        /// Initializes a new instance of the CsvFileReader class for the
+//        /// specified stream.
+//        /// </summary>
+//        /// <param name="stream">The stream to read from</param>
+//        /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
+//        public CsvFileReader(Stream stream,
+//                         EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
+//        { 
+//            Reader = new StreamReader(stream);
+//            EmptyLineBehavior = emptyLineBehavior;
+//        }
 
         /// <summary>
         /// Initializes a new instance of the CsvFileReader class for the

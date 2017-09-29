@@ -6,6 +6,8 @@ using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.CsvParsing;
 using Dataformatter.Dataprocessing.Processors;
 using Dataformatter.Data_accessing.Factories;
+using Dataformatter.Data_accessing.Factories.ModelFactories;
+using Dataformatter.Data_accessing.Repositories;
 
 namespace Dataformatter
 {
@@ -42,6 +44,13 @@ namespace Dataformatter
             
             var processor3 = new TurnoutProcessor();
             processor3.SerializeDataToJson(allTurnoutModels);
+//
+//            var  repository= new ElectionsRepository();
+//            foreach (var electionEntity in repository.GetAll())
+//            {
+//                Console.WriteLine(electionEntity);
+//            }
+            
         }
     }
 }
