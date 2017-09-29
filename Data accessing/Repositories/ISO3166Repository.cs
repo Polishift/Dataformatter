@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Dataformatter.Dataprocessing.CsvParsing;
 using Newtonsoft.Json;
@@ -23,16 +21,31 @@ namespace Dataformatter.Data_accessing.Repositories
             return Collection.FirstOrDefault(p => p.Alpha3 == alpha3);
         }
 
+        /// <summary>
+        /// Obtain ISO3166-1 Country based on its name.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static Iso3166Country FromName(string name)
         {    
             return Collection.FirstOrDefault(p => p.Name == name);
         }
 
+        /// <summary>
+        /// Obtain ISO3166-1 Country based on its alpha2 code.
+        /// </summary>
+        /// <param name="alpha2"></param>
+        /// <returns></returns>
         public static Iso3166Country FromAlpha2(string alpha2)
         {
             return Collection.FirstOrDefault(p => p.Alpha2 == alpha2);
         }
 
+        /// <summary>
+        /// Obtain ISO3166-1 Country based on alternative names for the country.
+        /// </summary>
+        /// <param name="alternative"></param>
+        /// <returns></returns>
         public static Iso3166Country FromAlternativeName(string alternative)
         {
             for (var i = 0; i < Collection.Length; i++)
