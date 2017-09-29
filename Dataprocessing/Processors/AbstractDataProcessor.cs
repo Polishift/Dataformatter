@@ -1,25 +1,34 @@
+using System;
 using System.IO;
 using System.Collections.Generic;
-
 using Newtonsoft.Json;
-
 using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
 
 
 namespace Dataformatter.Dataprocessing.Processors
 {
-    public abstract class AbstractDataProcessor<I, O> where I : IModel
-                                                      where O : IEntity
+    public enum EntityNames
     {
+        PartyClassification,
+        Election,
+        Turnout
+    }
+
+    public abstract class AbstractDataProcessor<I, O> where I : IModel
+        where O : IEntity
+    {
+        private const string DIRECTORY = "ProcessedData/";
+
         public abstract void SerializeDataToJson(List<I> rawModels);
 
-        protected void WriteEntitiesToJson(string fileNamePrefix, IReadOnlyList<O> entities)
-        {   
-            var orderedByCoutry = this.SortByCountry(entities);
+        protected void WriteEntitiesToJson(EntityNames entityName, IReadOnlyList<O> entities)
+        {
+            var orderedByCoutry = SortByCountry(entities);
             foreach (var countryPair in orderedByCoutry)
             {
-                var resultFile = fileNamePrefix + countryPair.Key + ".json";
+                var resultFile = DIRECTORY + Enum.GetName(typeof(EntityNames), entityName) + "_" + countryPair.Key +
+                                 ".json";
 
                 if (!File.Exists(resultFile))
                     File.Create(resultFile).Dispose();

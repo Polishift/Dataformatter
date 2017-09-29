@@ -25,7 +25,7 @@ namespace Dataformatter.Dataprocessing.Processors
 
                 classificationPerParty.Add(model.Id, entityFactory.Create(model));
             }
-            base.WriteEntitiesToJson("ProcessedData/PartyClassification_", classificationPerParty.Values.ToList());
+            WriteEntitiesToJson(EntityNames.PartyClassification, classificationPerParty.Values.ToList());
         }
     }
 }

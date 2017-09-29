@@ -20,7 +20,7 @@ namespace Dataformatter.Dataprocessing.Processors
                 turnoutEntities.Add(entityFactory.Create(rawModels[i]));
             }
 
-            base.WriteEntitiesToJson("ProcessedData/turnout_", turnoutEntities);   
+            WriteEntitiesToJson(EntityNames.Turnout, turnoutEntities);   
         }
     }
 }

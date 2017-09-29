@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
-using Dataformatter.Data_accessing.Factories;
 using Dataformatter.Data_accessing.Factories.EntityFactories;
 
 namespace Dataformatter.Dataprocessing.Processors
@@ -34,7 +32,7 @@ namespace Dataformatter.Dataprocessing.Processors
                     electionsPerParty[currentPartyAndYearCombination].PartyCandidates.Add(currentRowCandidate);
                 }
             }
-            WriteEntitiesToJson("ProcessedData/Elections_", electionsPerParty.Values.ToList());
+            WriteEntitiesToJson(EntityNames.Election, electionsPerParty.Values.ToList());
         }
     }
 }
