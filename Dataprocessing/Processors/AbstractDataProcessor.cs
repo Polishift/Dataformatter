@@ -16,9 +16,6 @@ namespace Dataformatter.Dataprocessing.Processors
 
         protected void WriteEntitiesToJson(string fileNamePrefix, IReadOnlyList<O> entities)
         {   
-            //Todo: Also check if folder does not exist yet
-            //To fix: Does comma in country name screw things up?
-
             var orderedByCoutry = this.SortByCountry(entities);
             foreach (var countryPair in orderedByCoutry)
             {
