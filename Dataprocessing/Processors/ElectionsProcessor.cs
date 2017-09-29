@@ -34,7 +34,6 @@ namespace Dataformatter.Dataprocessing.Processors
                     electionsPerParty[currentPartyAndYearCombination].PartyCandidates.Add(currentRowCandidate);
                 }
             }
-
             WriteElectionEntitiesToJson(electionsPerParty.Values.ToList());
         }
 
