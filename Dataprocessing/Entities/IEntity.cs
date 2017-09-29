@@ -1,5 +1,3 @@
-
-
 namespace Dataformatter.Dataprocessing.Entities
 {
     public interface IEntity

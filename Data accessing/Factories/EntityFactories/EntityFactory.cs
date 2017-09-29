@@ -1,10 +1,15 @@
 ﻿using System;
 using Dataformatter.Data_accessing.Repositories;
+using Dataformatter.Datamodels;
+using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public abstract class EntityFactory
+    public abstract class EntityFactory<I, O> where I : IModel
+                                              where O : IEntity
     {
+        public abstract O Create(I rawModel);
+
         protected string CreateCountryCode(string fullCountryName)
         {
             var result = Iso3166Repository.FromName(fullCountryName.ToLower()) ??

@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
+
 using Dataformatter.Data_accessing.Factories;
+using Dataformatter.Datamodels;
 
 namespace Dataformatter.Dataprocessing.CsvParsing
 {
-    public static class CsvToModel<T> 
+    public static class CsvToModel<T> where T: IModel 
     {
         public static List<T> ParseAllCsvLinesToModels(string fileLocation, IModelFactory<T> modelFactory)
         {

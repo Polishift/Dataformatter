@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public static class Iso3166Repository
+    public static class Iso3166Repository //rename
     {
         private static readonly HashSet<Iso3166Country> Collection = BuildCollection();
 
@@ -334,7 +334,8 @@ namespace Dataformatter.Data_accessing.Repositories
             var yugAlternatives = new List<string>
             {
                 "yugoslavia, sfr (1943-1992)",
-                "yugoslavia, fr/union of serbia and montenegro"
+                "yugoslavia fr/union of serbia and montenegro"
+                //"yugoslavia, fr/union of serbia and montenegro"
             };
             collection.Add(new Iso3166Country("Yugoslavia", "YU", "YUG", 891, yugAlternatives));
             collection.Add(new Iso3166Country("Zambia", "ZM", "ZMB", 894));

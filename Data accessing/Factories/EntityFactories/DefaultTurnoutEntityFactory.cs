@@ -4,9 +4,10 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultTurnoutEntityFactory : EntityFactory
+    public class DefaultTurnoutEntityFactory : EntityFactory<TurnoutModel,
+                                                             TurnoutEntity>
     {
-        public TurnoutEntity Create(TurnoutModel rawModel)
+        public override TurnoutEntity Create(TurnoutModel rawModel)
         {
             return new TurnoutEntity
             {
