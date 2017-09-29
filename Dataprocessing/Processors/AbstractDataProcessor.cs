@@ -27,21 +27,10 @@ namespace Dataformatter.Dataprocessing.Processors
             var orderedByCoutry = SortByCountry(entities);
             foreach (var countryPair in orderedByCoutry)
             {
-                //this checks if the directory exists. If we don't do this, it will throw an exception boi
-                if (!System.IO.Directory.Exists(DIRECTORY))
-                    System.IO.Directory.CreateDirectory(DIRECTORY);
-                
-                var resultFile = DIRECTORY + Enum.GetName(typeof(EntityNames), entityName) + "_" + countryPair.Key +
-                                 ".json";
+                CreateDirectoryIfNotExists();
+                var resultFileName = CreateCurrentCountryFileName(entityName, countryPair.Key);
 
-                if (!File.Exists(resultFile))
-                    File.Create(resultFile).Dispose();
-
-                using (var file = File.CreateText(resultFile))
-                {
-                    var serializer = new JsonSerializer();
-                    serializer.Serialize(file, countryPair.Value);
-                }
+                SerializeFile(resultFileName, countryPair.Value);
             }
         }
 
@@ -58,6 +47,32 @@ namespace Dataformatter.Dataprocessing.Processors
                 result[election.CountryCode].Add(election);
             }
             return result;
+        }
+
+
+        private void CreateDirectoryIfNotExists()
+        {
+            //this checks if the directory exists. If we don't do this, it will throw an exception boi
+            if (!System.IO.Directory.Exists(DIRECTORY))
+                System.IO.Directory.CreateDirectory(DIRECTORY);
+        }
+
+        private string CreateCurrentCountryFileName(EntityNames entityName, string countryName)
+        {
+            return DIRECTORY + Enum.GetName(typeof(EntityNames), entityName) + "_" + countryName 
+                             + ".json";
+        }
+
+        private void SerializeFile(string fileName, List<O> entityList)
+        {
+            if (!File.Exists(fileName))
+                File.Create(fileName).Dispose();
+
+            using (var file = File.CreateText(fileName))
+            {
+                var serializer = new JsonSerializer();
+                serializer.Serialize(file, entityList);
+            }
         }
     }
 }

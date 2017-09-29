@@ -10,7 +10,12 @@ namespace Dataformatter.Dataprocessing.Processors
     class ElectionsProcessor : AbstractDataProcessor<ConstituencyElectionModel,
         ElectionEntity>
     {
-        
+        /*If name is independant or blank, always add  */
+        private enum SpecialPartyNames
+        {
+            Independant,
+            Blank
+        }
 
         public override void SerializeDataToJson(List<ConstituencyElectionModel> rawModels)
         {
@@ -21,11 +26,12 @@ namespace Dataformatter.Dataprocessing.Processors
             {
                 var currentPartyAndYearCombination = new Tuple<string, int>(rawModels[i].PartyName, rawModels[i].Year);
                 var currentRowCandidate = rawModels[i].CandidateName;
+                
                 var currentRowPartyName = rawModels[i].PartyName;
 
-                if (electionsPerParty.ContainsKey(currentPartyAndYearCombination) == false )
+                if (electionsPerParty.ContainsKey(currentPartyAndYearCombination) == false) 
                 {
-                    //As of yet undiscovered party/year combination
+                    //As of yet undiscovered party/year combination or independant/blank, which always has to be a standalone entry
                     electionsPerParty.Add(currentPartyAndYearCombination, electionEntityFactory.Create(rawModels[i]));
                 }
                 else if (electionsPerParty[currentPartyAndYearCombination].PartyCandidates
