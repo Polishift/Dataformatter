@@ -10,6 +10,11 @@ namespace Dataformatter.Dataprocessing.Processors
     class ElectionsProcessor : AbstractDataProcessor<ConstituencyElectionModel,
         ElectionEntity>
     {
+        private Enum SpecialParties
+        {
+            Independent
+        }
+
         public override void SerializeDataToJson(List<ConstituencyElectionModel> rawModels)
         {
             var electionEntityFactory = new DefaultElectionEntityFactory();
@@ -19,8 +24,10 @@ namespace Dataformatter.Dataprocessing.Processors
             {
                 var currentPartyAndYearCombination = new Tuple<string, int>(rawModels[i].PartyName, rawModels[i].Year);
                 var currentRowCandidate = rawModels[i].CandidateName;
+                var currentRowPartyName = rawModels[i].PartyName;
 
-                if (electionsPerParty.ContainsKey(currentPartyAndYearCombination) == false)
+                if (electionsPerParty.ContainsKey(currentPartyAndYearCombination) == false ||
+                    currentRowPartyName == SpecialParties.Independent)
                 {
                     //As of yet undiscovered party/year combination
                     electionsPerParty.Add(currentPartyAndYearCombination, electionEntityFactory.Create(rawModels[i]));

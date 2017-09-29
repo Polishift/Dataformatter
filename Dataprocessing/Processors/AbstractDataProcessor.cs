@@ -16,7 +16,7 @@ namespace Dataformatter.Dataprocessing.Processors
     }
 
     public abstract class AbstractDataProcessor<I, O> where I : IModel
-        where O : IEntity
+                                                      where O : IEntity
     {
         private const string DIRECTORY = "ProcessedData/";
 
