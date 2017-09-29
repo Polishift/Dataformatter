@@ -1,6 +1,7 @@
 ﻿namespace Dataformatter.Datamodels
 {
-    interface IModel
+    public interface IModel
     {
+        string CountryName { get; set; }
     }
 }

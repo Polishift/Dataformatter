@@ -25,21 +25,29 @@ namespace Dataformatter.Data_accessing.Factories
 
             result.InvalidVotes = double.Parse(StripOnSpaces(csvDataRow[InvalidVotesColumnIndex]),
                 CultureInfo.InvariantCulture);
+
             result.CountryName = csvDataRow[CountryColumnIndex];
+            
             result.Population =
                 int.Parse(ReplaceCommasInThousands(csvDataRow[PopulationColumnIndex]),
                     CultureInfo.InvariantCulture);
+
             result.Registration = int.Parse(ReplaceCommasInThousands(csvDataRow[RegistrationColumnIndex]),
                 CultureInfo.InvariantCulture);
-            result.TotalVotes =
-                int.Parse(ReplaceCommasInThousands(csvDataRow[TotalVotesColumnIndex]), CultureInfo.InvariantCulture);
+
+            result.TotalVotes = int.Parse(ReplaceCommasInThousands(csvDataRow[TotalVotesColumnIndex]), CultureInfo.InvariantCulture);
+            
             result.Type = csvDataRow[TypeColumnIndex];
+            
             result.VapTurnout =
                 double.Parse(StripOnSpaces(csvDataRow[VapTurnoutColumnIndex]), CultureInfo.InvariantCulture);
+           
             result.VoterTurnout = double.Parse(StripOnSpaces(csvDataRow[VoterTurnoutColumnIndex]),
                 CultureInfo.InvariantCulture);
+            
             result.VotingAge =
                 int.Parse(ReplaceCommasInThousands(csvDataRow[VotingAgeColumnIndex]), CultureInfo.InvariantCulture);
+            
             result.Year = int.Parse(csvDataRow[YearColumnIndex], CultureInfo.InvariantCulture);
 
             return result;

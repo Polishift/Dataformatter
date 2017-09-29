@@ -1,6 +1,6 @@
 ﻿namespace Dataformatter.Dataprocessing.Entities
 {
-    public class TurnoutEntity
+    public class TurnoutEntity : IEntity
     {
         public string CountryCode { get; set; }
         public string Type { get; set; }

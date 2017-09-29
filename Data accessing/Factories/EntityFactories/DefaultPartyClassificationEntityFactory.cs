@@ -4,9 +4,10 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultPartyClassificationEntityFactory : EntityFactory
+    public class DefaultPartyClassificationEntityFactory : EntityFactory<PartyClassificationModel,
+                                                                         PartyClassificationEntity>
     {
-        public PartyClassificationEntity Create(PartyClassificationModel rawModel)
+        public override PartyClassificationEntity Create(PartyClassificationModel rawModel)
         {
             return new PartyClassificationEntity
             {

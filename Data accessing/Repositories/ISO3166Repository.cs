@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Dataformatter.Dataprocessing
+namespace Dataformatter.Data_accessing.Repositories
 {
-    public static class Iso3166
+    public static class Iso3166Repository //rename
     {
         private static readonly HashSet<Iso3166Country> Collection = BuildCollection();
 

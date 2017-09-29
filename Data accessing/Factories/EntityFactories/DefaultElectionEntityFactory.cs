@@ -4,19 +4,19 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    class DefaultElectionEntityFactory : EntityFactory
+    class DefaultElectionEntityFactory : EntityFactory<ConstituencyElectionModel, ElectionEntity>
     {
         private const int MissingValueKey = -990;
 
-        public ElectionEntity Create(ConstituencyElectionModel rawModel)
-        { 
+        public override ElectionEntity Create(ConstituencyElectionModel rawModel)
+        {
             return new ElectionEntity
             {
                 Year = rawModel.Year,
                 CountryCode = CreateCountryCode(rawModel.CountryName),
                 PartyClassification = "Unknown", //Where/How will we be doing this?
                 PartyName = rawModel.PartyName,
-                PartyCandidates = new HashSet<string> {rawModel.CandidateName},
+                PartyCandidates = new HashSet<string> { rawModel.CandidateName },
                 TotalVotePercentage =
                     GetFormattedTotalVotePercentage(rawModel.VoteFraction, rawModel.SecondRoundVoteFraction),
                 TotalAmountOfSeatsGained = GetFormattedSeatsGained(rawModel.SeatsGained)
