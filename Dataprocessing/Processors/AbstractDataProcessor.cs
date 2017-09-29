@@ -52,7 +52,7 @@ namespace Dataformatter.Dataprocessing.Processors
 
         private void CreateDirectoryIfNotExists()
         {
-            //this checks if the directory exists. If we don't do this, it will throw an exception boi
+            //this checks if the directory exists. If we don't do this, it will throw an exception
             if (!System.IO.Directory.Exists(DIRECTORY))
                 System.IO.Directory.CreateDirectory(DIRECTORY);
         }
