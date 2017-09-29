@@ -2,7 +2,7 @@
 using System.Globalization;
 using Dataformatter.Datamodels;
 
-namespace Dataformatter.Data_accessing.Factories
+namespace Dataformatter.Data_accessing.Factories.ModelFactories
 {
     class ConstituencyElectionModelFactory : IModelFactory<ConstituencyElectionModel>
     {

@@ -1,49 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using Dataformatter.Datamodels;
-using Dataformatter.Dataprocessing.CsvParsing;
-using Dataformatter.Dataprocessing.Processors;
-using Dataformatter.Data_accessing.Factories;
+using Dataformatter.Data_accessing.Repositories;
 
 namespace Dataformatter
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            const string electionsCsvLocation = "Datasources/Political/ElectionResults/election_data.csv";
-            IModelFactory<ConstituencyElectionModel> constituencyElectionModelFactory =
-                new ConstituencyElectionModelFactory();
 
-            var allElectionLinesAsModels =
-                CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(electionsCsvLocation,
-                    constituencyElectionModelFactory);
+            #region ParseCode
 
-            var processor = new ElectionsProcessor();
-            processor.SerializeDataToJson(allElectionLinesAsModels);
+//            const string electionsCsvLocation = "Datasources/Political/ElectionResults/election_data.csv";
+//            const string partyClassificationCsvLocation = "Datasources/Political/PartyClassification/classificationData.csv";
+//            const string turnoutCsvLocation = "Datasources/Political/Turnout/turnout_data.csv";
+//            IModelFactory<ConstituencyElectionModel> modelFactory =
+//                new ConstituencyElectionModelFactory();
+//            var allItemsAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
+//                electionsCsvLocation, modelFactory);
+//            var processor = new ElectionsProcessor();
+//            processor.SerializeDataToJson(allItemsAsModels);
 
-            const string partyClassificationCsvLocation =
-                "Datasources/Political/PartyClassification/classificationData.csv";
-            IModelFactory<PartyClassificationModel> partyClassificationModelFactory =
-                new PartyClassificationModelFactory();
+            #endregion
 
-            var allPartyClassificationLinesAsModels = CsvToModel<PartyClassificationModel>.ParseAllCsvLinesToModels(
-                partyClassificationCsvLocation, partyClassificationModelFactory);
-
-            var processor2 = new PartyClassificationProcessor();
-            processor2.SerializeDataToJson(allPartyClassificationLinesAsModels);
-
-            const string turnoutCsvLocation = "Datasources/Political/Turnout/turnout_data.csv";
-            IModelFactory<TurnoutModel> turnoutModelFactory =
-                new TurnoutModelFactory();
-
-            var allTurnoutModels = CsvToModel<TurnoutModel>.ParseAllCsvLinesToModels(
-                turnoutCsvLocation, turnoutModelFactory);
-
-            var processor3 = new TurnoutProcessor();
-            processor3.SerializeDataToJson(allTurnoutModels);
+            
+            var repo = new ElectionsRepository();
+            foreach (var entity in repo.GetByCountry("NLD"))
+            {
+                Console.WriteLine(entity);
+            }
         }
     }
 }
