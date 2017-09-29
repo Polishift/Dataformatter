@@ -27,6 +27,10 @@ namespace Dataformatter.Dataprocessing.Processors
             var orderedByCoutry = SortByCountry(entities);
             foreach (var countryPair in orderedByCoutry)
             {
+                //this checks if the directory exists. If we don't do this, it will throw an exception
+                if (!System.IO.Directory.Exists(DIRECTORY))
+                    System.IO.Directory.CreateDirectory(DIRECTORY);
+                
                 var resultFile = DIRECTORY + Enum.GetName(typeof(EntityNames), entityName) + "_" + countryPair.Key +
                                  ".json";
 
