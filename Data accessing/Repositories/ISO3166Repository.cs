@@ -5,11 +5,12 @@ using Newtonsoft.Json;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public static class Iso3166Repository //rename
+    public static class Iso3166Repository 
     {
         private const string FileName = "countries.json";
 
-        private static readonly Iso3166Country[] Collection = JsonReader<Iso3166Country>.ParseJsonToListOfObjects(FileName);
+        private static readonly Iso3166Country[] Collection =
+            JsonReader<Iso3166Country>.ParseJsonToListOfObjects(FileName);
 
         /// <summary>
         /// Obtain ISO3166-1 Country based on its alpha3 code.
@@ -27,7 +28,7 @@ namespace Dataformatter.Data_accessing.Repositories
         /// <param name="name"></param>
         /// <returns></returns>
         public static Iso3166Country FromName(string name)
-        {    
+        {
             return Collection.FirstOrDefault(p => p.Name == name);
         }
 
