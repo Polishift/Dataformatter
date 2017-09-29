@@ -27,7 +27,7 @@ namespace Dataformatter.Dataprocessing.Processors
             var orderedByCoutry = SortByCountry(entities);
             foreach (var countryPair in orderedByCoutry)
             {
-                //this checks if the directory exists. If we don't do this, it will throw an exception
+                //this checks if the directory exists. If we don't do this, it will throw an exception boi
                 if (!System.IO.Directory.Exists(DIRECTORY))
                     System.IO.Directory.CreateDirectory(DIRECTORY);
                 
