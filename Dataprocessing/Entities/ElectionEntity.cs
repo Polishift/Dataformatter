@@ -16,9 +16,10 @@ namespace Dataformatter.Dataprocessing.Entities
         public double TotalVotePercentage { get; set; }
         public int TotalAmountOfSeatsGained { get; set; }
 
+
         public override string ToString()
         {
-            return Year.ToString();
+            return CountryName + ", " + Year + ": " + PartyName + " gained " + TotalVotePercentage + "% of the votes.";
         }
     }
 }
