@@ -15,7 +15,7 @@ namespace Dataformatter.Dataprocessing.Processors
         private Dictionary<Tuple<string, int>, int> TotalAmountOfVotesPerCountryAndYear =
                                                                new Dictionary<Tuple<string, int>, int>();
         private Dictionary<Tuple<string, int>, ElectionEntity> ElectionsPerParty =
-                                                               new Dictionary<Tuple<string, int>, ElectionEntity>();
+                                                              new Dictionary<Tuple<string, int>, ElectionEntity>();
         private Dictionary<string, int> SpecialPartyNamesAndAmount = new Dictionary<string, int>()
         {
             { "Independent", 0 },
