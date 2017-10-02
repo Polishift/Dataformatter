@@ -1,29 +1,42 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Dataformatter.Dataprocessing.CsvParsing;
 using Dataformatter.Dataprocessing.Entities;
+using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    class ElectionsRepository : IRepository<ElectionEntity>
+    public class ElectionsRepository : IRepository<ElectionEntity>
     {
-        private const string FileLocation = "ProcessedData/Elections.json";
 
         //Keeping one static reference instead of recalling the parser means less GC work :)
-        private static ElectionEntity[] allElections = JsonReader<ElectionEntity>.ParseJsonToListOfObjects(FileLocation);
+        private static readonly Dictionary<string, ElectionEntity[]> AllElectionsByCountry =
+            JsonReader<ElectionEntity>.ParseJsonToListOfObjects(EntityNames.Election);
 
         public ElectionEntity[] GetAll()
         {
-            return allElections; 
+            var result = new List<ElectionEntity>();
+            foreach (var keyValuePair in AllElectionsByCountry)
+            {
+                result.AddRange(keyValuePair.Value);
+            }
+            return result.ToArray();
         }
 
         public ElectionEntity[] GetByCountry(string countryCode)
         {
-            return allElections.Where(e => e.CountryCode == countryCode).ToArray();
+
+            return AllElectionsByCountry[countryCode];
         }
 
         public ElectionEntity[] GetByYear(int year)
         {
-            return allElections.Where(e => e.Year == year).ToArray();
+            var result = new List<ElectionEntity>();
+            foreach (var keyValuePair in AllElectionsByCountry)
+            {
+                result.AddRange(keyValuePair.Value);
+            }
+            return result.Where(e => e.Year == year).ToArray();
         }
     }
 }

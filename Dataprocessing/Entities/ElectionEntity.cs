@@ -2,7 +2,7 @@
 
 namespace Dataformatter.Dataprocessing.Entities
 {
-    class ElectionEntity : IEntity
+    public class ElectionEntity : IEntity
     {
         public int Year { get; set; }
         public string CountryCode { get; set; }
@@ -15,5 +15,10 @@ namespace Dataformatter.Dataprocessing.Entities
         public double TotalAmountOfVotes { get; set; } //Has to be double in order for certain calculations to go well at small margins
         public double TotalVotePercentage { get; set; }
         public int TotalAmountOfSeatsGained { get; set; }
+
+        public override string ToString()
+        {
+            return Year.ToString();
+        }
     }
 }
