@@ -11,6 +11,9 @@ namespace Dataformatter.Dataprocessing.Processors
         ElectionEntity>
     {
         private DefaultElectionEntityFactory electionEntityFactory = new DefaultElectionEntityFactory();
+        private HashSet<string> KnownConstituencies = new HashSet<string>();
+        private Dictionary<Tuple<string, int>, int> TotalAmountOfVotesPerCountryAndYear =
+                                                               new Dictionary<Tuple<string, int>, int>();
         private Dictionary<Tuple<string, int>, ElectionEntity> ElectionsPerParty =
                                                                new Dictionary<Tuple<string, int>, ElectionEntity>();
         private Dictionary<string, int> SpecialPartyNamesAndAmount = new Dictionary<string, int>()
@@ -22,37 +25,54 @@ namespace Dataformatter.Dataprocessing.Processors
 
         public override void SerializeDataToJson(List<ConstituencyElectionModel> rawModels)
         {
+            int previousRowsYear = int.MinValue;
+            int currentRowsYear = int.MinValue;
+
             for (var i = 0; i < rawModels.Count; i++)
             {
-                //Checking for independent/blank parties
+                currentRowsYear = rawModels[i].Year;
+
+                //Checking for independent/blank parties TODO: Sum up the party votes
                 if (IsSpecialParty(rawModels[i]))
-                    HandleSpecialPartyRow(rawModels[i]);
-                else
-                    HandleNormalPartyRow(rawModels[i]);
+                {
+                    var artificialPartyName = GetArtificalPartyName(rawModels[i]);
+                    rawModels[i].PartyName = artificialPartyName;
+                }
+
+                HandlePartyRow(rawModels[i]);
+
+                AddCurrentConstituencyVotesToTotal(rawModels[i]);
+                SumConstituencyPartyVotes(rawModels[i]);
+
+                //Known constituencies are used to ensure that the summation of all votes is only done once per constituency, per election.
+                EmptyKnownConstituenciesEachYear(previousRowsYear, currentRowsYear);
+
+                previousRowsYear = rawModels[i].Year;
             }
+            //Calculating actual vote percentages
+            CalculateVotePercentages();
+
             WriteEntitiesToJson(EntityNames.Election, ElectionsPerParty.Values.ToList());
         }
+
 
         private bool IsSpecialParty(ConstituencyElectionModel currentRawElectionModel)
         {
             return SpecialPartyNamesAndAmount.ContainsKey(currentRawElectionModel.PartyName);
         }
 
-        private void HandleSpecialPartyRow(ConstituencyElectionModel currentRawElectionModel)
+        private string GetArtificalPartyName(ConstituencyElectionModel currentRawElectionModel)
         {
             var currentRowPartyName = currentRawElectionModel.PartyName;
-
             SpecialPartyNamesAndAmount[currentRowPartyName] += 1;
 
-            var artificialPartyName = currentRowPartyName + SpecialPartyNamesAndAmount[currentRowPartyName];
-            var specialPartyAndYearCombination = new Tuple<string, int>(artificialPartyName, currentRawElectionModel.Year);
-
-            ElectionsPerParty.Add(specialPartyAndYearCombination, electionEntityFactory.Create(currentRawElectionModel));
+            return currentRowPartyName + SpecialPartyNamesAndAmount[currentRowPartyName];
         }
 
-        private void HandleNormalPartyRow(ConstituencyElectionModel currentRawElectionModel)
+
+        private void HandlePartyRow(ConstituencyElectionModel currentRawElectionModel)
         {
-            var currentPartyAndYearCombination = new Tuple<string, int>(currentRawElectionModel.PartyName, 
+            var currentPartyAndYearCombination = new Tuple<string, int>(currentRawElectionModel.PartyName,
                                                                         currentRawElectionModel.Year);
             var currentRowCandidate = currentRawElectionModel.CandidateName;
 
@@ -66,6 +86,75 @@ namespace Dataformatter.Dataprocessing.Processors
             {
                 //Existing party/year combination, but undiscovered candidate
                 ElectionsPerParty[currentPartyAndYearCombination].PartyCandidates.Add(currentRowCandidate);
+            }
+        }
+
+
+
+
+        private void AddCurrentConstituencyVotesToTotal(ConstituencyElectionModel currentRawElectionModel)
+        {
+            var currentConstituency = currentRawElectionModel.ConstituencyName;
+
+            if (KnownConstituencies.Contains(currentConstituency) == false)
+            {
+                KnownConstituencies.Add(currentConstituency);
+
+                var currentCountryAndYearCombination = new Tuple<string, int>(currentRawElectionModel.CountryName,
+                                                                          currentRawElectionModel.Year);
+
+                if (TotalAmountOfVotesPerCountryAndYear.ContainsKey(currentCountryAndYearCombination))
+                    TotalAmountOfVotesPerCountryAndYear[currentCountryAndYearCombination] += currentRawElectionModel.TotalAmountOfVotes;
+                else
+                    TotalAmountOfVotesPerCountryAndYear.Add(currentCountryAndYearCombination, currentRawElectionModel.TotalAmountOfVotes);
+
+                //do second round?
+            }
+        }
+
+        private void SumConstituencyPartyVotes(ConstituencyElectionModel currentRawElectionModel)
+        {
+            var currentPartyAndYearCombination = new Tuple<string, int>(currentRawElectionModel.PartyName,
+                                                                        currentRawElectionModel.Year);
+
+            ElectionsPerParty[currentPartyAndYearCombination].TotalAmountOfVotes += (int)currentRawElectionModel.AmountOfPartyVotes;
+            //do second round?
+        }
+
+        private void EmptyKnownConstituenciesEachYear(int previousRowsYear, int currentRowsYear) //if previous year is greater
+        {
+            if (currentRowsYear > previousRowsYear)
+                KnownConstituencies.Clear();
+        }
+
+
+
+
+        private void CalculateVotePercentages()
+        {
+            foreach (var partyElectionResult in ElectionsPerParty)
+            {
+                var currentElectionKey = partyElectionResult.Key;
+                var currentCountry = partyElectionResult.Value.CountryName;
+                var currentYear = partyElectionResult.Key.Item2;
+                var currentCountryAndYear = new Tuple<string, int>(currentCountry, currentYear);
+
+                double TotalAmountOfVotesInCountry = TotalAmountOfVotesPerCountryAndYear[currentCountryAndYear];
+                double AmountOfVotesForCurrentParty = partyElectionResult.Value.TotalAmountOfVotes;
+
+                if (TotalAmountOfVotesInCountry > 0) //This ocassionally happens with seat-based elections like Andorra's
+                {
+                    if (currentCountry == "Netherlands")
+                    {
+                        //double x = (double) AmountOfVotesForCurrentParty / (double) TotalAmountOfVotesInCountry;
+
+                        //Console.WriteLine("For the party vote percentage of " + partyElectionResult.Value.PartyName + " in the " + currentYear + " " + currentCountry +
+                        //" election we will divide " + AmountOfVotesForCurrentParty + " by " + TotalAmountOfVotesInCountry + " which results innn " 
+                        //+ (x * 100));
+                    }
+
+                    ElectionsPerParty[currentElectionKey].TotalVotePercentage = (AmountOfVotesForCurrentParty / TotalAmountOfVotesInCountry) * 100;
+                }
             }
         }
     }

@@ -13,21 +13,15 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
             return new ElectionEntity
             {
                 Year = rawModel.Year,
+                CountryName = rawModel.CountryName,
                 CountryCode = CreateCountryCode(rawModel.CountryName),
                 PartyClassification = "Unknown", //Where/How will we be doing this?
                 PartyName = rawModel.PartyName,
                 PartyCandidates = new HashSet<string> { rawModel.CandidateName },
-                TotalVotePercentage =
-                    GetFormattedTotalVotePercentage(rawModel.VoteFraction, rawModel.SecondRoundVoteFraction),
+                TotalAmountOfVotes = 0,
+                TotalVotePercentage = 0.0,
                 TotalAmountOfSeatsGained = GetFormattedSeatsGained(rawModel.SeatsGained)
             };
-        }
-
-        private static double GetFormattedTotalVotePercentage(double rawVoteFraction, double rawSecondRoundVoteFraction)
-        {
-            if (rawVoteFraction == MissingValueKey)
-                return rawSecondRoundVoteFraction;
-            return rawVoteFraction * 100;
         }
 
         private static int GetFormattedSeatsGained(int rawSeatsGained)
