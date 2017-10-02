@@ -19,6 +19,8 @@ namespace Dataformatter.Dataprocessing.Processors
         private Dictionary<string, int> SpecialPartyNamesAndAmount = new Dictionary<string, int>()
         {
             { "Independent", 0 },
+            { "independent", 0},
+            { "Independents", 0},
             { "Blank", 0 }
         };
 
@@ -32,13 +34,12 @@ namespace Dataformatter.Dataprocessing.Processors
             {
                 currentRowsYear = rawModels[i].Year;
 
-                //Checking for independent/blank parties TODO: Sum up the party votes
+                //Checking for independent/blank parties
                 if (IsSpecialParty(rawModels[i]))
                 {
                     var artificialPartyName = GetArtificalPartyName(rawModels[i]);
                     rawModels[i].PartyName = artificialPartyName;
                 }
-
                 HandlePartyRow(rawModels[i]);
 
                 AddCurrentConstituencyVotesToTotal(rawModels[i]);
@@ -66,7 +67,7 @@ namespace Dataformatter.Dataprocessing.Processors
             var currentRowPartyName = currentRawElectionModel.PartyName;
             SpecialPartyNamesAndAmount[currentRowPartyName] += 1;
 
-            return currentRowPartyName + SpecialPartyNamesAndAmount[currentRowPartyName];
+            return currentRowPartyName + " " + SpecialPartyNamesAndAmount[currentRowPartyName];
         }
 
 
@@ -144,15 +145,6 @@ namespace Dataformatter.Dataprocessing.Processors
 
                 if (TotalAmountOfVotesInCountry > 0) //This ocassionally happens with seat-based elections like Andorra's
                 {
-                    if (currentCountry == "Netherlands")
-                    {
-                        //double x = (double) AmountOfVotesForCurrentParty / (double) TotalAmountOfVotesInCountry;
-
-                        //Console.WriteLine("For the party vote percentage of " + partyElectionResult.Value.PartyName + " in the " + currentYear + " " + currentCountry +
-                        //" election we will divide " + AmountOfVotesForCurrentParty + " by " + TotalAmountOfVotesInCountry + " which results innn " 
-                        //+ (x * 100));
-                    }
-
                     ElectionsPerParty[currentElectionKey].TotalVotePercentage = (AmountOfVotesForCurrentParty / TotalAmountOfVotesInCountry) * 100;
                 }
             }
