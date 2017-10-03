@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http.Headers;
+﻿using System.Collections.Generic;
 using Dataformatter.Datamodels;
-using Dataformatter.Dataprocessing.Entities;
 using Newtonsoft.Json.Linq;
 
 namespace Dataformatter.Data_accessing.Factories.ModelFactories
@@ -11,37 +8,36 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
     {
         public CountryGeoModel Create(JObject jObject)
         {
-            Console.WriteLine("here");
             var innerbody = JObject.FromObject(JArray.FromObject(jObject.GetValue("features")).First);
             var type = JObject.FromObject(innerbody.GetValue("geometry")).GetValue("type").ToString();
-            var list = new List<Polygon>();
+            var country = JObject.FromObject(innerbody.GetValue("properties")).GetValue("cca2").ToString();
+            var polygons = new List<Polygon>();
             if (type.Equals("Polygon"))
             {
                 var coordinateArray = JArray.FromObject(JArray
                     .FromObject(JObject.FromObject(innerbody.GetValue("geometry")).GetValue("coordinates")).First);
 
-                var coordinates = new List<IPoint>();
-                foreach (var jToken in coordinateArray)
+                var coordinateList = new List<IPoint>();
+                foreach (var coordinates in coordinateArray)
                 {
                     var newPoint = new LatLongPoint
                     {
-                        X = float.Parse(jToken.First.ToString()),
-                        Y = float.Parse(jToken.Last.ToString())
+                        X = float.Parse(coordinates.First.ToString()),
+                        Y = float.Parse(coordinates.Last.ToString())
                     };
-                    coordinates.Add(newPoint);
-                    Console.WriteLine(newPoint);
+                    coordinateList.Add(newPoint);
                 }
 
-                list.Add(new Polygon(coordinates));
+                polygons.Add(new Polygon(coordinateList));
             }
             else
             {
-                //todo loop through coorddinates
+                //todo loop through coordinates
             }
             return new CountryGeoModel
             {
-                CountryName = JObject.FromObject(innerbody.GetValue("properties")).GetValue("cca2").ToString(),
-                Polygons = list
+                CountryName = country,
+                Polygons = polygons
             };
         }
     }
