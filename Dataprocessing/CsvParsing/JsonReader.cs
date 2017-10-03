@@ -12,7 +12,6 @@ namespace Dataformatter.Dataprocessing.CsvParsing
     {
         public static Dictionary<string, T[]> ParseJsonToListOfObjects(EntityNames name)
         {
-            Console.WriteLine("I got called");
             var fileInDirectory = Directory.GetFiles("ProcessedData/");
             var nameOfEnum = Enum.GetName(typeof(EntityNames), name);
             var allFiles = new Dictionary<string, string>();

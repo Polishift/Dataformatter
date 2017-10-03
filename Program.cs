@@ -16,8 +16,8 @@ namespace Dataformatter
             #region ParseCode
 
             const string electionsCsvLocation = "Datasources/Political/ElectionResults/election_data.csv";
-            const string partyClassificationCsvLocation = "Datasources/Political/PartyClassification/classificationData.csv";
-            const string turnoutCsvLocation = "Datasources/Political/Turnout/turnout_data.csv";
+//            const string partyClassificationCsvLocation = "Datasources/Political/PartyClassification/classificationData.csv";
+//            const string turnoutCsvLocation = "Datasources/Political/Turnout/turnout_data.csv";
 
             IModelFactory<ConstituencyElectionModel> modelFactory =
                 new ConstituencyElectionModelFactory();
@@ -33,7 +33,7 @@ namespace Dataformatter
             var repo = new ElectionsRepository();
             foreach (var entity in repo.GetByCountry("NLD"))
             {
-                Console.WriteLine(entity);
+//                Console.WriteLine(entity);
             }
         }
 
