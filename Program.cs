@@ -1,4 +1,5 @@
-﻿using Dataformatter.Datamodels;
+﻿using System;
+using Dataformatter.Datamodels;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
 using Dataformatter.Dataprocessing.CsvParsing;
 using Dataformatter.Dataprocessing.Processors;
@@ -35,8 +36,9 @@ namespace Dataformatter
 
             const string countryinformationAfgGeoJson = "ProcessedData/CountryInformation/aia.geo.json";
 
-            IJsonModelFactory<CountryGeoModel> ModelFactory = new CountryGeoModelFactory();
-            JsonToModel<CountryGeoModel>.ParseJsonToModel(countryinformationAfgGeoJson, ModelFactory);
+            IJsonModelFactory<CountryGeoModel> modelFactory = new CountryGeoModelFactory();
+            var allVar = JsonToModel<CountryGeoModel>.ParseJsonToModel(countryinformationAfgGeoJson, modelFactory);
+            allVar.ForEach(Console.WriteLine);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Dataformatter.Datamodels
 {
@@ -13,6 +14,13 @@ namespace Dataformatter.Datamodels
         public Polygon(List<IPoint> points)
         {
             Points = points;
+        }
+
+        public override string ToString()
+        {
+            var listString = Points.Aggregate("", (current, point) => current + "\n" + point.ToString());
+
+            return listString;
         }
     }
 }

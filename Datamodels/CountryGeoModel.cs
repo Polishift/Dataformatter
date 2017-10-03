@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Datamodels
@@ -7,5 +8,13 @@ namespace Dataformatter.Datamodels
     {
         public string CountryName { get; set; }
         public List<Polygon> Polygons { get; set; }
+
+        public override string ToString()
+        {
+            var listString = "";
+            foreach (var polygon in Polygons)
+                listString = listString + "\n" + polygon.ToString();
+            return CountryName +  " " + listString;
+        }
     }
 }
