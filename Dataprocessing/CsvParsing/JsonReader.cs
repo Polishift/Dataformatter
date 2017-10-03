@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 using Dataformatter.Dataprocessing.Processors;
 using Newtonsoft.Json.Linq;
 

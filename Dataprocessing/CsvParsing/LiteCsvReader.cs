@@ -11,7 +11,7 @@ namespace Dataformatter.Dataprocessing.CsvParsing
 {
     public static class CsvToModel<T> where T: IModel 
     {
-        public static List<T> ParseAllCsvLinesToModels(string fileLocation, IModelFactory<T> modelFactory)
+        public static List<T> ParseAllCsvLinesToModels(string fileLocation, ICsvModelFactory<T> modelFactory)
         {
             var allRowsAsModels = new List<T>();
 

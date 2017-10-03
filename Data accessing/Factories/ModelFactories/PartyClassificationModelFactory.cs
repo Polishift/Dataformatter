@@ -3,7 +3,7 @@ using Dataformatter.Datamodels;
 
 namespace Dataformatter.Data_accessing.Factories.ModelFactories
 {
-    class PartyClassificationModelFactory : IModelFactory<PartyClassificationModel>
+    class PartyClassificationModelFactory : ICsvModelFactory<PartyClassificationModel>
     {
         private const int CountryColumnIndex = 0;
         private const int ClassificationColumnIndex = 12;
