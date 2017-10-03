@@ -33,7 +33,8 @@ namespace Dataformatter
             {
 //                Console.WriteLine(entity);
             }
-
+            
+            //todo create loop for all countries and convert back to useable json with aplha3 value
             const string countryinformationAfgGeoJson = "ProcessedData/CountryInformation/aia.geo.json";
 
             IJsonModelFactory<CountryGeoModel> modelFactory = new CountryGeoModelFactory();

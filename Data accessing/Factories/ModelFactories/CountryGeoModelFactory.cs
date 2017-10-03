@@ -13,7 +13,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
             var type = JObject.FromObject(innerbody.GetValue("geometry")).GetValue("type").ToString();
             var country = JObject.FromObject(innerbody.GetValue("properties")).GetValue("cca2").ToString();
             var polygons = new List<Polygon>();
-            
+
             //todo make this generic..
             if (type.Equals("Polygon"))
             {
