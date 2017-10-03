@@ -13,12 +13,26 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
         {
             Console.WriteLine("here");
             var innerbody = JObject.FromObject(JArray.FromObject(jObject.GetValue("features")).First);
-            var type  = JObject.FromObject(innerbody.GetValue("geometry")).GetValue("type").ToString();
+            var type = JObject.FromObject(innerbody.GetValue("geometry")).GetValue("type").ToString();
             var list = new List<Polygon>();
             if (type.Equals("Polygon"))
             {
-                Console.WriteLine(JObject.FromObject(innerbody.GetValue("geometry")).GetValue("coordinates"));
-//                list.Add();
+                var coordinateArray = JArray.FromObject(JArray
+                    .FromObject(JObject.FromObject(innerbody.GetValue("geometry")).GetValue("coordinates")).First);
+
+                var coordinates = new List<IPoint>();
+                foreach (var jToken in coordinateArray)
+                {
+                    var newPoint = new LatLongPoint
+                    {
+                        X = float.Parse(jToken.First.ToString()),
+                        Y = float.Parse(jToken.Last.ToString())
+                    };
+                    coordinates.Add(newPoint);
+                    Console.WriteLine(newPoint);
+                }
+
+                list.Add(new Polygon(coordinates));
             }
             else
             {
