@@ -17,10 +17,10 @@ namespace Dataformatter.Dataprocessing.CsvParsing
             var allFiles = new Dictionary<string, string>();
             foreach (var file in fileInDirectory)
             {
-                if (file.Contains(nameOfEnum))
+                if (file.Contains(nameOfEnum)){
                     allFiles.Add(file.Substring(file.IndexOf('_') + 1, 3), file.Substring(file.IndexOf('/') + 1));
+                }
             }
-
             return allFiles.ToDictionary(s => s.Key, s => ParseJsonToListOfObjects(s.Value));
         }
 
