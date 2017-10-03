@@ -1,6 +1,4 @@
-﻿using System;
-
-using Dataformatter.Datamodels;
+﻿using Dataformatter.Datamodels;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
 using Dataformatter.Dataprocessing.CsvParsing;
 using Dataformatter.Dataprocessing.Processors;
