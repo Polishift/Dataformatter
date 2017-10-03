@@ -12,10 +12,12 @@ namespace Dataformatter.Dataprocessing.CsvParsing
     {
         public static Dictionary<string, T[]> ParseJsonToListOfObjects(EntityNames name)
         {
-            Console.WriteLine("I got called");
+            Console.WriteLine("I got called"); //the fuck CJ
+
             var fileInDirectory = Directory.GetFiles("ProcessedData/");
             var nameOfEnum = Enum.GetName(typeof(EntityNames), name);
             var allFiles = new Dictionary<string, string>();
+            
             foreach (var file in fileInDirectory)
             {
                 if (file.Contains(nameOfEnum))
