@@ -1,6 +1,5 @@
 ﻿using System;
 using Dataformatter.Datamodels;
-using Dataformatter.Dataprocessing.Entities;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
 using Dataformatter.Dataprocessing.Parsing;
 using Dataformatter.Dataprocessing.Processors;
@@ -35,7 +34,9 @@ namespace Dataformatter
                 //Console.WriteLine(entity);
             }
 
-            //todo convert back to useable json with aplha3 value
+
+            #region Parsing country borders
+
             const string countryBorderDirectory = "ProcessedData/CountryInformation/";
             IJsonModelFactory<CountryGeoModel> countryGeoModelFactory = new CountryGeoModelFactory();
             var processor = new CountryBordersProcessor();
@@ -44,6 +45,10 @@ namespace Dataformatter
                 JsonToModel<CountryGeoModel>.ParseJsonDirectoryToModels(countryBorderDirectory, countryGeoModelFactory,
                     "*.geo.json");
             processor.SerializeDataToJson(allCountryGeoModels);
+
+            #endregion
+
+            Console.WriteLine("All done!");
         }
     }
 }
