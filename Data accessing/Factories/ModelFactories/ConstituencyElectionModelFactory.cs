@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using Dataformatter.Datamodels;
 
 namespace Dataformatter.Data_accessing.Factories.ModelFactories
 {
-    class ConstituencyElectionModelFactory : IModelFactory<ConstituencyElectionModel>
+    class ConstituencyElectionModelFactory : ICsvModelFactory<ConstituencyElectionModel>
     {
         //Missingcodes
         private readonly HashSet<string> INVALID_VALUE_CODES = new HashSet<string>(){ "-990", "-992", "-994"};

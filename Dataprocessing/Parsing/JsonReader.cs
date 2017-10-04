@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 using Dataformatter.Dataprocessing.Processors;
 using Newtonsoft.Json.Linq;
 
-namespace Dataformatter.Dataprocessing.CsvParsing
+namespace Dataformatter.Dataprocessing.Parsing
 {
     public static class JsonReader<T>
     {
@@ -18,10 +17,10 @@ namespace Dataformatter.Dataprocessing.CsvParsing
             
             foreach (var file in fileInDirectory)
             {
-                if (file.Contains(nameOfEnum))
+                if (file.Contains(nameOfEnum)){
                     allFiles.Add(file.Substring(file.IndexOf('_') + 1, 3), file.Substring(file.IndexOf('/') + 1));
+                }
             }
-
             return allFiles.ToDictionary(s => s.Key, s => ParseJsonToListOfObjects(s.Value));
         }
 

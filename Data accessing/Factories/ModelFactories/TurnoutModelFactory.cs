@@ -4,7 +4,7 @@ using Dataformatter.Datamodels;
 
 namespace Dataformatter.Data_accessing.Factories.ModelFactories
 {
-    public class TurnoutModelFactory : IModelFactory<TurnoutModel>
+    public class TurnoutModelFactory : ICsvModelFactory<TurnoutModel>
     {
         private const int InvalidVotesColumnIndex = 9;
         private const int CountryColumnIndex = 0;
