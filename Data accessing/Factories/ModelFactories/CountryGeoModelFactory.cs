@@ -7,6 +7,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
 {
     public class CountryGeoModelFactory : IJsonModelFactory<CountryGeoModel>
     {
+        //bad: cuw, ssd, sxm, unk
         public CountryGeoModel Create(JObject jObject)
         {
             var innerbody = JObject.FromObject(JArray.FromObject(jObject.GetValue("features")).First);
@@ -30,7 +31,6 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                     };
                     coordinateList.Add(newPoint);
                 }
-
                 polygons.Add(new Polygon(coordinateList));
             }
             else

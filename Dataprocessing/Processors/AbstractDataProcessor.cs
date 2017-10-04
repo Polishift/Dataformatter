@@ -40,12 +40,12 @@ namespace Dataformatter.Dataprocessing.Processors
             var result = new Dictionary<string, List<O>>();
             for (var i = 0; i < allEntities.Count; i++)
             {
-                var election = allEntities[i];
+                var entity = allEntities[i];
 
-                if (!result.ContainsKey(election.CountryCode))
-                    result.Add(election.CountryCode, new List<O>());
+                if (!result.ContainsKey(entity.CountryCode))
+                    result.Add(entity.CountryCode, new List<O>());
 
-                result[election.CountryCode].Add(election);
+                result[entity.CountryCode].Add(entity);
             }
             return result;
         }

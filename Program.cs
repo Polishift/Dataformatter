@@ -1,5 +1,6 @@
 ﻿using System;
 using Dataformatter.Datamodels;
+using Dataformatter.Dataprocessing.Entities;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
 using Dataformatter.Dataprocessing.CsvParsing;
 using Dataformatter.Dataprocessing.Processors;
@@ -31,15 +32,20 @@ namespace Dataformatter
             var repo = new ElectionsRepository();
             foreach (var entity in repo.GetByCountry("NLD"))
             {
-//                Console.WriteLine(entity);
+                //Console.WriteLine(entity);
             }
             
             //todo create loop for all countries and convert back to useable json with aplha3 value
-            const string countryinformationAfgGeoJson = "ProcessedData/CountryInformation/aia.geo.json";
+            //const string countryinformationAfgGeoJson = "ProcessedData/CountryInformation/aia.geo.json";
 
-            IJsonModelFactory<CountryGeoModel> modelFactory = new CountryGeoModelFactory();
-            var allVar = JsonToModel<CountryGeoModel>.ParseJsonToModel(countryinformationAfgGeoJson, modelFactory);
-            allVar.ForEach(Console.WriteLine);
+            //todo actually fill in CountryGeoModel countrycode somehow, cunt    
+
+            const string countryBorderDirectory = "ProcessedData/CountryInformation/";
+            IJsonModelFactory<CountryGeoModel> countryGeoModelFactory = new CountryGeoModelFactory();
+            AbstractDataProcessor<CountryGeoModel, CountryBordersEntity> countryBorderProcessor = new CountryBordersProcessor();
+
+            var allCountryGeoModels = JsonToModel<CountryGeoModel>.ParseJsonDirectoryToModels(countryBorderDirectory, countryGeoModelFactory, "*.geo.json");
+            countryBorderProcessor.SerializeDataToJson(allCountryGeoModels);
         }
     }
 }
