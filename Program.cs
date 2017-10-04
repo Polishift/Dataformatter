@@ -28,12 +28,17 @@ namespace Dataformatter
 
             #endregion
 
+            #region Repositry talking
+
             var repo = new ElectionsRepository();
             foreach (var entity in repo.GetByCountry("NLD"))
             {
                 //Console.WriteLine(entity);
             }
 
+
+            #endregion
+            
 
             #region Parsing country borders
 
