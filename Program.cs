@@ -35,10 +35,8 @@ namespace Dataformatter
                 //Console.WriteLine(entity);
             }
             
-            //todo create loop for all countries and convert back to useable json with aplha3 value
-            //const string countryinformationAfgGeoJson = "ProcessedData/CountryInformation/aia.geo.json";
 
-            //todo actually fill in CountryGeoModel countrycode somehow, cunt    
+            #region Parsing country borders
 
             const string countryBorderDirectory = "ProcessedData/CountryInformation/";
             IJsonModelFactory<CountryGeoModel> countryGeoModelFactory = new CountryGeoModelFactory();
@@ -46,6 +44,10 @@ namespace Dataformatter
 
             var allCountryGeoModels = JsonToModel<CountryGeoModel>.ParseJsonDirectoryToModels(countryBorderDirectory, countryGeoModelFactory, "*.geo.json");
             countryBorderProcessor.SerializeDataToJson(allCountryGeoModels);
+
+            #endregion
+
+            Console.WriteLine("All done!");
         }
     }
 }

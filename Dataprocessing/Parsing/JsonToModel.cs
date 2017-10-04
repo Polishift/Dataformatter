@@ -21,7 +21,6 @@ namespace Dataformatter.Dataprocessing.CsvParsing
                 var currentFileModels = ParseJsonFileToModel(currentFile, modelFactory);
                 currentFileModels.ForEach(m => resultList.Add(m));                
             }
-            Console.WriteLine("resultList.count =" + resultList.Count);
             return resultList;
         }
         
