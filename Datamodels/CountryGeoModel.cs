@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Datamodels
 {
@@ -13,7 +11,7 @@ namespace Dataformatter.Datamodels
         {
             var listString = "";
             foreach (var polygon in Polygons)
-                listString = listString + "\n" + polygon.ToString();
+                listString = listString + "\n" + polygon;
             return CountryName +  " " + listString;
         }
     }

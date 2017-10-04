@@ -26,9 +26,7 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
 
         private static int GetFormattedSeatsGained(int rawSeatsGained)
         {
-            if (rawSeatsGained == MissingValueKey)
-                return 0;
-            return rawSeatsGained;
+            return rawSeatsGained == MissingValueKey ? 0 : rawSeatsGained;
         }
     }
 }

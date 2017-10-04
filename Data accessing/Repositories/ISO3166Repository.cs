@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Dataformatter.Dataprocessing.CsvParsing;
+using Dataformatter.Dataprocessing.Parsing;
 using Newtonsoft.Json;
 
 namespace Dataformatter.Data_accessing.Repositories

@@ -13,24 +13,24 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
 
             for (var j = 0; j < rawModel.Polygons.Count; j++)
             {
-                var currentConvertedPolygon = new Polygon();
+                var convertedPolygon = new Polygon();
                 var currentPolygon = rawModel.Polygons[j];
 
                 var xyPointsForLatLongs = new List<IPoint>();
                 currentPolygon.Points.ForEach(p => xyPointsForLatLongs.Add(ConvertTo2DPoint(p)));
 
-                currentConvertedPolygon.Points = xyPointsForLatLongs;
-                convertedPolygons.Add(currentConvertedPolygon);
+                convertedPolygon.Points = xyPointsForLatLongs;
+                convertedPolygons.Add(convertedPolygon);
             }
 
             return new CountryBordersEntity
             {
                 Polygons = convertedPolygons,
-                CountryCode = rawModel.CountryName
+                CountryCode = CreateCountryCode(rawModel.CountryName)
             };
         }
 
-        private XYPoint ConvertTo2DPoint(IPoint latLong) //ew IPoint here
+        private static XYPoint ConvertTo2DPoint(IPoint latLong) //ew IPoint here
         {
             const int rMajor = 6378137; //Equatorial Radius, WGS84
             const double shift = Math.PI * rMajor;

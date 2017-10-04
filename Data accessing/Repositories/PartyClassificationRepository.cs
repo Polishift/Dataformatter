@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Dataformatter.Dataprocessing.CsvParsing;
 using Dataformatter.Dataprocessing.Entities;
+using Dataformatter.Dataprocessing.Parsing;
 using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories

@@ -5,7 +5,7 @@ using System.Linq;
 using Dataformatter.Dataprocessing.Processors;
 using Newtonsoft.Json.Linq;
 
-namespace Dataformatter.Dataprocessing.CsvParsing
+namespace Dataformatter.Dataprocessing.Parsing
 {
     public static class JsonReader<T>
     {

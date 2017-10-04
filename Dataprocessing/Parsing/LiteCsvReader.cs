@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
-using Dataformatter.Datamodels;
-using Dataformatter.Data_accessing.Factories.ModelFactories;
 
 namespace Dataformatter.Dataprocessing.Parsing
 {
