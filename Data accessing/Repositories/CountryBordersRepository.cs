@@ -9,7 +9,7 @@ namespace Dataformatter.Data_accessing.Repositories
     public class CountryBordersRepository : IRepository<CountryBordersEntity>
     {
         //Keeping one static reference instead of recalling the parser means less GC work :)
-        //Make sure this OVERWRITES
+        //Make sure this OVERWRITES, what is meant by thiss
         private static readonly Dictionary<string, CountryBordersEntity[]> AllBordersByCountry =
             JsonReader<CountryBordersEntity>.ParseJsonToListOfObjects(EntityNames.CountryBorders);
 

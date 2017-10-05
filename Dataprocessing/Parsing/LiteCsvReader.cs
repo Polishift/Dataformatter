@@ -43,7 +43,7 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// These are special characters in CSV files. If a column contains any
         /// of these characters, the entire column is wrapped in double quotes.
         /// </summary>
-        private readonly char[] _specialChars = new char[] {',', '"', '\r', '\n'};
+        private readonly char[] _specialChars = {',', '"', '\r', '\n'};
 
         // Indexes into SpecialChars for characters with specific meaning
         private const int DelimiterIndex = 0;
@@ -55,8 +55,8 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// </summary>
         protected char Delimiter
         {
-            get { return _specialChars[DelimiterIndex]; }
-            set { _specialChars[DelimiterIndex] = value; }
+            get => _specialChars[DelimiterIndex];
+            set => _specialChars[DelimiterIndex] = value;
         }
 
         /// <summary>
@@ -64,8 +64,8 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// </summary>
         protected char Quote
         {
-            get { return _specialChars[QuoteIndex]; }
-            set { _specialChars[QuoteIndex] = value; }
+            get => _specialChars[QuoteIndex];
+            set => _specialChars[QuoteIndex] = value;
         }
     }
 

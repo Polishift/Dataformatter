@@ -7,21 +7,21 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
     class ConstituencyElectionModelFactory : ICsvModelFactory<ConstituencyElectionModel>
     {
         //Missingcodes
-        private readonly HashSet<string> INVALID_VALUE_CODES = new HashSet<string>(){ "-990", "-992", "-994"};
+        private readonly HashSet<string> _invalidValueCodes = new HashSet<string> { "-990", "-992", "-994"};
 
         //Indexes
-        private const int YEAR_COLUMN_INDEX = 4;
-        private const int COUNTRY_COLUMN_INDEX = 2;
-        private const int CONSTITUENCY_COLUMN_INDEX = 7;
+        private const int YearColumnIndex = 4;
+        private const int CountryColumnIndex = 2;
+        private const int ConstituencyColumnIndex = 7;
 
-        private const int PARTYNAME_COLUMN_INDEX = 10;
-        private const int CANDIDATE_COLUMN_INDEX = 12;
+        private const int PartynameColumnIndex = 10;
+        private const int CandidateColumnIndex = 12;
 
-        private const int TOTALVOTESAMOUNT_COLUMN_INDEX = 15;
-        private const int PARTYVOTESAMOUNT_COLUMN_INDEX = 20;
+        private const int TotalvotesamountColumnIndex = 15;
+        private const int PartyvotesamountColumnIndex = 20;
         
-        private const int SECOND_ROUND_PARTYVOTESAMOUNT_COLUMN_INDEX = 29;
-        private const int SEATSGAINED_COLUMN_INDEX = 31;
+        private const int SecondRoundPartyvotesamountColumnIndex = 29;
+        private const int SeatsgainedColumnIndex = 31;
 
         public ConstituencyElectionModel Create(List<string> csvDataRow)
         {
@@ -29,16 +29,16 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
 
             return new ConstituencyElectionModel
             {
-                CountryName = filteredCsvDataRow[COUNTRY_COLUMN_INDEX],
-                ConstituencyName = filteredCsvDataRow[CONSTITUENCY_COLUMN_INDEX],
-                Year = int.Parse(filteredCsvDataRow[YEAR_COLUMN_INDEX]),
-                PartyName = filteredCsvDataRow[PARTYNAME_COLUMN_INDEX],
-                CandidateName = filteredCsvDataRow[CANDIDATE_COLUMN_INDEX],
-                TotalAmountOfVotes = int.Parse(filteredCsvDataRow[TOTALVOTESAMOUNT_COLUMN_INDEX], CultureInfo.InvariantCulture),
-                AmountOfPartyVotes = double.Parse(filteredCsvDataRow[PARTYVOTESAMOUNT_COLUMN_INDEX], CultureInfo.InvariantCulture),
-                SecondRoundAmountOfPartyVotes = int.Parse(filteredCsvDataRow[SECOND_ROUND_PARTYVOTESAMOUNT_COLUMN_INDEX],
+                CountryName = filteredCsvDataRow[CountryColumnIndex],
+                ConstituencyName = filteredCsvDataRow[ConstituencyColumnIndex],
+                Year = int.Parse(filteredCsvDataRow[YearColumnIndex]),
+                PartyName = filteredCsvDataRow[PartynameColumnIndex],
+                CandidateName = filteredCsvDataRow[CandidateColumnIndex],
+                TotalAmountOfVotes = int.Parse(filteredCsvDataRow[TotalvotesamountColumnIndex], CultureInfo.InvariantCulture),
+                AmountOfPartyVotes = double.Parse(filteredCsvDataRow[PartyvotesamountColumnIndex], CultureInfo.InvariantCulture),
+                SecondRoundAmountOfPartyVotes = int.Parse(filteredCsvDataRow[SecondRoundPartyvotesamountColumnIndex],
                     CultureInfo.InvariantCulture),
-                SeatsGained = int.Parse(filteredCsvDataRow[SEATSGAINED_COLUMN_INDEX])
+                SeatsGained = int.Parse(filteredCsvDataRow[SeatsgainedColumnIndex])
             };
         }
 
@@ -46,9 +46,9 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
         {
             var filteredDataRow = csvDataRow;
 
-            for(int i = 0; i < csvDataRow.Count; i++)
+            for(var i = 0; i < csvDataRow.Count; i++)
             {
-                if(i == CANDIDATE_COLUMN_INDEX && IsInvalidValue(csvDataRow[i])) 
+                if(i == CandidateColumnIndex && IsInvalidValue(csvDataRow[i])) 
                 {
                     filteredDataRow[i] = "Unknown";
                 }
@@ -63,7 +63,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
 
         private bool IsInvalidValue(string value)
         {
-            return INVALID_VALUE_CODES.Contains(value);
+            return _invalidValueCodes.Contains(value);
         }
     }
 }

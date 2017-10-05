@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Dataformatter.Datamodels
 {
@@ -9,9 +10,7 @@ namespace Dataformatter.Datamodels
 
         public override string ToString()
         {
-            var listString = "";
-            foreach (var polygon in Polygons)
-                listString = listString + "\n" + polygon;
+            var listString = Polygons.Aggregate("", (current, polygon) => current + "\n" + polygon);
             return CountryName +  " " + listString;
         }
     }

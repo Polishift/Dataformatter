@@ -1,11 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
-using Dataformatter.Data_accessing.Factories;
 using Dataformatter.Data_accessing.Factories.EntityFactories;
-using Newtonsoft.Json;
 
 namespace Dataformatter.Dataprocessing.Processors
 {

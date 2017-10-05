@@ -19,7 +19,7 @@ namespace Dataformatter.Dataprocessing.Processors
     public abstract class AbstractDataProcessor<I, O> where I : IModel
                                                       where O : IEntity
     {
-        private const string DIRECTORY = "ProcessedData/";
+        private const string Directory = "ProcessedData/";
 
         public abstract void SerializeDataToJson(List<I> rawModels);
 
@@ -35,7 +35,7 @@ namespace Dataformatter.Dataprocessing.Processors
             }
         }
 
-        private Dictionary<string, List<O>> SortByCountry(IReadOnlyList<O> allEntities)
+        private static Dictionary<string, List<O>> SortByCountry(IReadOnlyList<O> allEntities)
         {
             var result = new Dictionary<string, List<O>>();
             for (var i = 0; i < allEntities.Count; i++)
@@ -51,19 +51,19 @@ namespace Dataformatter.Dataprocessing.Processors
         }
 
 
-        private void CreateDirectoryIfNotExists()
+        private static void CreateDirectoryIfNotExists()
         {
-            if (!System.IO.Directory.Exists(DIRECTORY))
-                System.IO.Directory.CreateDirectory(DIRECTORY);
+            if (!System.IO.Directory.Exists(Directory))
+                System.IO.Directory.CreateDirectory(Directory);
         }
 
-        private string CreateCurrentCountryFileName(EntityNames entityName, string countryName)
+        private static string CreateCurrentCountryFileName(EntityNames entityName, string countryName)
         {
-            return DIRECTORY + Enum.GetName(typeof(EntityNames), entityName) + "_" + countryName 
+            return Directory + Enum.GetName(typeof(EntityNames), entityName) + "_" + countryName 
                              + ".json";
         }
 
-        private void SerializeFile(string fileName, List<O> entityList)
+        private static void SerializeFile(string fileName, List<O> entityList)
         {
             if (!File.Exists(fileName))
                 File.Create(fileName).Dispose();
