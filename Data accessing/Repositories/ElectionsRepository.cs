@@ -25,8 +25,7 @@ namespace Dataformatter.Data_accessing.Repositories
 
         public ElectionEntity[] GetByCountry(string countryCode)
         {
-
-            return AllElectionsByCountry[countryCode];
+            return AllElectionsByCountry[countryCode]; 
         }
 
         public ElectionEntity[] GetByYear(int year)

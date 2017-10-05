@@ -3,15 +3,15 @@ using System.Linq;
 
 namespace Dataformatter.Datamodels
 {
-    public class Polygon
+    public class Polygon<T> where T: IPoint
     {
-        public List<IPoint> Points = new List<IPoint>();
+        public List<T> Points = new List<T>();
 
         public Polygon()
         {
         }
 
-        public Polygon(List<IPoint> points)
+        public Polygon(List<T> points)
         {
             Points = points;
         }

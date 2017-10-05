@@ -5,7 +5,7 @@ namespace Dataformatter.Datamodels
     public class CountryGeoModel : IModel
     {
         public string CountryName { get; set; }
-        public List<Polygon> Polygons { get; set; }
+        public List<Polygon<LatLongPoint>> Polygons { get; set; }
 
         public override string ToString()
         {

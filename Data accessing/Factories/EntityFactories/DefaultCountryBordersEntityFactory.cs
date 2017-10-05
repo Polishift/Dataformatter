@@ -9,14 +9,14 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
     {
         public override CountryBordersEntity Create(CountryGeoModel rawModel)
         {
-            var convertedPolygons = new List<Polygon>();
+            var convertedPolygons = new List<Polygon<XYPoint>>();
 
             for (var j = 0; j < rawModel.Polygons.Count; j++)
             {
-                var convertedPolygon = new Polygon();
+                var convertedPolygon = new Polygon<XYPoint>();
                 var currentPolygon = rawModel.Polygons[j];
 
-                var xyPointsForLatLongs = new List<IPoint>();
+                var xyPointsForLatLongs = new List<XYPoint>();
                 currentPolygon.Points.ForEach(p => xyPointsForLatLongs.Add(ConvertTo2DPoint(p)));
 
                 convertedPolygon.Points = xyPointsForLatLongs;

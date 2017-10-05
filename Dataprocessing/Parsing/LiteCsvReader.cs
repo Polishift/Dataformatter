@@ -55,8 +55,8 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// </summary>
         protected char Delimiter
         {
-            get => _specialChars[DelimiterIndex];
-            set => _specialChars[DelimiterIndex] = value;
+            get { return _specialChars[DelimiterIndex]; }
+            set { _specialChars[DelimiterIndex] = value; }
         }
 
         /// <summary>
@@ -64,8 +64,8 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// </summary>
         protected char Quote
         {
-            get => _specialChars[QuoteIndex];
-            set => _specialChars[QuoteIndex] = value;
+            get { return _specialChars[QuoteIndex]; }
+            set { _specialChars[QuoteIndex] = value; }
         }
     }
 

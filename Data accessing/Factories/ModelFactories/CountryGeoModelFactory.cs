@@ -11,7 +11,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
             var innerbody = JObject.FromObject(JArray.FromObject(jObject.GetValue("features")).First);
             var type = JObject.FromObject(innerbody.GetValue("geometry")).GetValue("type").ToString();
             var country = JObject.FromObject(innerbody.GetValue("properties")).GetValue("cca2").ToString();
-            var polygons = new List<Polygon>();
+            var polygons = new List<Polygon<LatLongPoint>>();
 
             //TODO make this generic..
             if (type.Equals("Polygon"))
@@ -19,7 +19,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                 var coordinateArray = JArray.FromObject(JArray
                     .FromObject(JObject.FromObject(innerbody.GetValue("geometry")).GetValue("coordinates")).First);
 
-                var coordinateList = new List<IPoint>();
+                var coordinateList = new List<LatLongPoint>();
                 foreach (var coordinates in coordinateArray)
                 {
                     var newPoint = new LatLongPoint
@@ -29,7 +29,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                     };
                     coordinateList.Add(newPoint);
                 }
-                polygons.Add(new Polygon(coordinateList));
+                polygons.Add(new Polygon<LatLongPoint>(coordinateList));
             }
             else
             {
@@ -37,7 +37,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                     .FromObject(JObject.FromObject(innerbody.GetValue("geometry")).GetValue("coordinates")));
                 foreach (var jToken in coordinateArray)
                 {
-                    var coordinateList = new List<IPoint>();
+                    var coordinateList = new List<LatLongPoint>();
                     foreach (var coordinates in jToken.First)
                     {
                         var newPoint = new LatLongPoint
@@ -47,7 +47,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                         };
                         coordinateList.Add(newPoint);
                     }
-                    polygons.Add(new Polygon(coordinateList));
+                    polygons.Add(new Polygon<LatLongPoint>(coordinateList));
                 }
             }
             return new CountryGeoModel
