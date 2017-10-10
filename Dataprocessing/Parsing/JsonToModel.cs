@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Dataformatter.Datamodels;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
@@ -18,8 +19,16 @@ namespace Dataformatter.Dataprocessing.Parsing
             {
                 var currentFile = filesInDirectory[i];
 
-                var currentFileModels = ParseJsonFileToModel(currentFile, modelFactory);
-                resultList.AddRange(currentFileModels);
+                try
+                {
+                    var currentFileModels = ParseJsonFileToModel(currentFile, modelFactory);
+                    resultList.AddRange(currentFileModels);
+
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("Encountered unreadable file: " + currentFile);
+                }
             }
             return resultList;
         }
