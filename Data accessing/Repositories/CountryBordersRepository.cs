@@ -27,5 +27,10 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             return AllBordersByCountry[countryCode]; 
         }
+
+        public List<string> GetCountryNames()
+        {
+            return AllBordersByCountry.Keys.ToList();
+        }
     }
 }

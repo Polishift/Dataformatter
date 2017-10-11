@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Dataformatter.Dataprocessing.Entities;
 using Dataformatter.Dataprocessing.Parsing;
 using Dataformatter.Dataprocessing.Processors;
@@ -24,6 +25,11 @@ namespace Dataformatter.Data_accessing.Repositories
         public PartyClassificationEntity[] GetByCountry(string countryCode)
         {
             return AllPartyClassificationsByCountry[countryCode];
+        }
+
+        public List<string> GetCountryNames()
+        {
+            return AllPartyClassificationsByCountry.Keys.ToList();
         }
     }
 }

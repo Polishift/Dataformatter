@@ -37,5 +37,10 @@ namespace Dataformatter.Data_accessing.Repositories
             }
             return result.Where(e => e.Year == year).ToArray();
         }
+        
+        public List<string> GetCountryNames()
+        {
+            return AllElectionsByCountry.Keys.ToList();
+        }
     }
 }
