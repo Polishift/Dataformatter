@@ -41,20 +41,26 @@ namespace Dataformatter
 
             #region Parsing country borders
 
-            const string countryBorderDirectory = "ProcessedData/CountryInformation/";
-            IJsonModelFactory<CountryGeoModel> countryGeoModelFactory = new CountryGeoModelFactory();
-            var processor = new CountryBordersProcessor();
+//            const string countryBorderDirectory = "ProcessedData/CountryInformation/";
+//            IJsonModelFactory<CountryGeoModel> countryGeoModelFactory = new CountryGeoModelFactory();
+//            var processor = new CountryBordersProcessor();
+//
+//            var allCountryGeoModels =
+//                JsonToModel<CountryGeoModel>.ParseJsonDirectoryToModels(countryBorderDirectory, countryGeoModelFactory,
+//                    "*.geo.json");
+//            processor.SerializeDataToJson(allCountryGeoModels);
+//
+//            CountryBordersRepository countryBordersRepo = new CountryBordersRepository();
+//            foreach (var country in countryBordersRepo.GetAll())
+//            {
+//                Console.WriteLine("Countrycode: " + country.CountryCode);    
+//            }
 
-            var allCountryGeoModels =
-                JsonToModel<CountryGeoModel>.ParseJsonDirectoryToModels(countryBorderDirectory, countryGeoModelFactory,
-                    "*.geo.json");
-            processor.SerializeDataToJson(allCountryGeoModels);
+            #endregion
 
-            CountryBordersRepository countryBordersRepo = new CountryBordersRepository();
-            foreach (var country in countryBordersRepo.GetAll())
-            {
-                Console.WriteLine("Countrycode: " + country.CountryCode);    
-            }
+            #region connectClassification
+
+            
 
             #endregion
 
