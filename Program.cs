@@ -16,8 +16,9 @@ namespace Dataformatter
             //            const string electionsCsvLocation = "Datasources/Political/ElectionResults/election_data.csv";
             //            const string partyClassificationCsvLocation = "Datasources/Political/PartyClassification/classificationData.csv";
             //            const string turnoutCsvLocation = "Datasources/Political/Turnout/turnout_data.csv";
+            //            const string religionCsvLocation = "Datasources/Economical & Social/Religion/religion_data.csv";
             //
-            //            ICsvModelFactory<ConstituencyElectionModel> modelFactory =
+            //            ICsvModelFactory<ReligionModel> modelFactory =
             //                new ConstituencyElectionModelFactory();
             //
             //            var allItemsAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
