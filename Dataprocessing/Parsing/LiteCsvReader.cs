@@ -43,7 +43,7 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// These are special characters in CSV files. If a column contains any
         /// of these characters, the entire column is wrapped in double quotes.
         /// </summary>
-        private readonly char[] _specialChars = {',', '"', '\r', '\n'};
+        private readonly char[] _specialChars = { ',', '"', '\r', '\n' };
 
         // Indexes into SpecialChars for characters with specific meaning
         private const int DelimiterIndex = 0;
@@ -55,8 +55,8 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// </summary>
         protected char Delimiter
         {
-            get => _specialChars[DelimiterIndex];
-            set => _specialChars[DelimiterIndex] = value;
+            get { return _specialChars[DelimiterIndex]; }
+            set { _specialChars[DelimiterIndex] = value; }
         }
 
         /// <summary>
@@ -64,8 +64,8 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// </summary>
         protected char Quote
         {
-            get => _specialChars[QuoteIndex];
-            set => _specialChars[QuoteIndex] = value;
+            get { return _specialChars[QuoteIndex]; }
+            set { _specialChars[QuoteIndex] = value; }
         }
     }
 
@@ -94,18 +94,18 @@ namespace Dataformatter.Dataprocessing.Parsing
             _emptyLineBehavior = emptyLineBehavior;
         }
 
-//        /// <summary>
-//        /// Initializes a new instance of the CsvFileReader class for the
-//        /// specified stream.
-//        /// </summary>
-//        /// <param name="stream">The stream to read from</param>
-//        /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
-//        public CsvFileReader(Stream stream,
-//                         EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
-//        { 
-//            Reader = new StreamReader(stream);
-//            EmptyLineBehavior = emptyLineBehavior;
-//        }
+        //        /// <summary>
+        //        /// Initializes a new instance of the CsvFileReader class for the
+        //        /// specified stream.
+        //        /// </summary>
+        //        /// <param name="stream">The stream to read from</param>
+        //        /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
+        //        public CsvFileReader(Stream stream,
+        //                         EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
+        //        { 
+        //            Reader = new StreamReader(stream);
+        //            EmptyLineBehavior = emptyLineBehavior;
+        //        }
 
         /// <summary>
         /// Initializes a new instance of the CsvFileReader class for the
@@ -118,20 +118,20 @@ namespace Dataformatter.Dataprocessing.Parsing
         {
             var stream = new FileStream(path, FileMode.Open);
             _reader = new StreamReader(stream);
-//            Reader = new StreamReader(path);
+            //            Reader = new StreamReader(path);
             _emptyLineBehavior = emptyLineBehavior;
         }
 
-//        public static List<List<string>> ReadAll(string path, Encoding encoding)
-//        {
-//            using (var sr = new StreamReader(path, encoding))
-//            {
-//                var cfr = new CsvFileReader(sr);
-//                List<List<string>> dataGrid = new List<List<string>>();
-//                if (cfr.ReadAll(dataGrid)) return dataGrid;
-//            }
-//            return null;
-//        }
+        //        public static List<List<string>> ReadAll(string path, Encoding encoding)
+        //        {
+        //            using (var sr = new StreamReader(path, encoding))
+        //            {
+        //                var cfr = new CsvFileReader(sr);
+        //                List<List<string>> dataGrid = new List<List<string>>();
+        //                if (cfr.ReadAll(dataGrid)) return dataGrid;
+        //            }
+        //            return null;
+        //        }
 
         public bool ReadAll(List<List<string>> dataGrid)
         {
