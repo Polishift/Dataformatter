@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{32E9CAB8-A0B4-4439-A1E4-1AD1E22BE816}</ProjectGuid>
+    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dataformatter</RootNamespace>
+    <AssemblyName>Dataformatter</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>packages\Newtonsoft.Json.10.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data accessing\Factories\EntityFactories\DefaultCountryBordersEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\DefaultElectionEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\DefaultPartyClassificationEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\DefaultTurnoutEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\EntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\ModelFactories\ConstituencyElectionModelFactory.cs" />
+    <Compile Include="Data accessing\Factories\ModelFactories\CountryGeoModelFactory.cs" />
+    <Compile Include="Data accessing\Factories\ModelFactories\ICSVModelFactory.cs" />
+    <Compile Include="Data accessing\Factories\ModelFactories\IJsonModelFactory.cs" />
+    <Compile Include="Data accessing\Factories\ModelFactories\PartyClassificationModelFactory.cs" />
+    <Compile Include="Data accessing\Factories\ModelFactories\TurnoutModelFactory.cs" />
+    <Compile Include="Data accessing\Filters\EuropeFilter.cs" />
+    <Compile Include="Data accessing\Filters\IFilter.cs" />
+    <Compile Include="Data accessing\Filters\PartyClassificationMerge.cs" />
+    <Compile Include="Data accessing\Filters\YearFilter.cs" />
+    <Compile Include="Data accessing\Repositories\ClassificationRepository.cs" />
+    <Compile Include="Data accessing\Repositories\CountryBordersRepository.cs" />
+    <Compile Include="Data accessing\Repositories\ElectionsRepository.cs" />
+    <Compile Include="Data accessing\Repositories\IRepository.cs" />
+    <Compile Include="Data accessing\Repositories\ISO3166Repository.cs" />
+    <Compile Include="Data accessing\Repositories\PartyClassificationRepository.cs" />
+    <Compile Include="Data accessing\Repositories\TurnoutRepository.cs" />
+    <Compile Include="Datamodels\ConstituencyElectionModel.cs" />
+    <Compile Include="Datamodels\CountryGeoModel.cs" />
+    <Compile Include="Datamodels\IModel.cs" />
+    <Compile Include="Datamodels\IPoint.cs" />
+    <Compile Include="Datamodels\LatLongPoint.cs" />
+    <Compile Include="Datamodels\PartyClassificationModel.cs" />
+    <Compile Include="Datamodels\Polygon.cs" />
+    <Compile Include="Datamodels\TurnoutModel.cs" />
+    <Compile Include="Datamodels\XYPoint.cs" />
+    <Compile Include="Dataprocessing\Entities\ClassificationEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\CountryBordersEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\ElectionEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\IEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\PartyClassificationEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\TurnoutEntity.cs" />
+    <Compile Include="Dataprocessing\Parsing\CsvToModel.cs" />
+    <Compile Include="Dataprocessing\Parsing\JsonReader.cs" />
+    <Compile Include="Dataprocessing\Parsing\JsonToModel.cs" />
+    <Compile Include="Dataprocessing\Parsing\LiteCsvReader.cs" />
+    <Compile Include="Dataprocessing\Processors\AbstractDataProcessor.cs" />
+    <Compile Include="Dataprocessing\Processors\CountryBordersProcessor.cs" />
+    <Compile Include="Dataprocessing\Processors\ElectionsProcessor.cs" />
+    <Compile Include="Dataprocessing\Processors\PartyClassificationProcessor.cs" />
+    <Compile Include="Dataprocessing\Processors\TurnoutProcessor.cs" />
+    <Compile Include="Misc\Tuple.cs" />
+    <Compile Include="Paths.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
