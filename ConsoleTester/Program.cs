@@ -17,7 +17,7 @@ namespace ConsoleTester
         {
             Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData");
             Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources");
-            
+
             #region ParseCode
 
 //             var electionsCsvLocation = Paths.RawDataFolder +  @"\Political\ElectionResults\election_data.csv";
@@ -53,13 +53,16 @@ namespace ConsoleTester
 //            }
 
             #endregion
-            
+
+            #region Filtering
 
             IFilter filter = new YearFilter();
             filter.Filter();
 
             filter = new EuropeFilter();
             filter.Filter();
+
+            #endregion
 
             PartyClassificationMerge.Merge();
         }
