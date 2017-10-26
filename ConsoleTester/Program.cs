@@ -15,8 +15,8 @@ namespace ConsoleTester
     {
         private static void Main()
         {
-            Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData");
-            Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources");
+            Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
+            Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
 
             #region ParseCode
 
@@ -36,15 +36,14 @@ namespace ConsoleTester
 
             #region Parsing country borders
 
-//            var countryBorderDirectory = Paths.ProcessedDataFolder+ @"\countryInformation";
-//            Console.WriteLine(countryBorderDirectory);
+//            var countryBorderDirectory = Paths.ProcessedDataFolder+ @"countryInformation";
 //            IJsonModelFactory<CountryGeoModel> countryGeoModelFactory = new CountryGeoModelFactory();
-//            var processor = new CountryBordersProcessor();
+//            var processor2 = new CountryBordersProcessor();
 //
 //            var allCountryGeoModels =
 //                JsonToModel<CountryGeoModel>.ParseJsonDirectoryToModels(countryBorderDirectory, countryGeoModelFactory,
 //                    "*.geo.json");
-//            processor.SerializeDataToJson(allCountryGeoModels);
+//            processor2.SerializeDataToJson(allCountryGeoModels);
 //
 //            var countryBordersRepo = new CountryBordersRepository();
 //            foreach (var country in countryBordersRepo.GetAll())

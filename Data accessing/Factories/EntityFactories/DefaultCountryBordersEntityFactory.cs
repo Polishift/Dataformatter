@@ -32,13 +32,9 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
 
         private static XYPoint ConvertTo2DPoint(IPoint latLong) //ew IPoint here
         {
-            const int rMajor = 6378137; //Equatorial Radius, WGS84
-            const double shift = Math.PI * rMajor;
-
-            var x = latLong.Y * shift / 180;
-            var y = Math.Log(Math.Tan((90 + latLong.X) * Math.PI / 360)) / (Math.PI / 180);
-            y = y * shift / 180;
-
+            var x = Math.Cos(latLong.X) * Math.Cos(latLong.Y);
+            var y = Math.Cos(latLong.X) * Math.Sin(latLong.Y);
+            
             return new XYPoint { X = (float) x, Y = (float) y };
         }
     }

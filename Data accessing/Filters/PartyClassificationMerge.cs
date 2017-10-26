@@ -119,7 +119,7 @@ namespace Dataformatter.Data_accessing.Filters
 
                     //write election info to file
                     using (var file =
-                        File.CreateText( Paths.ProcessedDataFolder+ "/Election_" + countryElections[0].CountryCode +
+                        File.CreateText( Paths.ProcessedDataFolder+ "Election_" + countryElections[0].CountryCode +
                                         ".json"))
                     {
                         var serializer = new JsonSerializer();
