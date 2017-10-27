@@ -1,13 +1,14 @@
-namespace Dataformatter.Datamodels
+namespace Dataformatter.Dataprocessing.Entities
 {
-    public class ReligionModel : IModel
-    {
-        public string CountryName { get; set; }
+    public class ReligionEntity : IEntity
+    {        
+        public string CountryCode { get; set; }
         public int Year { get; set; }
 
         // Christianity
         public int ChrstProt { get; set; }
         public int ChrstCat { get; set; }
+        public int ChrstOther { get; set; }
         public int ChrstTotal { get; set; }
 
         // Judaism
@@ -22,8 +23,9 @@ namespace Dataformatter.Datamodels
         // Non. religious
         public int NonTotal { get; set; }
 
+        public int Other { get; set; }
+
         // Total 
         public int SumTotal { get; set; }
     }
 }
-

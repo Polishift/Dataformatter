@@ -16,16 +16,16 @@ namespace Dataformatter
             //            const string electionsCsvLocation = "Datasources/Political/ElectionResults/election_data.csv";
             //            const string partyClassificationCsvLocation = "Datasources/Political/PartyClassification/classificationData.csv";
             //            const string turnoutCsvLocation = "Datasources/Political/Turnout/turnout_data.csv";
-            //            const string religionCsvLocation = "Datasources/Economical & Social/Religion/religion_data.csv";
-            //
-            //            ICsvModelFactory<ReligionModel> modelFactory =
-            //                new ConstituencyElectionModelFactory();
-            //
-            //            var allItemsAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
-            //                electionsCsvLocation, modelFactory);
-            //
-            //            var processor = new ElectionsProcessor();
-            //            processor.SerializeDataToJson(allItemsAsModels);
+                        const string religionCsvLocation = "Datasources/Economical & Social/Religion/religion_data.csv";
+            
+                        ICsvModelFactory<ReligionModel> modelFactory =
+                            new ReligionModelFactory();
+            
+                        var allItemsAsModels = CsvToModel<ReligionModel>.ParseAllCsvLinesToModels(
+                            religionCsvLocation, modelFactory);
+            
+                        var processor = new ReligionProcessor();
+                        processor.SerializeDataToJson(allItemsAsModels);
 
             #endregion
 
@@ -39,7 +39,7 @@ namespace Dataformatter
 
             #endregion
 
-
+            /* 
             #region Parsing country borders
 
             const string countryBorderDirectory = "ProcessedData/CountryInformation/";
@@ -58,6 +58,7 @@ namespace Dataformatter
             }
 
             #endregion
+            */
 
             Console.WriteLine("All done!");
         }
