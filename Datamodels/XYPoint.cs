@@ -2,7 +2,7 @@ using System;
 
 namespace Dataformatter.Datamodels
 {
-    public class XYPoint : IPoint
+    public class XYPoint : AbstractPoint
     {
         public float X { get; set; }
         public float Y { get; set; }
