@@ -55,11 +55,11 @@ namespace ConsoleTester
 
             #region Filtering
 
-            IFilter filter = new YearFilter();
-            filter.Filter();
+//            IFilter filter = new YearFilter();
+//            filter.Filter();
 
-            filter = new EuropeFilter();
-            filter.Filter();
+//            filter = new EuropeFilter();
+//            filter.Filter();
 
             #endregion
 
