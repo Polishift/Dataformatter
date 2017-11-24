@@ -68,6 +68,7 @@
     <Compile Include="Data accessing\Repositories\CountryBordersRepository.cs" />
     <Compile Include="Data accessing\Repositories\ElectionsRepository.cs" />
     <Compile Include="Data accessing\Repositories\IRepository.cs" />
+    <Compile Include="Data accessing\Repositories\Iso3166Country.cs" />
     <Compile Include="Data accessing\Repositories\ISO3166Repository.cs" />
     <Compile Include="Data accessing\Repositories\PartyClassificationRepository.cs" />
     <Compile Include="Data accessing\Repositories\TurnoutRepository.cs" />
