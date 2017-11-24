@@ -24,8 +24,8 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                 {
                     var newPoint = new LatLongPoint
                     {
-                        X = float.Parse(coordinates.First.ToString()),
-                        Y = float.Parse(coordinates.Last.ToString())
+                        X = float.Parse(coordinates.Last.ToString()), //Longitude is always X in other systems
+                        Y = float.Parse(coordinates.First.ToString()) //Latitude is always Y in other systems
                     };
                     coordinateList.Add(newPoint);
                 }
@@ -42,14 +42,15 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                     {
                         var newPoint = new LatLongPoint
                         {
-                            X = float.Parse(coordinates.First.ToString()),
-                            Y = float.Parse(coordinates.Last.ToString())
+                            X = float.Parse(coordinates.Last.ToString()), //Longitude is always X in other systems
+                            Y = float.Parse(coordinates.First.ToString()) //Latitude is always Y in other systems
                         };
                         coordinateList.Add(newPoint);
                     }
                     polygons.Add(new Polygon<LatLongPoint>(coordinateList));
                 }
             }
+            
             return new CountryGeoModel
             {
                 CountryName = country,

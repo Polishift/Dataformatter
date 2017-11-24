@@ -17,7 +17,7 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
                 var currentPolygon = rawModel.Polygons[j];
 
                 var xyPointsForLatLongs = new List<XYPoint>();
-                currentPolygon.Points.ForEach(p => xyPointsForLatLongs.Add(ConvertTo2DPoint(p)));
+                currentPolygon.Points.ForEach(p => xyPointsForLatLongs.Add(p.ToXYPoint()));
 
                 convertedPolygon.Points = xyPointsForLatLongs;
                 convertedPolygons.Add(convertedPolygon);
@@ -28,14 +28,6 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
                 Polygons = convertedPolygons,
                 CountryCode = CreateCountryCode(rawModel.CountryName)
             };
-        }
-
-        private static XYPoint ConvertTo2DPoint(IPoint latLong) //ew IPoint here
-        {
-            var x = Math.Cos(latLong.X) * Math.Cos(latLong.Y);
-            var y = Math.Cos(latLong.X) * Math.Sin(latLong.Y);
-            
-            return new XYPoint { X = (float) x, Y = (float) y };
         }
     }
 }
