@@ -23,18 +23,18 @@ namespace ConsoleTester
 //             var electionsCsvLocation = Paths.RawDataFolder +  @"\Political\ElectionResults\election_data.csv";
 //             var partyClassificationCsvLocation = Paths.RawDataFolder + @"\Political\PartyClassification\classificationData.csv";
 //             var turnoutCsvLocation = Paths.RawDataFolder +  @"\Political\Turnout\turnout_data.csv";
-            var employmentCsvLocation = Paths.RawDataFolder + @"\Economical & Social\Employment\employment.csv";
+//            var employmentCsvLocation = Paths.RawDataFolder + @"\Economical & Social\Employment\employment.csv";
 //            var religionCsvLocation = Paths.RawDataFolder + @"\Economical & Social\Religion\religion_data.csv";
 
 
-            ICsvModelFactory<EmploymentModel> modelFactory =
-                new EmploymentModelFactory();
-            //
-            var allItemsAsModels = CsvToModel<EmploymentModel>.ParseAllCsvLinesToModels(
-                employmentCsvLocation, modelFactory);
+//            ICsvModelFactory<EmploymentModel> modelFactory =
+//                new EmploymentModelFactory();
 
-            var processor = new EmploymentProcessor();
-            processor.SerializeDataToJson(allItemsAsModels);
+//            var allItemsAsModels = CsvToModel<EmploymentModel>.ParseAllCsvLinesToModels(
+//                employmentCsvLocation, modelFactory);
+
+//            var processor = new EmploymentProcessor();
+//            processor.SerializeDataToJson(allItemsAsModels);
 
             #endregion
 
@@ -59,15 +59,15 @@ namespace ConsoleTester
 
             #region Filtering
 
-//            IFilter filter = new YearFilter();
-//            filter.Filter();
+            IFilter filter = new YearFilter();
+            filter.Filter();
 
-//            filter = new EuropeFilter();
-//            filter.Filter();
+            filter = new EuropeFilter();
+            filter.Filter();
 
             #endregion
 
-//            PartyClassificationMerge.Merge();
+            PartyClassificationMerge.Merge();
         }
     }
 }
