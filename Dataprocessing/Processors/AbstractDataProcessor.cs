@@ -14,7 +14,9 @@ namespace Dataformatter.Dataprocessing.Processors
         Election,
         Turnout,
         CountryBorders,
-        PartyFamilies
+        PartyFamilies,
+        Employment,
+        Religion
     }
 
     public abstract class AbstractDataProcessor<I, O> where I : IModel

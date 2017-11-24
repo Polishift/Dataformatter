@@ -21,16 +21,20 @@ namespace ConsoleTester
             #region ParseCode
 
 //             var electionsCsvLocation = Paths.RawDataFolder +  @"\Political\ElectionResults\election_data.csv";
-//             var partyClassificationCsvLocation = Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
+//             var partyClassificationCsvLocation = Paths.RawDataFolder + @"\Political\PartyClassification\classificationData.csv";
 //             var turnoutCsvLocation = Paths.RawDataFolder +  @"\Political\Turnout\turnout_data.csv";
-//            ICsvModelFactory<ConstituencyElectionModel> modelFactory =
-//                new ConstituencyElectionModelFactory();
-//            //
-//            var allItemsAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
-//                electionsCsvLocation, modelFactory);
-//
-//            var processor = new ElectionsProcessor();
-//            processor.SerializeDataToJson(allItemsAsModels);
+            var employmentCsvLocation = Paths.RawDataFolder + @"\Economical & Social\Employment\employment.csv";
+//            var religionCsvLocation = Paths.RawDataFolder + @"\Economical & Social\Religion\religion_data.csv";
+
+
+            ICsvModelFactory<EmploymentModel> modelFactory =
+                new EmploymentModelFactory();
+            //
+            var allItemsAsModels = CsvToModel<EmploymentModel>.ParseAllCsvLinesToModels(
+                employmentCsvLocation, modelFactory);
+
+            var processor = new EmploymentProcessor();
+            processor.SerializeDataToJson(allItemsAsModels);
 
             #endregion
 
@@ -63,7 +67,7 @@ namespace ConsoleTester
 
             #endregion
 
-            PartyClassificationMerge.Merge();
+//            PartyClassificationMerge.Merge();
         }
     }
 }
