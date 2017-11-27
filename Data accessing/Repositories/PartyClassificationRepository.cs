@@ -8,7 +8,6 @@ namespace Dataformatter.Data_accessing.Repositories
 {
     public class PartyClassificationRepository : IRepository<PartyClassificationEntity>
     {
-        //Keeping one static reference instead of recalling the parser means less GC work :)
         private static readonly Dictionary<string, PartyClassificationEntity[]> AllPartyClassificationsByCountry =
             JsonReader<PartyClassificationEntity>.ParseJsonToListOfObjects(EntityNames.PartyClassification);
 

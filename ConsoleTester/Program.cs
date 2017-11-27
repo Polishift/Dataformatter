@@ -15,13 +15,17 @@ namespace ConsoleTester
     {
         private static void Main()
         {
-            Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
-            Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
+            //Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
+            //Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
 
+            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
+            //Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
+            
+            
             #region ParseCode
 
 //             var electionsCsvLocation = Paths.RawDataFolder +  @"\Political\ElectionResults\election_data.csv";
-//             var partyClassificationCsvLocation = Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
+//           var partyClassificationCsvLocation = Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
 //             var turnoutCsvLocation = Paths.RawDataFolder +  @"\Political\Turnout\turnout_data.csv";
 //            ICsvModelFactory<ConstituencyElectionModel> modelFactory =
 //                new ConstituencyElectionModelFactory();
@@ -55,15 +59,16 @@ namespace ConsoleTester
 
             #region Filtering
 
-            IFilter filter = new YearFilter();
-            filter.Filter();
+            //IFilter filter = new YearFilter();
+            //filter.Filter();
 
-            filter = new EuropeFilter();
-            filter.Filter();
+//            filter = new EuropeFilter();
+//            filter.Filter();
 
             #endregion
 
-            PartyClassificationMerge.Merge();
+            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
+            partyClassificationAndElectionsMerger.Merge();
         }
     }
 }

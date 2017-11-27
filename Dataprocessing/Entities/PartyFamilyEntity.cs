@@ -2,7 +2,7 @@
 
 namespace Dataformatter.Dataprocessing.Entities
 {
-    public class ClassificationEntity : IEntity
+    public class PartyFamilyEntity : IEntity
     {
         public string CountryCode { get; set; }
         public string PartyName { get; set; }

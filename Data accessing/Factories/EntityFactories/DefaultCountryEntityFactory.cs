@@ -5,8 +5,10 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultCountryBordersEntityFactory : EntityFactory<CountryGeoModel, CountryBordersEntity>
+    public class DefaultCountryEntityFactory : EntityFactory<CountryGeoModel, CountryBordersEntity>
     {
+        private static readonly double MINIMUM_POINT_X_DISTANCE = 0.0005;
+
         public override CountryBordersEntity Create(CountryGeoModel rawModel)
         {
             var convertedPolygons = new List<Polygon<XYPoint>>();
@@ -16,10 +18,7 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
                 var convertedPolygon = new Polygon<XYPoint>();
                 var currentPolygon = rawModel.Polygons[j];
 
-                var xyPointsForLatLongs = new List<XYPoint>();
-                currentPolygon.Points.ForEach(p => xyPointsForLatLongs.Add(p.ToXYPoint()));
-
-                convertedPolygon.Points = xyPointsForLatLongs;
+                convertedPolygon.Points = GetXYPointsFromLatLongs(currentPolygon.Points);
                 convertedPolygons.Add(convertedPolygon);
             }
 
@@ -28,6 +27,18 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
                 Polygons = convertedPolygons,
                 CountryCode = CreateCountryCode(rawModel.CountryName)
             };
+        }
+
+        public static List<XYPoint> GetXYPointsFromLatLongs(List<LatLongPoint> latLongs)
+        {
+            var xyPointsForLatLongs = new List<XYPoint>();
+
+            foreach (var latLong in latLongs)
+            {
+                var xyPointForCurrentLatLong = latLong.ToXYPoint();
+                xyPointsForLatLongs.Add(xyPointForCurrentLatLong);
+            }
+            return xyPointsForLatLongs;
         }
     }
 }

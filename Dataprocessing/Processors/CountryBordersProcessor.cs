@@ -8,7 +8,7 @@ namespace Dataformatter.Dataprocessing.Processors
     public class CountryBordersProcessor : AbstractDataProcessor<CountryGeoModel,  
                                                           CountryBordersEntity>
     {
-        private readonly DefaultCountryBordersEntityFactory _defaultCountryBordersEntityFactory = new DefaultCountryBordersEntityFactory();
+        private readonly DefaultCountryEntityFactory _defaultCountryEntityFactory = new DefaultCountryEntityFactory();
 
         public override void SerializeDataToJson(List<CountryGeoModel> rawModels)
         {
@@ -17,7 +17,7 @@ namespace Dataformatter.Dataprocessing.Processors
             for(var i = 0; i < rawModels.Count; i++)
             {
                 var currentRawModel = rawModels[i];
-                countryBordersEntities.Add(_defaultCountryBordersEntityFactory.Create(currentRawModel));
+                countryBordersEntities.Add(_defaultCountryEntityFactory.Create(currentRawModel));
             }
             WriteEntitiesToJson(EntityNames.CountryBorders, countryBordersEntities);
         }

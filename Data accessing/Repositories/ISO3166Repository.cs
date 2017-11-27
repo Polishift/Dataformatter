@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Dataformatter.Dataprocessing.Parsing;
 using Newtonsoft.Json;
@@ -9,8 +10,30 @@ namespace Dataformatter.Data_accessing.Repositories
     {
         private const string FileName = "countries.json";
 
-        private static readonly Iso3166Country[] Collection =
-            JsonReader<Iso3166Country>.ParseJsonToListOfObjects(FileName);
+        private static Iso3166Country[] Collection;
+            
+
+        static Iso3166Repository()
+        {
+            //This really needs to happen in a Dataformatter global init function somewhere else
+            
+            //Avoiding nullpointers when Paths arent yet set.
+            if(Dataformatter.Paths.RawDataFolder != null && Dataformatter.Paths.ProcessedDataFolder!= null)
+                InitializeCollection();
+            else
+                 Console.WriteLine("WARNING: JsonReader Paths not set! Collection won't be initialized.");               
+        }
+
+        public static void InitializeCollection()
+        {
+            Collection = JsonReader<Iso3166Country>.ParseJsonToListOfObjects(FileName);
+        }
+
+        public static Iso3166Country[] GetCollection()
+        {
+            return Collection;
+        }
+        
 
         /// <summary>
         /// Obtain ISO3166-1 Country based on its alpha3 code.
@@ -83,13 +106,13 @@ namespace Dataformatter.Data_accessing.Repositories
             AlternativeNames = alternativeNames;
         }
 
-        public string Name { get; set; }
+        public readonly string Name;
 
-        public string Alpha2 { get; set; }
+        public readonly string Alpha2;
 
-        public string Alpha3 { get; set; }
+        public readonly string Alpha3;
 
-        public List<string> AlternativeNames { get; set; }
+        public readonly  List<string> AlternativeNames;
 
         public override string ToString()
         {
