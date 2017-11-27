@@ -19,7 +19,7 @@ namespace Dataformatter.Data_accessing.Repositories
             {
                 result.AddRange(keyValuePair.Value);
             }
-            return result.ToArray();
+            return result.ToArray();    
         }
 
         public Dictionary<string, ClassificationEntity> GetDictionaryByCountry(string name)
