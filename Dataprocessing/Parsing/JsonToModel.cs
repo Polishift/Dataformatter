@@ -41,7 +41,6 @@ namespace Dataformatter.Dataprocessing.Parsing
 
             result.Add(modelFactory.Create(rootObject));
 
-
             return result;
         }
     }

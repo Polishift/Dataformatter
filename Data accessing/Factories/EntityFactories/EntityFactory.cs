@@ -17,7 +17,6 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
                           Iso3166Repository.FromAlternativeName(fullCountryName.ToLower()) ??
                           Iso3166Repository.FromAlpha3(fullCountryName.ToUpper()));
 
-
             if (result != null) return result.Alpha3;
             Console.WriteLine("nothing found by " + fullCountryName);
             return new Iso3166Country("UNKNOWN", "UNKNOWN", "UNKNOWN").Alpha3;
