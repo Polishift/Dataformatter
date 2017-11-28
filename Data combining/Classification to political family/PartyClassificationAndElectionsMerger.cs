@@ -120,13 +120,14 @@ namespace Dataformatter.Data_combining.Classification_to_political_family
 
         private static ElectionEntity ManuallyClassify(ElectionEntity electionResultForParty)
         {
-            if (PoliticalFamilyPerPartyInCurrentCountry[electionResultForParty.PartyName] != null && PoliticalFamilyPerPartyInCurrentCountry[electionResultForParty.PartyName].Classification != null)
+            if (PoliticalFamilyPerPartyInCurrentCountry[electionResultForParty.PartyName] != null 
+                && PoliticalFamilyPerPartyInCurrentCountry[electionResultForParty.PartyName].Classification != null)
             {
                 electionResultForParty.PartyClassification = PoliticalFamilyPerPartyInCurrentCountry[electionResultForParty.PartyName].Classification;
             }
             else
             {
-                Console.WriteLine("Enter a classification for " + electionResultForParty.PartyName + " (" + electionResultForParty.Year + ")");
+                Console.WriteLine("Enter a classification for " + electionResultForParty.PartyName);
                 var manualClassification = Console.ReadLine();
 
                 PoliticalFamilyPerPartyInCurrentCountry[electionResultForParty.PartyName].Classification = manualClassification;

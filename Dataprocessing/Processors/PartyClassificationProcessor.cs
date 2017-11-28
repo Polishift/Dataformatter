@@ -6,8 +6,8 @@ using Dataformatter.Data_accessing.Factories.EntityFactories;
 
 namespace Dataformatter.Dataprocessing.Processors
 {
-    public class PartyClassificationProcessor : AbstractDataProcessor<PartyClassificationModel, 
-                                                               PartyClassificationEntity>
+
+    public class PartyClassificationProcessor : AbstractDataProcessor<PartyClassificationModel, PartyClassificationEntity>
     {
         public override void SerializeDataToJson(List<PartyClassificationModel> rawModels)
         {
@@ -17,6 +17,7 @@ namespace Dataformatter.Dataprocessing.Processors
             for (var i = 0; i < rawModels.Count; i++)
             {
                 var model = rawModels[i];
+
                 if (classificationPerParty.ContainsKey(model.Id))
                     continue;
 

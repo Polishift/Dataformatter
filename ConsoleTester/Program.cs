@@ -48,6 +48,7 @@ namespace ConsoleTester
             var processor2 = new PartyClassificationProcessor();
             processor2.SerializeDataToJson(allItemsAsModels2);
 
+
             #endregion
 
             #region Parsing country borders
@@ -79,8 +80,8 @@ namespace ConsoleTester
 
             #endregion
 
-            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
-            partyClassificationAndElectionsMerger.MergeIndividualCountry();
+            //var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
+            //partyClassificationAndElectionsMerger.MergeIndividualCountry();
         }
     }
 }
