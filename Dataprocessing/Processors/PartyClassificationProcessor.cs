@@ -6,7 +6,7 @@ using Dataformatter.Data_accessing.Factories.EntityFactories;
 
 namespace Dataformatter.Dataprocessing.Processors
 {
-    class PartyClassificationProcessor : AbstractDataProcessor<PartyClassificationModel, 
+    public class PartyClassificationProcessor : AbstractDataProcessor<PartyClassificationModel, 
                                                                PartyClassificationEntity>
     {
         public override void SerializeDataToJson(List<PartyClassificationModel> rawModels)

@@ -40,18 +40,21 @@ namespace Dataformatter.Data_combining.Classification_to_political_family
 
         public void MergeIndividualCountry()
         {
-            Console.WriteLine("Please input the alpha3 code of the country you wish to classify: ");
-            var countryCode = Console.ReadLine();
-            
-            MergeCountry(countryCode);
-            
-            Console.WriteLine("Done! Do you want to classify another one? (y/n)");
-            var yesOrNo = Console.ReadLine();
-            
-            if(yesOrNo.ToLower().Equals("y"))
-                MergeIndividualCountry();
-            else
+            while (true)
+            {
+                Console.WriteLine("Please input the alpha3 code of the country you wish to classify: ");
+                var countryCode = Console.ReadLine();
+
+                MergeCountry(countryCode);
+
+                Console.WriteLine("Done! Do you want to classify another one? (y/n)");
+                var yesOrNo = Console.ReadLine();
+
+                if (yesOrNo.ToLower().Equals("y"))
+                    continue;
                 Console.WriteLine("Okay, goodbye then");
+                break;
+            }
         }
 
         public void MergeAllCountries()
