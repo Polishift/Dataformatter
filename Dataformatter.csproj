@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultCountryBordersEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\DefaultCountryEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\DefaultElectionEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\DefaultEmploymentEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\DefaultPartyClassificationEntityFactory.cs" />
@@ -62,16 +62,20 @@
     <Compile Include="Data accessing\Factories\ModelFactories\TurnoutModelFactory.cs" />
     <Compile Include="Data accessing\Filters\EuropeFilter.cs" />
     <Compile Include="Data accessing\Filters\IFilter.cs" />
-    <Compile Include="Data accessing\Filters\PartyClassificationMerge.cs" />
     <Compile Include="Data accessing\Filters\YearFilter.cs" />
-    <Compile Include="Data accessing\Repositories\ClassificationRepository.cs" />
+    <Compile Include="Data accessing\Repositories\EmploymentRepository.cs" />
+    <Compile Include="Data accessing\Repositories\PartyFamiliesRepository.cs" />
     <Compile Include="Data accessing\Repositories\CountryBordersRepository.cs" />
     <Compile Include="Data accessing\Repositories\ElectionsRepository.cs" />
     <Compile Include="Data accessing\Repositories\IRepository.cs" />
     <Compile Include="Data accessing\Repositories\Iso3166Country.cs" />
     <Compile Include="Data accessing\Repositories\ISO3166Repository.cs" />
     <Compile Include="Data accessing\Repositories\PartyClassificationRepository.cs" />
+    <Compile Include="Data accessing\Repositories\ReligionRepository.cs" />
     <Compile Include="Data accessing\Repositories\TurnoutRepository.cs" />
+    <Compile Include="Data combining\Classification to political family\ClassificationToElectionResultConnector.cs" />
+    <Compile Include="Data combining\Classification to political family\PartyClassificationAndElectionsMerger.cs" />
+    <Compile Include="Data combining\Classification to political family\PartyNameToAbbreviationMatcher.cs" />
     <Compile Include="Datamodels\ConstituencyElectionModel.cs" />
     <Compile Include="Datamodels\CountryGeoModel.cs" />
     <Compile Include="Datamodels\EmploymentModel.cs" />
@@ -83,7 +87,7 @@
     <Compile Include="Datamodels\ReligionModel.cs" />
     <Compile Include="Datamodels\TurnoutModel.cs" />
     <Compile Include="Datamodels\XYPoint.cs" />
-    <Compile Include="Dataprocessing\Entities\ClassificationEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\PartyFamilyEntity.cs" />
     <Compile Include="Dataprocessing\Entities\CountryBordersEntity.cs" />
     <Compile Include="Dataprocessing\Entities\ElectionEntity.cs" />
     <Compile Include="Dataprocessing\Entities\EmploymentEntity.cs" />

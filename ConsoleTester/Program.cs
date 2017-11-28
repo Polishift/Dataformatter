@@ -7,6 +7,7 @@ using Dataformatter.Dataprocessing.Processors;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
 using Dataformatter.Data_accessing.Filters;
 using Dataformatter.Data_accessing.Repositories;
+using Dataformatter.Data_combining.Classification_to_political_family;
 using Microsoft.SqlServer.Server;
 
 namespace ConsoleTester
@@ -18,22 +19,22 @@ namespace ConsoleTester
             Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
             Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
 
+//            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
+//            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
+
+
             #region ParseCode
 
 //             var electionsCsvLocation = Paths.RawDataFolder +  @"\Political\ElectionResults\election_data.csv";
-//             var partyClassificationCsvLocation = Paths.RawDataFolder + @"\Political\PartyClassification\classificationData.csv";
+//           var partyClassificationCsvLocation = Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
 //             var turnoutCsvLocation = Paths.RawDataFolder +  @"\Political\Turnout\turnout_data.csv";
-//            var employmentCsvLocation = Paths.RawDataFolder + @"\Economical & Social\Employment\employment.csv";
-//            var religionCsvLocation = Paths.RawDataFolder + @"\Economical & Social\Religion\religion_data.csv";
-
-
-//            ICsvModelFactory<EmploymentModel> modelFactory =
-//                new EmploymentModelFactory();
-
-//            var allItemsAsModels = CsvToModel<EmploymentModel>.ParseAllCsvLinesToModels(
-//                employmentCsvLocation, modelFactory);
-
-//            var processor = new EmploymentProcessor();
+//            ICsvModelFactory<ConstituencyElectionModel> modelFactory =
+//                new ConstituencyElectionModelFactory();
+//            //
+//            var allItemsAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
+//                electionsCsvLocation, modelFactory);
+//
+//            var processor = new ElectionsProcessor();
 //            processor.SerializeDataToJson(allItemsAsModels);
 
             #endregion
@@ -59,15 +60,16 @@ namespace ConsoleTester
 
             #region Filtering
 
-            IFilter filter = new YearFilter();
-            filter.Filter();
+            //IFilter filter = new YearFilter();
+            //filter.Filter();
 
-            filter = new EuropeFilter();
-            filter.Filter();
+//            filter = new EuropeFilter();
+//            filter.Filter();
 
             #endregion
 
-            PartyClassificationMerge.Merge();
+            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
+            partyClassificationAndElectionsMerger.Merge();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Dataformatter.Data_accessing.Repositories;
 
 namespace Dataformatter.Dataprocessing.Entities
 {
@@ -16,8 +17,26 @@ namespace Dataformatter.Dataprocessing.Entities
         public double TotalAmountOfVotes { get; set; } //Has to be double in order for certain calculations to go well at small margins
         public double TotalVotePercentage { get; set; }
         public int TotalAmountOfSeatsGained { get; set; }
-        
 
+        
+        public static ElectionEntity GetEmptyElectionEntity(Iso3166Country associatedCountry)
+        {
+            return new ElectionEntity()
+            {
+                Year = 0,
+                CountryCode = associatedCountry.Alpha3,
+                CountryName = associatedCountry.Name,
+
+                PartyName = "None",
+                PartyAbbreviation = "NA",
+                PartyClassification = "Unknown",
+                PartyCandidates = new HashSet<string>() {"No candidates found"},
+
+                TotalAmountOfVotes = 0,
+                TotalVotePercentage = 0.0,
+                TotalAmountOfSeatsGained = 0
+            };
+        }
 
         public override string ToString()
         {

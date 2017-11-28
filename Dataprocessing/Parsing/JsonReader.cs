@@ -37,7 +37,7 @@ namespace Dataformatter.Dataprocessing.Parsing
                 fileLocation = Path.Combine(Paths.ProcessedDataFolder, name);
             else
                 fileLocation = Path.Combine(Paths.ProcessedDataFolder, name);
-
+            
             var rootObject = JArray.Parse(File.ReadAllText(fileLocation));
             var objectList = rootObject.ToObject<T[]>();
             return objectList;
