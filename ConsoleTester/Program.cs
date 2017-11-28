@@ -23,19 +23,19 @@ namespace ConsoleTester
             Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
             
             
-            #region ParseCode
+            #region Parsing Elections, Classifications and Turnout
 
 //             var electionsCsvLocation = Paths.RawDataFolder +  @"\Political\ElectionResults\election_data.csv";
-//           var partyClassificationCsvLocation = Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
+           var partyClassificationCsvLocation = Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
 //             var turnoutCsvLocation = Paths.RawDataFolder +  @"\Political\Turnout\turnout_data.csv";
-//            ICsvModelFactory<ConstituencyElectionModel> modelFactory =
-//                new ConstituencyElectionModelFactory();
-//            //
-//            var allItemsAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
-//                electionsCsvLocation, modelFactory);
-//
-//            var processor = new ElectionsProcessor();
-//            processor.SerializeDataToJson(allItemsAsModels);
+            ICsvModelFactory<PartyClassificationModel> modelFactory =
+                new PartyClassificationModelFactory();
+            
+            var allItemsAsModels = CsvToModel<PartyClassificationModel>.ParseAllCsvLinesToModels(
+                partyClassificationCsvLocation, modelFactory);
+
+            var processor = new PartyClassificationProcessor();
+            processor.SerializeDataToJson(allItemsAsModels);
 
             #endregion
 
@@ -68,8 +68,8 @@ namespace ConsoleTester
 
             #endregion
 
-            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
-            partyClassificationAndElectionsMerger.MergeIndividualCountry();
+            //var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
+            //partyClassificationAndElectionsMerger.MergeIndividualCountry();
         }
     }
 }

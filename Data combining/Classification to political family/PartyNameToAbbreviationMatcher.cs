@@ -52,8 +52,7 @@ namespace Dataformatter.Data_combining.Classification_to_political_family
             }
             else //if the above is not the case, the abrevviation is completely unknown and the user has to input it.
             {
-                Console.WriteLine("Enter a abbreviation for " + _originalElectionResultForParty.PartyName + " (" +
-                                  _originalElectionResultForParty.Year + ")");
+                Console.WriteLine("Enter a abbreviation for " + _originalElectionResultForParty.PartyName);
 
                 var abbreviationLine = Console.ReadLine();
                 PartyClassificationAndElectionsMerger.PoliticalFamilyPerPartyInCurrentCountry.Add(
@@ -73,7 +72,12 @@ namespace Dataformatter.Data_combining.Classification_to_political_family
 
         private static string AbbreviatePartyName(string partyName)
         {
-            var parts = partyName.Split(' ');
+            string partyWithoutYear = partyName;
+            if (partyName.Contains("(1"))
+                partyWithoutYear = partyName.Substring(0, partyName.IndexOf("(1", StringComparison.InvariantCulture));
+            
+            
+            var parts = partyWithoutYear.Split(' ');
 
             var result = "";
             foreach (var part in parts)

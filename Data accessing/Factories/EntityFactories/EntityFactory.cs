@@ -9,16 +9,30 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
         where O : IEntity
     {
         public abstract O Create(I rawModel);
-
+        
         protected string CreateCountryCode(string fullCountryName)
         {
+            Console.WriteLine("full country name = " + fullCountryName);
+            
+            
+            
             var result = Iso3166Repository.FromName(fullCountryName.ToLower()) ??
+                         Iso3166Repository.FromClassificationCodes(fullCountryName.ToLower()) ??
                          (Iso3166Repository.FromAlpha2(fullCountryName.ToUpper()) ??
                           Iso3166Repository.FromAlternativeName(fullCountryName.ToLower()) ??
                           Iso3166Repository.FromAlpha3(fullCountryName.ToUpper()));
 
-            if (result != null) return result.Alpha3;
+            
+            
+            
+            if (result != null) 
+            {
+                Console.WriteLine("result.Alpha3 = " + result.Alpha3);
+                return result.Alpha3;
+            }
+            
             Console.WriteLine("nothing found by " + fullCountryName);
+            
             return new Iso3166Country("UNKNOWN", "UNKNOWN", "UNKNOWN").Alpha3;
         }
     }
