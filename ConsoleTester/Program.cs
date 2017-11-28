@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿﻿using System;
 using System.IO;
 using Dataformatter;
 using Dataformatter.Datamodels;
@@ -7,8 +7,8 @@ using Dataformatter.Dataprocessing.Processors;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
 using Dataformatter.Data_accessing.Filters;
 using Dataformatter.Data_accessing.Repositories;
-using Dataformatter.Data_combining.Classification_to_political_family;
-using Microsoft.SqlServer.Server;
+  using Dataformatter.Data_combining.Classification_to_political_family;
+  using Microsoft.SqlServer.Server;
 
 namespace ConsoleTester
 {
@@ -16,13 +16,13 @@ namespace ConsoleTester
     {
         private static void Main()
         {
-            Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
-            Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
+            //Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
+            //Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
 
-//            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
-//            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
-
-
+            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
+            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
+            
+            
             #region ParseCode
 
 //             var electionsCsvLocation = Paths.RawDataFolder +  @"\Political\ElectionResults\election_data.csv";
@@ -69,7 +69,7 @@ namespace ConsoleTester
             #endregion
 
             var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
-            partyClassificationAndElectionsMerger.Merge();
+            partyClassificationAndElectionsMerger.MergeIndividualCountry();
         }
     }
 }
