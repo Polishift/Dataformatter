@@ -32,6 +32,7 @@ namespace ConsoleTester
             var partyClassificationCsvLocation =
                 Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
 //            var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
+            
             //PARSING elections
             ICsvModelFactory<ConstituencyElectionModel> modelFactory =
                 new ConstituencyElectionModelFactory();
@@ -80,8 +81,8 @@ namespace ConsoleTester
 
             #endregion
 
-            //var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
-            //partyClassificationAndElectionsMerger.MergeIndividualCountry();
+            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
+            partyClassificationAndElectionsMerger.MergeIndividualCountry();
         }
     }
 }
