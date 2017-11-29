@@ -25,7 +25,6 @@ namespace ConsoleTester
 //            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
 //            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
 
-
             #region ParseCode
 
             var electionsCsvLocation = Paths.RawDataFolder + @"\Political\ElectionResults\election_data.csv";
