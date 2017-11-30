@@ -3,7 +3,7 @@ using Dataformatter.Data_accessing.Repositories;
 
 namespace Dataformatter.Dataprocessing.Entities
 {
-    public class ElectionEntity : IEntity
+    public class ElectionEntity : IEntity, ICountryRuler
     {
         public int Year { get; set; }
         public string CountryCode { get; set; }

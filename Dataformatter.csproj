@@ -63,6 +63,7 @@
     <Compile Include="Data accessing\Filters\EuropeFilter.cs" />
     <Compile Include="Data accessing\Filters\IFilter.cs" />
     <Compile Include="Data accessing\Filters\YearFilter.cs" />
+    <Compile Include="Data accessing\Repositories\DictatorShipsRepository.cs" />
     <Compile Include="Data accessing\Repositories\EmploymentRepository.cs" />
     <Compile Include="Data accessing\Repositories\PartyFamiliesRepository.cs" />
     <Compile Include="Data accessing\Repositories\CountryBordersRepository.cs" />
@@ -87,6 +88,8 @@
     <Compile Include="Datamodels\ReligionModel.cs" />
     <Compile Include="Datamodels\TurnoutModel.cs" />
     <Compile Include="Datamodels\XYPoint.cs" />
+    <Compile Include="Dataprocessing\Entities\DictatorshipEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\ICountryRuler.cs" />
     <Compile Include="Dataprocessing\Entities\PartyFamilyEntity.cs" />
     <Compile Include="Dataprocessing\Entities\CountryBordersEntity.cs" />
     <Compile Include="Dataprocessing\Entities\ElectionEntity.cs" />
