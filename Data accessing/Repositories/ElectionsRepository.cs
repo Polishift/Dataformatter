@@ -8,7 +8,6 @@ namespace Dataformatter.Data_accessing.Repositories
 {
     public class ElectionsRepository : IRepository<ElectionEntity>
     {
-
         //Keeping one static reference instead of recalling the parser means less GC work :)
         private static readonly Dictionary<string, ElectionEntity[]> AllElectionsByCountry =
             JsonReader<ElectionEntity>.ParseJsonToListOfObjects(EntityNames.Election);

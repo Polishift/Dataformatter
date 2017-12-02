@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Dataformatter.Data_accessing.Repositories;
 
 namespace Dataformatter.Dataprocessing.Entities
 {
-    public class ElectionEntity : IEntity
+    public class ElectionEntity : IEntity, ICountryRuler
     {
         public int Year { get; set; }
         public string CountryCode { get; set; }
@@ -40,7 +41,13 @@ namespace Dataformatter.Dataprocessing.Entities
 
         public override string ToString()
         {
-            return CountryName + ", " + Year + ": " + PartyName + " gained " + TotalVotePercentage + "% of the votes.";
+            return PartyName + ", who are '" + PartyClassification + "'. They gained " 
+                   + GetFormattedVotePercentage() + "% of the votes.";
+        }
+
+        private string GetFormattedVotePercentage()
+        {
+            return $"{TotalVotePercentage:0.00}";
         }
     }
 }
