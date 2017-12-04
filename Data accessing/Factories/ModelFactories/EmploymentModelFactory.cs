@@ -23,14 +23,5 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                 EmployedPercentage = double.Parse(csvDataRow[ValueColumnIndex]),
             };
         }
-
-        private string ReplaceCommasInThousands(string input)
-        {
-            if (input.Equals(""))
-                return "-1";
-
-            var output = input.Replace(",", "");
-            return output;
-        }
     }
 }

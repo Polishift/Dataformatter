@@ -6,14 +6,14 @@ using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public class EmplotymentRepository : IRepository<PartyClassificationEntity>
+    public class EmplotymentRepository : IRepository<EmploymentEntity>
     {
-        private static readonly Dictionary<string, PartyClassificationEntity[]> AllEmploymentsByCountry =
-            JsonReader<PartyClassificationEntity>.ParseJsonToListOfObjects(EntityNames.Employment);
+        private static readonly Dictionary<string, EmploymentEntity[]> AllEmploymentsByCountry =
+            JsonReader<EmploymentEntity>.ParseJsonToListOfObjects(EntityNames.Employment);
 
-        public PartyClassificationEntity[] GetAll()
+        public EmploymentEntity[] GetAll()
         {
-            var result = new List<PartyClassificationEntity>();
+            var result = new List<EmploymentEntity>();
             foreach (var keyValuePair in AllEmploymentsByCountry)
             {
                 result.AddRange(keyValuePair.Value);
@@ -21,7 +21,7 @@ namespace Dataformatter.Data_accessing.Repositories
             return result.ToArray();
         }
 
-        public PartyClassificationEntity[] GetByCountry(string countryCode)
+        public EmploymentEntity[] GetByCountry(string countryCode)
         {
             return AllEmploymentsByCountry[countryCode];
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Dataformatter.Datamodels;
+using Dataformatter.Misc;
 
 namespace Dataformatter.Data_accessing.Factories.ModelFactories
 {
@@ -41,30 +42,21 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
             return new ReligionModel
             {
                 CountryName = csvDataRow[CountryNameColumnIndex],
-                Year = int.Parse(ReplaceCommasInThousands(csvDataRow[YearColumnIndex])),
-                ChrstProt = int.Parse(ReplaceCommasInThousands(csvDataRow[ChrstProtColumnIndex])),
-                ChrstCat = int.Parse(ReplaceCommasInThousands(csvDataRow[ChrstCatColumnIndex])),
-                ChrstTotal = int.Parse(ReplaceCommasInThousands(csvDataRow[ChrstTotalColumnIndex])),
+                Year = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[YearColumnIndex])),
+                ChrstProt = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[ChrstProtColumnIndex])),
+                ChrstCat = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[ChrstCatColumnIndex])),
+                ChrstTotal = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[ChrstTotalColumnIndex])),
 
-                JudTotal = int.Parse(ReplaceCommasInThousands(csvDataRow[JudTotalColumnIndex])),
+                JudTotal = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[JudTotalColumnIndex])),
 
-                IslmTotal = int.Parse(ReplaceCommasInThousands(csvDataRow[IslmTotalColumnIndex])),
+                IslmTotal = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[IslmTotalColumnIndex])),
 
-                BudTotal = int.Parse(ReplaceCommasInThousands(csvDataRow[BudTotalColumnIndex])),
+                BudTotal = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[BudTotalColumnIndex])),
 
-                NonTotal = int.Parse(ReplaceCommasInThousands(csvDataRow[NonTotalColumnIndex])),
+                NonTotal = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[NonTotalColumnIndex])),
 
-                SumTotal = int.Parse(ReplaceCommasInThousands(csvDataRow[SumTotalColumnIndex]))
+                SumTotal = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[SumTotalColumnIndex]))
             };
-        }
-
-        private string ReplaceCommasInThousands(string input)
-        {
-            if (input.Equals(""))
-                return "-1";
-
-            var output = input.Replace(",", "");
-            return output;
         }
     }
 }

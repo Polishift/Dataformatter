@@ -16,7 +16,8 @@ namespace Dataformatter.Dataprocessing.Processors
         CountryBorders,
         PartyFamilies,
         Employment,
-        Religion
+        Religion,
+        Interest
     }
 
     public abstract class AbstractDataProcessor<I, O> where I : IModel

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Dataformatter.Dataprocessing.Entities
+﻿namespace Dataformatter.Dataprocessing.Entities
 {
     public class PartyFamilyEntity : IEntity
     {

@@ -28,26 +28,19 @@ namespace ConsoleTester
             #region ParseCode
 
             var electionsCsvLocation = Paths.RawDataFolder + @"\Political\ElectionResults\election_data.csv";
-            var partyClassificationCsvLocation =
-                Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
+            var interestCsvLocation = Paths.RawDataFolder +
+                                      @"\Economical & Social\Interest rates (incomplete)\interest_data.csv";
+//            var partyClassificationCsvLocation =
+//                Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
 //            var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
-            
+
             //PARSING elections
-            ICsvModelFactory<ConstituencyElectionModel> modelFactory =
-                new ConstituencyElectionModelFactory();
-            var allItemsAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
-                electionsCsvLocation, modelFactory);
-            var processor = new ElectionsProcessor();
+            ICsvModelFactory<InterestModel> modelFactory =
+                new InterestModelFactory();
+            var allItemsAsModels = CsvToModel<InterestModel>.ParseAllCsvLinesToModels(
+                interestCsvLocation, modelFactory);
+            var processor = new InterestProcessor();
             processor.SerializeDataToJson(allItemsAsModels);
-
-            //PARSING CLASSIFICATION
-            ICsvModelFactory<PartyClassificationModel> modelFactory2 =
-                new PartyClassificationModelFactory();
-            var allItemsAsModels2 = CsvToModel<PartyClassificationModel>.ParseAllCsvLinesToModels(
-                partyClassificationCsvLocation, modelFactory2);
-            var processor2 = new PartyClassificationProcessor();
-            processor2.SerializeDataToJson(allItemsAsModels2);
-
 
             #endregion
 
@@ -80,8 +73,8 @@ namespace ConsoleTester
 
             #endregion
 
-            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
-            partyClassificationAndElectionsMerger.MergeIndividualCountry();
+//            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
+//            partyClassificationAndElectionsMerger.MergeIndividualCountry();
         }
     }
 }

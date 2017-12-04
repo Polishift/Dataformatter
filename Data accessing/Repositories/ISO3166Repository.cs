@@ -1,8 +1,8 @@
-﻿﻿using System;
- using System.Collections.Generic;
- using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Dataformatter.Dataprocessing.Parsing;
- using Microsoft.SqlServer.Server;
+using Microsoft.SqlServer.Server;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
@@ -15,11 +15,9 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             if (Paths.RawDataFolder != null && Paths.ProcessedDataFolder != null)
                 InitializeCollection();
-            else
-                Console.WriteLine("WARNING: JsonReader Paths not set! Collection won't be initialized.");
         }
 
-        public static void InitializeCollection()
+        private static void InitializeCollection()
         {
             Collection = JsonReader<Iso3166Country>.ParseJsonToListOfObjects("countries.json");
         }
@@ -40,22 +38,20 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             classificationDatasetCode = classificationDatasetCode.ToUpper();
             string convertedAlpha3 = "";
-            
+
             //converted classificationcode to alpha 3, then return from alpha 3
-            if(DatasetIdsToAlpha3.ContainsKey(classificationDatasetCode))
+            if (DatasetIdsToAlpha3.ContainsKey(classificationDatasetCode))
                 convertedAlpha3 = DatasetIdsToAlpha3[classificationDatasetCode];
-            else
-                Console.WriteLine("WARNING: DatasetIdsToAlpha3 did not contain " + classificationDatasetCode);
-            
+
             return FromAlpha3(convertedAlpha3);
         }
-        
+
         public static Iso3166Country FromAlpha3(string alpha3)
         {
             return Collection.FirstOrDefault(
                 p => p.Alpha3 == alpha3);
         }
-        
+
         public static Iso3166Country FromAlpha2(string alpha2)
         {
             return Collection.FirstOrDefault(
@@ -73,12 +69,12 @@ namespace Dataformatter.Data_accessing.Repositories
             }
             return null;
         }
-        
-        
+
+
         /*
         * Enormous dict to convert the country codes from the classification dataset to normal Alpha3 codes.
         */
-        
+
         private static readonly Dictionary<string, string> DatasetIdsToAlpha3 = new Dictionary<string, string>()
         {
             {"AUS", "AUT"},
