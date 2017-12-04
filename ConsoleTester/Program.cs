@@ -19,34 +19,31 @@ namespace ConsoleTester
         {
             //TODO before compiling and running the code, set your own paths to the folders!
             // run it once, then comment! the region ParseCode, and start again to start merging
-            Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
-            Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
-
-//            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
-//            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
+            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
+            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
 
             #region ParseCode
 
-            var electionsCsvLocation = Paths.RawDataFolder + @"\Political\ElectionResults\election_data.csv";
-            var partyClassificationCsvLocation =
-                Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
-//            var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
-            
-            //PARSING elections
-            ICsvModelFactory<ConstituencyElectionModel> modelFactory =
-                new ConstituencyElectionModelFactory();
-            var allItemsAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
-                electionsCsvLocation, modelFactory);
-            var processor = new ElectionsProcessor();
-            processor.SerializeDataToJson(allItemsAsModels);
-
-            //PARSING CLASSIFICATION
-            ICsvModelFactory<PartyClassificationModel> modelFactory2 =
-                new PartyClassificationModelFactory();
-            var allItemsAsModels2 = CsvToModel<PartyClassificationModel>.ParseAllCsvLinesToModels(
-                partyClassificationCsvLocation, modelFactory2);
-            var processor2 = new PartyClassificationProcessor();
-            processor2.SerializeDataToJson(allItemsAsModels2);
+//            var electionsCsvLocation = Paths.RawDataFolder + @"\Political\ElectionResults\election_data.csv";
+//            var partyClassificationCsvLocation =
+//                Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
+////            var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
+//            
+//            //PARSING elections
+//            ICsvModelFactory<ConstituencyElectionModel> modelFactory =
+//                new ConstituencyElectionModelFactory();
+//            var allItemsAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
+//                electionsCsvLocation, modelFactory);
+//            var processor = new ElectionsProcessor();
+//            processor.SerializeDataToJson(allItemsAsModels);
+//
+//            //PARSING CLASSIFICATION
+//            ICsvModelFactory<PartyClassificationModel> modelFactory2 =
+//                new PartyClassificationModelFactory();
+//            var allItemsAsModels2 = CsvToModel<PartyClassificationModel>.ParseAllCsvLinesToModels(
+//                partyClassificationCsvLocation, modelFactory2);
+//            var processor2 = new PartyClassificationProcessor();
+//            processor2.SerializeDataToJson(allItemsAsModels2);
 
 
             #endregion
@@ -72,11 +69,11 @@ namespace ConsoleTester
 
             #region Filtering
 
-            IFilter filter = new YearFilter();
-            filter.Filter();
+            //IFilter filter = new YearFilter();
+            //filter.Filter();
 
-            filter = new EuropeFilter();
-            filter.Filter();
+            //filter = new ClassificationAvailableFilter();
+            //filter.Filter();
 
             #endregion
 

@@ -60,7 +60,7 @@
     <Compile Include="Data accessing\Factories\ModelFactories\PartyClassificationModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\ReligionModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\TurnoutModelFactory.cs" />
-    <Compile Include="Data accessing\Filters\EuropeFilter.cs" />
+    <Compile Include="Data accessing\Filters\ClassificationAvailableFilter.cs" />
     <Compile Include="Data accessing\Filters\IFilter.cs" />
     <Compile Include="Data accessing\Filters\YearFilter.cs" />
     <Compile Include="Data accessing\Repositories\DictatorShipsRepository.cs" />
