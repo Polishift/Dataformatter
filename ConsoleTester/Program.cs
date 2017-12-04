@@ -30,16 +30,18 @@ namespace ConsoleTester
             var electionsCsvLocation = Paths.RawDataFolder + @"\Political\ElectionResults\election_data.csv";
             var interestCsvLocation = Paths.RawDataFolder +
                                       @"\Economical & Social\Interest rates (incomplete)\interest_data.csv";
+            var warCsvLocation = Paths.RawDataFolder +
+                                      @"\Economical & Social\Wars\war_data.csv";
 //            var partyClassificationCsvLocation =
 //                Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
 //            var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
 
             //PARSING elections
-            ICsvModelFactory<InterestModel> modelFactory =
-                new InterestModelFactory();
-            var allItemsAsModels = CsvToModel<InterestModel>.ParseAllCsvLinesToModels(
-                interestCsvLocation, modelFactory);
-            var processor = new InterestProcessor();
+            ICsvModelFactory<WarModel> modelFactory =
+                new WarModelFactory();
+            var allItemsAsModels = CsvToModel<WarModel>.ParseAllCsvLinesToModels(
+                warCsvLocation, modelFactory);
+            var processor = new WarProcessor();
             processor.SerializeDataToJson(allItemsAsModels);
 
             #endregion

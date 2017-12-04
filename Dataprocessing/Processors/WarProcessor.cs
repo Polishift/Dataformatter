@@ -9,56 +9,19 @@ using Newtonsoft.Json;
 
 namespace Dataformatter.Dataprocessing.Processors
 {
-    public class WarProcessor : AbstractDataProcessor<InterestModel, InterestEntity>
+    public class WarProcessor : AbstractDataProcessor<WarModel, WarEntity>
     {
-        public override void SerializeDataToJson(List<InterestModel> rawModels)
+        public override void SerializeDataToJson(List<WarModel> rawModels)
         {
-            var interestEntities = new List<InterestEntity>();
-            var entityFactory = new InterestEntityFactory();
-            var interestPerCountryPerYear = new Dictionary<string, Dictionary<int, Tuple<double, int>>>();
+            var warEntities = new List<WarEntity>();
+            var entityFactory = new WarEntityFactory();
 
             for (var i = 0; i < rawModels.Count; i++)
             {
-                var currentModel = rawModels[i];
-                if (interestPerCountryPerYear.ContainsKey(currentModel.CountryName))
-                {
-                    if (interestPerCountryPerYear[currentModel.CountryName].ContainsKey(currentModel.Year))
-                    {
-                        var oldtuple = interestPerCountryPerYear[currentModel.CountryName][currentModel.Year];
-                        interestPerCountryPerYear[currentModel.CountryName][currentModel.Year] =
-                            new Tuple<double, int>(
-                                (oldtuple.Item1 * oldtuple.Item2 + currentModel.Value) / 1 + oldtuple.Item2,
-                                1 + oldtuple.Item2);
-                    }
-                    else
-                    {
-                        interestPerCountryPerYear[currentModel.CountryName].Add(currentModel.Year,
-                            new Tuple<double, int>(currentModel.Value, 1));
-                    }
-                }
-                else
-                {
-                    interestPerCountryPerYear.Add(currentModel.CountryName, new Dictionary<int, Tuple<double, int>>
-                    {
-                        {currentModel.Year, new Tuple<double, int>(currentModel.Value, 1)}
-                    });
-                }
+                warEntities.Add(entityFactory.Create(rawModels[i]));
             }
 
-            foreach (var country in interestPerCountryPerYear)
-            {
-                foreach (var year in country.Value)
-                {
-                    interestEntities.Add(entityFactory.Create(new InterestModel
-                    {
-                        CountryName = country.Key,
-                        Value = year.Value.Item1,
-                        Year = year.Key
-                    }));
-                }
-            }
-
-            WriteEntitiesToJson(EntityNames.Interest, interestEntities);
+            WriteEntitiesToJson(EntityNames.War, warEntities);
         }
     }
 }

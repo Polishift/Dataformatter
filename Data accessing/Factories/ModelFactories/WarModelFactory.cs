@@ -1,32 +1,38 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using Dataformatter.Datamodels;
 
 namespace Dataformatter.Data_accessing.Factories.ModelFactories
 {
-    public class WarModelFactory : ICsvModelFactory<InterestModel>
+    public class WarModelFactory : ICsvModelFactory<WarModel>
     {
-        private const int CountryColumnIndex = 0;
-        private const int YearColumnIndex = 5;
-        private const int ValueColumnIndex = 6;
+        private const int NameColumnIndex = 1;
+        private const int CountryColumnIndex = 2;
+        private const int ActorsColumnIndex = 3;
+        private const int StartYearColumnIndex = 6;
+        private const int EndYearColumnIndex = 9;
 
-        public InterestModel Create(List<string> csvDataRow)
+        public WarModel Create(List<string> csvDataRow)
         {
-            var countryName = csvDataRow[CountryColumnIndex];
-            var year = int.Parse(StripOnUnderScore(csvDataRow[YearColumnIndex]), CultureInfo.InvariantCulture);
-            var value = double.Parse(csvDataRow[ValueColumnIndex], CultureInfo.InvariantCulture);
-            return new InterestModel
+            var index = csvDataRow[NameColumnIndex].IndexOf("-", StringComparison.InvariantCulture);
+            var countryName = index < 0 ? "unknown"  :  csvDataRow[NameColumnIndex].Substring(0, index);
+            var name = csvDataRow[NameColumnIndex];
+            var startyear = int.Parse(csvDataRow[StartYearColumnIndex], CultureInfo.InvariantCulture);
+            var endyear = csvDataRow[EndYearColumnIndex].Equals("")
+                ? 0
+                : int.Parse(csvDataRow[EndYearColumnIndex], CultureInfo.InvariantCulture);
+            var actors = csvDataRow[ActorsColumnIndex].Equals("")
+                ? 0
+                : int.Parse(csvDataRow[ActorsColumnIndex], CultureInfo.InvariantCulture);
+            return new WarModel
             {
+                Name = name,
                 CountryName = countryName,
-                Year = year,
-                Value = value
+                StartYear = startyear,
+                EndYear = endyear,
+                Actors = actors
             };
-        }
-
-        private static string StripOnUnderScore(string word)
-        {
-            var indexOfScore = word.IndexOf('-');
-            return indexOfScore > -1 ? word.Substring(0, indexOfScore) : word;
         }
     }
 }

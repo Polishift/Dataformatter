@@ -3,16 +3,18 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class WarEntityFactory : EntityFactory<InterestModel,
-        InterestEntity>
+    public class WarEntityFactory : EntityFactory<WarModel,
+        WarEntity>
     {
-        public override InterestEntity Create(InterestModel rawModel)
+        public override WarEntity Create(WarModel rawModel)
         {
-            return new InterestEntity
+            return new WarEntity
             {
                 CountryCode = CreateCountryCode(rawModel.CountryName),
-                Value = rawModel.Value,
-                Year = rawModel.Year
+                Name = rawModel.Name,
+                StartYear = rawModel.StartYear,
+                EndYear = rawModel.EndYear,
+                Actors = rawModel.Actors
             };
         }
     }
