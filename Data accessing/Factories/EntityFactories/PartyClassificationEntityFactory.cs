@@ -3,7 +3,7 @@
  
  namespace Dataformatter.Data_accessing.Factories.EntityFactories
  {
-     public class DefaultPartyClassificationEntityFactory : EntityFactory<PartyClassificationModel,
+     public class PartyClassificationEntityFactory : EntityFactory<PartyClassificationModel,
          PartyClassificationEntity>
      {
          public override PartyClassificationEntity Create(PartyClassificationModel rawModel)

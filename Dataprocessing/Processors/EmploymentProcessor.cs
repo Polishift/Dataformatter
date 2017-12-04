@@ -13,7 +13,7 @@ namespace Dataformatter.Dataprocessing.Processors
         public override void SerializeDataToJson(List<EmploymentModel> rawModels)
         {
             var employmentEntities = new List<EmploymentEntity>();
-            var entityFactory = new DefaultEmploymentEntityFactory();
+            var entityFactory = new EmploymentEntityFactory();
 
             for (var i = 0; i < rawModels.Count; i++)
             {

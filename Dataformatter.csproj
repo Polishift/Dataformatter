@@ -45,14 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultCountryEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultElectionEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultEmploymentEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultInterestEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultPartyClassificationEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultReligionEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultTurnoutEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\CountryEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\ElectionEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\EmploymentEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\InterestEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\PartyClassificationEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\ReligionEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\TurnoutEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\EntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\WarEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\ConstituencyElectionModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\CountryGeoModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\EmploymentModelFactory.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Data accessing\Factories\ModelFactories\PartyClassificationModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\ReligionModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\TurnoutModelFactory.cs" />
+    <Compile Include="Data accessing\Factories\ModelFactories\WarModelFactory.cs" />
     <Compile Include="Data accessing\Filters\EuropeFilter.cs" />
     <Compile Include="Data accessing\Filters\IFilter.cs" />
     <Compile Include="Data accessing\Filters\YearFilter.cs" />
@@ -90,6 +92,7 @@
     <Compile Include="Datamodels\Polygon.cs" />
     <Compile Include="Datamodels\ReligionModel.cs" />
     <Compile Include="Datamodels\TurnoutModel.cs" />
+    <Compile Include="Datamodels\WarModel.cs" />
     <Compile Include="Datamodels\XYPoint.cs" />
     <Compile Include="Dataprocessing\Entities\InterestEntity.cs" />
     <Compile Include="Dataprocessing\Entities\PartyFamilyEntity.cs" />
@@ -100,6 +103,7 @@
     <Compile Include="Dataprocessing\Entities\PartyClassificationEntity.cs" />
     <Compile Include="Dataprocessing\Entities\ReligionEntity.cs" />
     <Compile Include="Dataprocessing\Entities\TurnoutEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\WarEntity.cs" />
     <Compile Include="Dataprocessing\Parsing\CsvToModel.cs" />
     <Compile Include="Dataprocessing\Parsing\JsonReader.cs" />
     <Compile Include="Dataprocessing\Parsing\JsonToModel.cs" />
@@ -112,6 +116,7 @@
     <Compile Include="Dataprocessing\Processors\PartyClassificationProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\ReligionProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\TurnoutProcessor.cs" />
+    <Compile Include="Dataprocessing\Processors\WarProcessor.cs" />
     <Compile Include="Misc\HelperFunctions.cs" />
     <Compile Include="Misc\Tuple.cs" />
     <Compile Include="Paths.cs" />

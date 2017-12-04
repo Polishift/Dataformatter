@@ -13,7 +13,7 @@ namespace Dataformatter.Dataprocessing.Processors
         public override void SerializeDataToJson(List<ReligionModel> rawModels)
         {
             var religionEntities = new List<ReligionEntity>();
-            var entityFactory = new DefaultReligionEntityFactory();
+            var entityFactory = new ReligionEntityFactory();
 
             for (var i = 0; i < rawModels.Count; i++)
             {

@@ -3,7 +3,7 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultEmploymentEntityFactory : EntityFactory<EmploymentModel,
+    public class EmploymentEntityFactory : EntityFactory<EmploymentModel,
         EmploymentEntity>
     {
         public override EmploymentEntity Create(EmploymentModel rawModel)

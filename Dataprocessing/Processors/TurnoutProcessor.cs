@@ -13,7 +13,7 @@ namespace Dataformatter.Dataprocessing.Processors
         public override void SerializeDataToJson(List<TurnoutModel> rawModels)
         {
             var turnoutEntities = new List<TurnoutEntity>();
-            var entityFactory = new DefaultTurnoutEntityFactory();
+            var entityFactory = new TurnoutEntityFactory();
             
             for (var i = 0; i < rawModels.Count; i++)
             {

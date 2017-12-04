@@ -8,7 +8,7 @@ namespace Dataformatter.Dataprocessing.Processors
     public class CountryBordersProcessor : AbstractDataProcessor<CountryGeoModel,  
                                                           CountryBordersEntity>
     {
-        private readonly DefaultCountryEntityFactory _defaultCountryEntityFactory = new DefaultCountryEntityFactory();
+        private readonly CountryEntityFactory _defaultCountryEntityFactory = new CountryEntityFactory();
 
         public override void SerializeDataToJson(List<CountryGeoModel> rawModels)
         {

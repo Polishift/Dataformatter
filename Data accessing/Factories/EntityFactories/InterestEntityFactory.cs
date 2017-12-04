@@ -3,7 +3,7 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultInterestEntityFactory : EntityFactory<InterestModel,
+    public class InterestEntityFactory : EntityFactory<InterestModel,
         InterestEntity>
     {
         public override InterestEntity Create(InterestModel rawModel)

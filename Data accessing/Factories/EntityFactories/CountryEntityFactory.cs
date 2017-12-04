@@ -5,7 +5,7 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultCountryEntityFactory : EntityFactory<CountryGeoModel, CountryBordersEntity>
+    public class CountryEntityFactory : EntityFactory<CountryGeoModel, CountryBordersEntity>
     {
         private static readonly double MINIMUM_POINT_X_DISTANCE = 0.0005;
 

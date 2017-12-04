@@ -11,7 +11,7 @@ namespace Dataformatter.Dataprocessing.Processors
     public class ElectionsProcessor : AbstractDataProcessor<ConstituencyElectionModel,
         ElectionEntity>
     {
-        private readonly DefaultElectionEntityFactory _electionEntityFactory = new DefaultElectionEntityFactory();
+        private readonly ElectionEntityFactory _electionEntityFactory = new ElectionEntityFactory();
         private readonly HashSet<string> _knownConstituencies = new HashSet<string>();
 
         private readonly Dictionary<Tuple<string, int>, int> _totalAmountOfVotesPerCountryAndYear =

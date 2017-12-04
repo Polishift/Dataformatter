@@ -11,7 +11,7 @@ namespace Dataformatter.Dataprocessing.Processors
     {
         public override void SerializeDataToJson(List<PartyClassificationModel> rawModels)
         {
-            var entityFactory = new DefaultPartyClassificationEntityFactory();
+            var entityFactory = new PartyClassificationEntityFactory();
             var classificationPerParty = new Dictionary<int, PartyClassificationEntity>();
 
             for (var i = 0; i < rawModels.Count; i++)

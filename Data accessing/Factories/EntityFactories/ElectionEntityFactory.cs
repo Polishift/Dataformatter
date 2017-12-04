@@ -4,7 +4,7 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultElectionEntityFactory : EntityFactory<ConstituencyElectionModel, ElectionEntity>
+    public class ElectionEntityFactory : EntityFactory<ConstituencyElectionModel, ElectionEntity>
     {
         private const int MissingValueKey = -990;
 

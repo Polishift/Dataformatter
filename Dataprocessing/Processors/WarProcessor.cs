@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace Dataformatter.Dataprocessing.Processors
 {
-    public class InterestProcessor : AbstractDataProcessor<InterestModel, InterestEntity>
+    public class WarProcessor : AbstractDataProcessor<InterestModel, InterestEntity>
     {
         public override void SerializeDataToJson(List<InterestModel> rawModels)
         {
