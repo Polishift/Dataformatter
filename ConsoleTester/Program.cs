@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Dataformatter;
+﻿using Dataformatter;
 using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Parsing;
 using Dataformatter.Dataprocessing.Processors;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
 using Dataformatter.Data_accessing.Filters;
-using Dataformatter.Data_accessing.Repositories;
-using Dataformatter.Data_combining.Classification_to_political_family;
-using Microsoft.SqlServer.Server;
 
 namespace ConsoleTester
 {

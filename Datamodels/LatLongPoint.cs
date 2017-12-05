@@ -1,6 +1,3 @@
-using System;
-using System.Net.NetworkInformation;
-
 namespace Dataformatter.Datamodels
 {
     public class LatLongPoint : AbstractPoint
@@ -10,7 +7,7 @@ namespace Dataformatter.Datamodels
 
         public XYPoint ToXYPoint()
         {
-            return new XYPoint(){ X = DegreesToRadians(Y), Y = DegreesToRadians(X)};  
+            return new XYPoint { X = DegreesToRadians(Y), Y = DegreesToRadians(X)};  
         }
         
         public override string ToString()

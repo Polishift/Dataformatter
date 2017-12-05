@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Dataformatter.Dataprocessing.Parsing;
-using Microsoft.SqlServer.Server;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
@@ -75,7 +73,7 @@ namespace Dataformatter.Data_accessing.Repositories
         * Enormous dict to convert the country codes from the classification dataset to normal Alpha3 codes.
         */
 
-        private static readonly Dictionary<string, string> DatasetIdsToAlpha3 = new Dictionary<string, string>()
+        private static readonly Dictionary<string, string> DatasetIdsToAlpha3 = new Dictionary<string, string>
         {
             {"AUS", "AUT"},
             {"BE", "BEL"},

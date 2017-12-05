@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Dataformatter.Dataprocessing.Entities;
-using Dataformatter.Data_accessing.Filters;
 using Dataformatter.Data_accessing.Repositories;
 using Newtonsoft.Json;
 

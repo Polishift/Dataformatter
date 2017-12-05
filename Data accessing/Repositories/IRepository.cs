@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace Dataformatter.Data_accessing.Repositories
+﻿namespace Dataformatter.Data_accessing.Repositories
 {
     public interface IRepository<out T>
     {

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;

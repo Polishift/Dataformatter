@@ -21,7 +21,7 @@ namespace Dataformatter.Dataprocessing.Entities
         
         public static ElectionEntity GetEmptyElectionEntity(Iso3166Country associatedCountry)
         {
-            return new ElectionEntity()
+            return new ElectionEntity
             {
                 Year = 0,
                 CountryCode = associatedCountry.Alpha3,
@@ -30,7 +30,7 @@ namespace Dataformatter.Dataprocessing.Entities
                 PartyName = "None",
                 PartyAbbreviation = "NA",
                 PartyClassification = "Unknown",
-                PartyCandidates = new HashSet<string>() {"No candidates found"},
+                PartyCandidates = new HashSet<string> {"No candidates found"},
 
                 TotalAmountOfVotes = 0,
                 TotalVotePercentage = 0.0,

@@ -31,7 +31,7 @@ namespace Dataformatter.Misc
             return Equals((Tuple<T, J>) obj);
         }
 
-        public bool Equals(Tuple<T, J> other)
+        private bool Equals(Tuple<T, J> other)
         {
             return other.Item1.Equals(Item1) && other.Item2.Equals(Item2);
         }
