@@ -18,7 +18,8 @@ namespace Dataformatter.Dataprocessing.Processors
         Employment,
         Religion,
         Interest,
-        War
+        War,
+        Tv
     }
 
     public abstract class AbstractDataProcessor<I, O> where I : IModel

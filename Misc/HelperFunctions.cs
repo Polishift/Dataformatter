@@ -19,5 +19,11 @@
             var output = input.Replace(",", "");
             return output;
         }
+
+        public static string StripOnPercent(string input)
+        {
+            var output = input.Substring(0, input.IndexOf('%'));
+            return output;
+        }
     }
 }

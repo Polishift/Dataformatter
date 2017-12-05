@@ -9,13 +9,13 @@ namespace Dataformatter.Data_accessing.Repositories
     public class WarRepository : IRepository<WarEntity>
     {
         //Keeping one static reference instead of recalling the parser means less GC work :)
-        private static readonly Dictionary<string, WarEntity[]> AllInterestByCountry =
+        private static readonly Dictionary<string, WarEntity[]> AllWarByCountry =
             JsonReader<WarEntity>.ParseJsonToListOfObjects(EntityNames.War);
 
         public WarEntity[] GetAll()
         {
             var result = new List<WarEntity>();
-            foreach (var keyValuePair in AllInterestByCountry)
+            foreach (var keyValuePair in AllWarByCountry)
             {
                 result.AddRange(keyValuePair.Value);
             }
@@ -24,13 +24,13 @@ namespace Dataformatter.Data_accessing.Repositories
 
         public WarEntity[] GetByCountry(string countryCode)
         {
-            return AllInterestByCountry[countryCode];
+            return AllWarByCountry[countryCode];
         }
 
         public WarEntity[] GetByYear(int year)
         {
             var result = new List<WarEntity>();
-            foreach (var keyValuePair in AllInterestByCountry)
+            foreach (var keyValuePair in AllWarByCountry)
             {
                 result.AddRange(keyValuePair.Value);
             }
@@ -39,7 +39,7 @@ namespace Dataformatter.Data_accessing.Repositories
 
         public List<string> GetCountryNames()
         {
-            return AllInterestByCountry.Keys.ToList();
+            return AllWarByCountry.Keys.ToList();
         }
     }
 }
