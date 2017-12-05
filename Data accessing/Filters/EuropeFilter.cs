@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Filters
 {
@@ -9,14 +10,18 @@ namespace Dataformatter.Data_accessing.Filters
         public void Filter()
         {
             var rootFolderPath = Paths.ProcessedDataFolder;
-            const string filesToDelete = @"*Election*.json";
-            var fileList = Directory.GetFiles(rootFolderPath, filesToDelete);
-            foreach (var file in fileList)
+            foreach (var entity in Enum.GetNames(typeof(EntityNames)))
             {
-                var x = file.Substring(file.IndexOf('_') + 1, 3);
-                if (_europeanSet.Contains(x)) continue;
-                Console.WriteLine(file + " will be deleted");
-                File.Delete(file);
+                Console.WriteLine(entity);
+                var filesToDelete = @"*" + entity + "*.json";
+                var fileList = Directory.GetFiles(rootFolderPath, filesToDelete);
+                foreach (var file in fileList)
+                {
+                    var x = file.Substring(file.IndexOf('_') + 1, 3);
+                    if (_europeanSet.Contains(x)) continue;
+                    Console.WriteLine(file + " will be deleted");
+                    File.Delete(file);
+                }
             }
         }
 

@@ -29,17 +29,16 @@ namespace ConsoleTester
                                 @"\Economical & Social\Households with TV\households_with_television_data.csv";
             var populationCsvLocation = Paths.RawDataFolder +
                                         @"\Economical & Social\GDP & Population & GDP Per capita\population_data.csv";
-//            var partyClassificationCsvLocation =
-//                Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
-//            var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
+            var partyClassificationCsvLocation =
+                Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
+            var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
 
-            //PARSING elections
-            ICsvModelFactory<PopulationModel> modelFactory =
-                new PopulationModelFactory();
-            var allItemsAsModels = CsvToModel<PopulationModel>.ParseAllCsvLinesToModels(
-                populationCsvLocation, modelFactory);
-            var processor = new PopulationProcessor();
-            processor.SerializeDataToJson(allItemsAsModels);
+//            ICsvModelFactory<PopulationModel> modelFactory =
+//                new PopulationModelFactory();
+//            var allItemsAsModels = CsvToModel<PopulationModel>.ParseAllCsvLinesToModels(
+//                populationCsvLocation, modelFactory);
+//            var processor = new PopulationProcessor();
+//            processor.SerializeDataToJson(allItemsAsModels);
 
             #endregion
 
@@ -65,7 +64,7 @@ namespace ConsoleTester
             #region Filtering
 
             IFilter filter = new YearFilter();
-            filter.Filter();
+//            filter.Filter();
 
             filter = new EuropeFilter();
             filter.Filter();
