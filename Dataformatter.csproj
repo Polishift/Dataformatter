@@ -50,6 +50,7 @@
     <Compile Include="Data accessing\Factories\EntityFactories\EmploymentEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\InterestEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\PartyClassificationEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\PopulationEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\ReligionEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\TurnoutEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\EntityFactory.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="Data accessing\Factories\ModelFactories\IJsonModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\InterestModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\PartyClassificationModelFactory.cs" />
+    <Compile Include="Data accessing\Factories\ModelFactories\PopulationModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\ReligionModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\TurnoutModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\TvModelFactory.cs" />
@@ -77,6 +79,7 @@
     <Compile Include="Data accessing\Repositories\Iso3166Country.cs" />
     <Compile Include="Data accessing\Repositories\ISO3166Repository.cs" />
     <Compile Include="Data accessing\Repositories\PartyClassificationRepository.cs" />
+    <Compile Include="Data accessing\Repositories\PopulationRepository.cs" />
     <Compile Include="Data accessing\Repositories\ReligionRepository.cs" />
     <Compile Include="Data accessing\Repositories\InterestRepository.cs" />
     <Compile Include="Data accessing\Repositories\TurnoutRepository.cs" />
@@ -94,6 +97,7 @@
     <Compile Include="Datamodels\LatLongPoint.cs" />
     <Compile Include="Datamodels\PartyClassificationModel.cs" />
     <Compile Include="Datamodels\Polygon.cs" />
+    <Compile Include="Datamodels\PopulationModel.cs" />
     <Compile Include="Datamodels\ReligionModel.cs" />
     <Compile Include="Datamodels\TurnoutModel.cs" />
     <Compile Include="Datamodels\TvModel.cs" />
@@ -106,6 +110,7 @@
     <Compile Include="Dataprocessing\Entities\EmploymentEntity.cs" />
     <Compile Include="Dataprocessing\Entities\IEntity.cs" />
     <Compile Include="Dataprocessing\Entities\PartyClassificationEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\PopulationEntity.cs" />
     <Compile Include="Dataprocessing\Entities\ReligionEntity.cs" />
     <Compile Include="Dataprocessing\Entities\TurnoutEntity.cs" />
     <Compile Include="Dataprocessing\Entities\TvEntity.cs" />
@@ -120,6 +125,7 @@
     <Compile Include="Dataprocessing\Processors\EmploymentProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\InterestProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\PartyClassificationProcessor.cs" />
+    <Compile Include="Dataprocessing\Processors\PopulationProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\ReligionProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\TurnoutProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\TvProcessor.cs" />
