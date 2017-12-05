@@ -15,8 +15,10 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
 
         public WarModel Create(List<string> csvDataRow)
         {
-            var index = csvDataRow[NameColumnIndex].IndexOf("-", StringComparison.InvariantCulture);
-            var countryName = index < 0 ? "unknown"  :  csvDataRow[NameColumnIndex].Substring(0, index);
+            var indexOfCountryName = csvDataRow[NameColumnIndex].IndexOf("-", StringComparison.InvariantCulture);
+            var countryName = indexOfCountryName < 0
+                ? "unknown"
+                : csvDataRow[NameColumnIndex].Substring(0, indexOfCountryName);
             var name = csvDataRow[NameColumnIndex];
             var startyear = int.Parse(csvDataRow[StartYearColumnIndex], CultureInfo.InvariantCulture);
             var endyear = csvDataRow[EndYearColumnIndex].Equals("")
@@ -25,6 +27,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
             var actors = csvDataRow[ActorsColumnIndex].Equals("")
                 ? 0
                 : int.Parse(csvDataRow[ActorsColumnIndex], CultureInfo.InvariantCulture);
+            
             return new WarModel
             {
                 Name = name,
