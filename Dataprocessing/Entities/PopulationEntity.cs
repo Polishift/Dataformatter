@@ -6,7 +6,6 @@ namespace Dataformatter.Dataprocessing.Entities
         public int Year { get; set; }
         public int MilitairPop { get; set; }
         public int UrbanPop { get; set; }
-        public int TotalPop { get; set; }
         public int NonUrbanPop { get; set; }
     }
 }
