@@ -8,13 +8,10 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
     public class PopFactory : ICsvModelFactory<PopModel>
     {
         private const int CountryNameColumnIndex = 0;
-
         private const int YearColumnIndex = 2;
-
         private const int MilitairPopColumnIndex = 4;
-
         private const int UrbanPopColumnIndex = 8;
-
+        private const int TotalPopColumnIndex = 7; 
 
         public PopModel Create(List<string> csvDataRow)
         {
@@ -23,7 +20,8 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                 CountryName = csvDataRow[CountryNameColumnIndex],
                 Year = int.Parse(csvDataRow[YearColumnIndex]),
                 MilitairPop = int.Parse(csvDataRow[MilitairPopColumnIndex]),
-                UrbanPop = int.Parse(csvDataRow[UrbanPopColumnIndex])
+                UrbanPop = int.Parse(csvDataRow[UrbanPopColumnIndex]),
+                TotalPop = int.Parse(csvDataRow[TotalPopColumnIndex])
             };
         }
     }

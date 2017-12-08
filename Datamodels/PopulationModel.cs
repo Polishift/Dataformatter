@@ -6,5 +6,6 @@ namespace Dataformatter.Datamodels
         public int Year { get; set; }
         public int MilitairPop { get; set; }
         public int UrbanPop { get; set; }
+        public int TotalPop { get; set; }
     }
 }
