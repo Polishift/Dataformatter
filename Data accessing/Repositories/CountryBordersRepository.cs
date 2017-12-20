@@ -17,15 +17,13 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             var result = new List<CountryBordersEntity>();
             foreach (var keyValuePair in AllBordersByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.ToArray();
         }
 
         public CountryBordersEntity[] GetByCountry(string countryCode)
         {
-            return AllBordersByCountry[countryCode]; 
+            return AllBordersByCountry[countryCode];
         }
 
         public List<string> GetCountryNames()

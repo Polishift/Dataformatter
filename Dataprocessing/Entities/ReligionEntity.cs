@@ -2,7 +2,6 @@
 {
     public class ReligionEntity : IEntity
     {
-        public string CountryCode { get; set; }
         public int Year { get; set; }
 
         // Christianity
@@ -28,5 +27,7 @@
 
         // Total 
         public int SumTotal { get; set; }
+
+        public string CountryCode { get; set; }
     }
 }

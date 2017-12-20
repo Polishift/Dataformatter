@@ -8,7 +8,6 @@ namespace Dataformatter.Data_accessing.Repositories
 {
     public class ElectionsRepository : IRepository<ElectionEntity>
     {
-
         //Keeping one static reference instead of recalling the parser means less GC work :)
         private static readonly Dictionary<string, ElectionEntity[]> AllElectionsByCountry =
             JsonReader<ElectionEntity>.ParseJsonToListOfObjects(EntityNames.Election);
@@ -17,27 +16,23 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             var result = new List<ElectionEntity>();
             foreach (var keyValuePair in AllElectionsByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.ToArray();
         }
 
         public ElectionEntity[] GetByCountry(string countryCode)
         {
-            return AllElectionsByCountry[countryCode]; 
+            return AllElectionsByCountry[countryCode];
         }
 
         public ElectionEntity[] GetByYear(int year)
         {
             var result = new List<ElectionEntity>();
             foreach (var keyValuePair in AllElectionsByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.Where(e => e.Year == year).ToArray();
         }
-        
+
         public List<string> GetCountryNames()
         {
             return AllElectionsByCountry.Keys.ToList();

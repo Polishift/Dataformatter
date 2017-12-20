@@ -2,14 +2,14 @@ namespace Dataformatter.Misc
 {
     public class Tuple<T, J>
     {
-        public T Item1 { get; set; }
-        public J Item2 { get; set; }
-
         public Tuple(T item1, J item2)
         {
             Item1 = item1;
             Item2 = item2;
         }
+
+        public T Item1 { get; set; }
+        public J Item2 { get; set; }
 
         public override string ToString()
         {
@@ -25,9 +25,7 @@ namespace Dataformatter.Misc
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
-            {
                 return false;
-            }
             return Equals((Tuple<T, J>) obj);
         }
 

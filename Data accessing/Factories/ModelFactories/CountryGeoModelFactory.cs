@@ -13,7 +13,6 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
             var country = JObject.FromObject(innerbody.GetValue("properties")).GetValue("cca2").ToString();
             var polygons = new List<Polygon<LatLongPoint>>();
 
-            //TODO make this generic..
             if (type.Equals("Polygon"))
             {
                 var coordinateArray = JArray.FromObject(JArray
@@ -50,7 +49,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                     polygons.Add(new Polygon<LatLongPoint>(coordinateList));
                 }
             }
-            
+
             return new CountryGeoModel
             {
                 CountryName = country,

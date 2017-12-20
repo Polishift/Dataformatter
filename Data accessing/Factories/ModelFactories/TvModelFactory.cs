@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
 using Dataformatter.Datamodels;
 using Dataformatter.Misc;
@@ -15,7 +14,8 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
         public TvModel Create(List<string> csvDataRow)
         {
             var countryName = csvDataRow[CountryColumnIndex];
-            var value = double.Parse(HelperFunctions.StripOnPercent(csvDataRow[ValueColumnIndex]), CultureInfo.InvariantCulture);
+            var value = double.Parse(HelperFunctions.StripOnPercent(csvDataRow[ValueColumnIndex]),
+                CultureInfo.InvariantCulture);
             var year = int.Parse(csvDataRow[YearColumnIndex], CultureInfo.InvariantCulture);
 
             return new TvModel

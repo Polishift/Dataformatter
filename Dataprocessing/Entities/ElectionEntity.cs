@@ -6,7 +6,6 @@ namespace Dataformatter.Dataprocessing.Entities
     public class ElectionEntity : IEntity
     {
         public int Year { get; set; }
-        public string CountryCode { get; set; }
         public string CountryName { get; set; }
 
         public string PartyName { get; set; }
@@ -14,11 +13,18 @@ namespace Dataformatter.Dataprocessing.Entities
         public string PartyClassification { get; set; }
         public HashSet<string> PartyCandidates { get; set; }
 
-        public double TotalAmountOfVotes { get; set; } //Has to be double in order for certain calculations to go well at small margins
+        public double
+            TotalAmountOfVotes
+        {
+            get;
+            set;
+        } //Has to be double in order for certain calculations to go well at small margins
+
         public double TotalVotePercentage { get; set; }
         public int TotalAmountOfSeatsGained { get; set; }
+        public string CountryCode { get; set; }
 
-        
+
         public static ElectionEntity GetEmptyElectionEntity(Iso3166Country associatedCountry)
         {
             return new ElectionEntity

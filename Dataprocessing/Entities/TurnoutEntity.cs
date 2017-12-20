@@ -2,7 +2,6 @@
 {
     public class TurnoutEntity : IEntity
     {
-        public string CountryCode { get; set; }
         public string Type { get; set; }
         public int Year { get; set; }
         public double VoterTurnout { get; set; }
@@ -12,5 +11,6 @@
         public int VotingAge { get; set; }
         public int Population { get; set; }
         public double InvalidVotes { get; set; }
+        public string CountryCode { get; set; }
     }
 }

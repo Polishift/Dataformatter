@@ -1,10 +1,9 @@
 using System;
-using System.IO;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.IO;
 using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
-
+using Newtonsoft.Json;
 
 namespace Dataformatter.Dataprocessing.Processors
 {
@@ -27,7 +26,7 @@ namespace Dataformatter.Dataprocessing.Processors
     }
 
     public abstract class AbstractDataProcessor<I, O> where I : IModel
-                                                      where O : IEntity
+        where O : IEntity
     {
         // ReSharper disable once StaticMemberInGenericType
         private static readonly string Directory = Paths.ProcessedDataFolder;
@@ -70,8 +69,8 @@ namespace Dataformatter.Dataprocessing.Processors
 
         private static string CreateCurrentCountryFileName(EntityNames entityName, string countryName)
         {
-            return Directory + Enum.GetName(typeof(EntityNames), entityName) + "_" + countryName 
-                             + ".json";
+            return Directory + Enum.GetName(typeof(EntityNames), entityName) + "_" + countryName
+                   + ".json";
         }
 
         private static void SerializeFile(string fileName, List<O> entityList)

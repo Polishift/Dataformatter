@@ -15,9 +15,7 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             var result = new List<EmploymentEntity>();
             foreach (var keyValuePair in AllEmploymentsByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.ToArray();
         }
 
@@ -25,7 +23,7 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             return AllEmploymentsByCountry[countryCode];
         }
-        
+
         public static IEnumerable<string> GetCountryNames()
         {
             return AllEmploymentsByCountry.Keys.ToList();

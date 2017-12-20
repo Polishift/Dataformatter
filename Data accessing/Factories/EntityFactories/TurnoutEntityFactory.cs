@@ -22,7 +22,5 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
                 Year = rawModel.Year
             };
         }
-
-        
     }
 }

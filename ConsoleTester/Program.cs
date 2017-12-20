@@ -28,9 +28,9 @@ namespace ConsoleTester
             var populationCsvLocation = Paths.RawDataFolder +
                                         @"\Economical & Social\GDP & Population & GDP Per capita\population_data.csv";
             var gdpTotalCsvLocation = Paths.RawDataFolder +
-                                        @"\Economical & Social\GDP & Population & GDP Per capita\gdp_data.csv";
+                                      @"\Economical & Social\GDP & Population & GDP Per capita\gdp_data.csv";
             var gdpCapitaCsvLocation = Paths.RawDataFolder +
-                                        @"\Economical & Social\GDP & Population & GDP Per capita\percapita_gdp_data.csv";
+                                       @"\Economical & Social\GDP & Population & GDP Per capita\percapita_gdp_data.csv";
             var partyClassificationCsvLocation =
                 Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
             var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";

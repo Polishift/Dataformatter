@@ -33,16 +33,14 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                     CultureInfo.InvariantCulture),
                 Type = csvDataRow[TypeColumnIndex],
                 VapTurnout =
-                    double.Parse(HelperFunctions.StripOnSpaces(csvDataRow[VapTurnoutColumnIndex]), CultureInfo.InvariantCulture),
+                    double.Parse(HelperFunctions.StripOnSpaces(csvDataRow[VapTurnoutColumnIndex]),
+                        CultureInfo.InvariantCulture),
                 VoterTurnout = double.Parse(HelperFunctions.StripOnSpaces(csvDataRow[VoterTurnoutColumnIndex]),
                     CultureInfo.InvariantCulture),
                 VotingAge = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[VotingAgeColumnIndex]),
                     CultureInfo.InvariantCulture),
                 Year = int.Parse(csvDataRow[YearColumnIndex], CultureInfo.InvariantCulture)
             };
-
         }
-
-       
     }
 }
