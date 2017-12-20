@@ -17,8 +17,8 @@ namespace Dataformatter.Data_accessing.Filters
                 var fileList = Directory.GetFiles(rootFolderPath, filesToDelete);
                 foreach (var file in fileList)
                 {
-                    var x = file.Substring(file.IndexOf('_') + 1, 3);
-                    if (_europeanSet.Contains(x)) continue;
+                    var countryName = file.Substring(file.IndexOf('_') + 1, 3);
+                    if (_europeanSet.Contains(countryName)) continue;
                     Console.WriteLine(file + " will be deleted");
                     File.Delete(file);
                 }

@@ -11,8 +11,6 @@ namespace ConsoleTester
     {
         private static void Main()
         {
-            //TODO before compiling and running the code, set your own paths to the folders!
-            // run it once, then comment! the region ParseCode, and start again to start merging
             Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
             Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
 
@@ -29,15 +27,19 @@ namespace ConsoleTester
                                 @"\Economical & Social\Households with TV\households_with_television_data.csv";
             var populationCsvLocation = Paths.RawDataFolder +
                                         @"\Economical & Social\GDP & Population & GDP Per capita\population_data.csv";
+            var gdpTotalCsvLocation = Paths.RawDataFolder +
+                                        @"\Economical & Social\GDP & Population & GDP Per capita\gdp_data.csv";
+            var gdpCapitaCsvLocation = Paths.RawDataFolder +
+                                        @"\Economical & Social\GDP & Population & GDP Per capita\percapita_gdp_data.csv";
             var partyClassificationCsvLocation =
                 Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
             var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
 
-//            ICsvModelFactory<PopulationModel> modelFactory =
-//                new PopulationModelFactory();
-//            var allItemsAsModels = CsvToModel<PopulationModel>.ParseAllCsvLinesToModels(
-//                populationCsvLocation, modelFactory);
-//            var processor = new PopulationProcessor();
+//            ICsvModelFactory<GdpPerCapitaModel> modelFactory =
+//                new GdpPerCapitaModelFactory();
+//            var allItemsAsModels = CsvToModel<GdpPerCapitaModel>.ParseAllCsvLinesToModels(
+//                gdpCapitaCsvLocation, modelFactory);
+//            var processor = new GdpPerCapitaProcessor();
 //            processor.SerializeDataToJson(allItemsAsModels);
 
             #endregion
@@ -64,7 +66,7 @@ namespace ConsoleTester
             #region Filtering
 
             IFilter filter = new YearFilter();
-//            filter.Filter();
+            filter.Filter();
 
             filter = new EuropeFilter();
             filter.Filter();
