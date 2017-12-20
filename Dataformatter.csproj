@@ -58,6 +58,7 @@
     <Compile Include="Data accessing\Factories\EntityFactories\EntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\TvEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\WarEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\WorkEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\ConstituencyElectionModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\CountryGeoModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\EmploymentModelFactory.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Data accessing\Factories\ModelFactories\TurnoutModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\TvModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\WarModelFactory.cs" />
+    <Compile Include="Data accessing\Factories\ModelFactories\WorkModelFactory.cs" />
     <Compile Include="Data accessing\Filters\EuropeFilter.cs" />
     <Compile Include="Data accessing\Filters\IFilter.cs" />
     <Compile Include="Data accessing\Filters\YearFilter.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Data accessing\Repositories\TurnoutRepository.cs" />
     <Compile Include="Data accessing\Repositories\TvRepository.cs" />
     <Compile Include="Data accessing\Repositories\WarRepository.cs" />
+    <Compile Include="Data accessing\Repositories\WorkRepository.cs" />
     <Compile Include="Data combining\Classification to political family\ClassificationToElectionResultConnector.cs" />
     <Compile Include="Data combining\Classification to political family\PartyClassificationAndElectionsMerger.cs" />
     <Compile Include="Data combining\Classification to political family\PartyNameToAbbreviationMatcher.cs" />
@@ -110,6 +113,7 @@
     <Compile Include="Datamodels\TurnoutModel.cs" />
     <Compile Include="Datamodels\TvModel.cs" />
     <Compile Include="Datamodels\WarModel.cs" />
+    <Compile Include="Datamodels\WorkModel.cs" />
     <Compile Include="Datamodels\XYPoint.cs" />
     <Compile Include="Dataprocessing\Entities\GdpPerCapitaEntity.cs" />
     <Compile Include="Dataprocessing\Entities\GdpTotalEntity.cs" />
@@ -125,6 +129,7 @@
     <Compile Include="Dataprocessing\Entities\TurnoutEntity.cs" />
     <Compile Include="Dataprocessing\Entities\TvEntity.cs" />
     <Compile Include="Dataprocessing\Entities\WarEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\WorkEntity.cs" />
     <Compile Include="Dataprocessing\Parsing\CsvToModel.cs" />
     <Compile Include="Dataprocessing\Parsing\JsonReader.cs" />
     <Compile Include="Dataprocessing\Parsing\JsonToModel.cs" />
@@ -142,6 +147,7 @@
     <Compile Include="Dataprocessing\Processors\TurnoutProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\TvProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\WarProcessor.cs" />
+    <Compile Include="Dataprocessing\Processors\WorkProcessor.cs" />
     <Compile Include="Misc\HelperFunctions.cs" />
     <Compile Include="Misc\Tuple.cs" />
     <Compile Include="Paths.cs" />

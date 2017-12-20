@@ -34,13 +34,14 @@ namespace ConsoleTester
             var partyClassificationCsvLocation =
                 Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
             var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
+            var workCsvLocation = Paths.RawDataFolder + @"\Economical & Social\NMC_5_0.csv";
 
-//            ICsvModelFactory<GdpPerCapitaModel> modelFactory =
-//                new GdpPerCapitaModelFactory();
-//            var allItemsAsModels = CsvToModel<GdpPerCapitaModel>.ParseAllCsvLinesToModels(
-//                gdpCapitaCsvLocation, modelFactory);
-//            var processor = new GdpPerCapitaProcessor();
-//            processor.SerializeDataToJson(allItemsAsModels);
+            ICsvModelFactory<WorkModel> modelFactory =
+                new WorkModelFactory();
+            var allItemsAsModels = CsvToModel<WorkModel>.ParseAllCsvLinesToModels(
+                workCsvLocation, modelFactory);
+            var processor = new WorkProcessor();
+            processor.SerializeDataToJson(allItemsAsModels);
 
             #endregion
 
