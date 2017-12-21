@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Dataformatter.Datamodels;
+using Dataformatter.Misc;
 
 namespace Dataformatter.Data_accessing.Factories.ModelFactories
 {
@@ -18,7 +19,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
                 if (csvDataRow[ValueColumnIndex + i].Equals("")) continue;
                 if (csvDataRow[ValueColumnIndex + i].Equals("n.a.")) continue;
                 var year = 1944 + i;
-                dictionary.Add(year, double.Parse(csvDataRow[ValueColumnIndex + i]));
+                dictionary.Add(year, csvDataRow[ValueColumnIndex + i].ToDouble());
             }
 
             var countryName = csvDataRow[CountryColumnIndex];
