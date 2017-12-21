@@ -1,6 +1,8 @@
-﻿﻿using Dataformatter;
+﻿﻿using System.Collections.Generic;
+ using Dataformatter;
 using Dataformatter.Datamodels;
-using Dataformatter.Dataprocessing.Parsing;
+ using Dataformatter.Dataprocessing.Entities;
+ using Dataformatter.Dataprocessing.Parsing;
 using Dataformatter.Dataprocessing.Processors;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
 using Dataformatter.Data_accessing.Filters;
@@ -11,11 +13,11 @@ namespace ConsoleTester
     {
         private static void Main()
         {
-            Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
-            Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
+            //Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
+            //Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
 
-//            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
-//            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
+            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
+            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
 
             #region ParseCode
 
@@ -36,13 +38,18 @@ namespace ConsoleTester
             var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
             var workCsvLocation = Paths.RawDataFolder + @"\Economical & Social\NMC_5_0.csv";
 
-            ICsvModelFactory<WorkModel> modelFactory =
-                new WorkModelFactory();
-            var allItemsAsModels = CsvToModel<WorkModel>.ParseAllCsvLinesToModels(
-                workCsvLocation, modelFactory);
-            var processor = new WorkProcessor();
+            
+            ICsvModelFactory<GdpPerCapitaModel> modelFactory =
+                new GdpPerCapitaModelFactory();
+            var allItemsAsModels = CsvToModel<GdpPerCapitaModel>.ParseAllCsvLinesToModels(
+                gdpCapitaCsvLocation, modelFactory);
+            
+            var processor = new GdpPerCapitaProcessor();
             processor.SerializeDataToJson(allItemsAsModels);
-
+   
+            
+            
+            
             #endregion
 
             #region Parsing country borders
@@ -66,11 +73,11 @@ namespace ConsoleTester
 
             #region Filtering
 
-            IFilter filter = new YearFilter();
-            filter.Filter();
+            //IFilter filter = new YearFilter();
+            //filter.Filter();
 
-            filter = new EuropeFilter();
-            filter.Filter();
+            //filter = new EuropeFilter();
+            //filter.Filter();
 
             #endregion
 

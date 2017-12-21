@@ -16,4 +16,4 @@ namespace Dataformatter.Datamodels
                    " has ruled since " + From;
         }
     }
-}
+} 
