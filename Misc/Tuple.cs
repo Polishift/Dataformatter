@@ -21,7 +21,6 @@ namespace Dataformatter.Misc
             return Item1.GetHashCode() ^ Item2.GetHashCode();
         }
 
-
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())

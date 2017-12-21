@@ -36,11 +36,11 @@ namespace ConsoleTester
             var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
             var workCsvLocation = Paths.RawDataFolder + @"\Economical & Social\NMC_5_0.csv";
 
-            ICsvModelFactory<WorkModel> modelFactory =
-                new WorkModelFactory();
-            var allItemsAsModels = CsvToModel<WorkModel>.ParseAllCsvLinesToModels(
-                workCsvLocation, modelFactory);
-            var processor = new WorkProcessor();
+            ICsvModelFactory<InterestModel> modelFactory =
+                new InterestModelFactory();
+            var allItemsAsModels = CsvToModel<InterestModel>.ParseAllCsvLinesToModels(
+                interestCsvLocation, modelFactory);
+            var processor = new InterestProcessor();
             processor.SerializeDataToJson(allItemsAsModels);
 
             #endregion
@@ -66,11 +66,11 @@ namespace ConsoleTester
 
             #region Filtering
 
-            IFilter filter = new YearFilter();
-            filter.Filter();
+//            IFilter filter = new YearFilter();
+//            filter.Filter();
 
-            filter = new EuropeFilter();
-            filter.Filter();
+//            filter = new EuropeFilter();
+//            filter.Filter();
 
             #endregion
 

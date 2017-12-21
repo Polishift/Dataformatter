@@ -21,10 +21,10 @@ namespace Dataformatter.Dataprocessing.Processors
                     if (interestPerCountryPerYear[currentModel.CountryName].ContainsKey(currentModel.Year))
                     {
                         var oldtuple = interestPerCountryPerYear[currentModel.CountryName][currentModel.Year];
-                        interestPerCountryPerYear[currentModel.CountryName][currentModel.Year] =
-                            new Tuple<double, int>(
-                                (oldtuple.Item1 * oldtuple.Item2 + currentModel.Value) / 1 + oldtuple.Item2,
-                                1 + oldtuple.Item2);
+                        var newtuple = new Tuple<double, int>(
+                            (oldtuple.Item1 * oldtuple.Item2 + currentModel.Value) / (1 + oldtuple.Item2),
+                            1 + oldtuple.Item2);
+                        interestPerCountryPerYear[currentModel.CountryName][currentModel.Year] = newtuple;
                     }
                     else
                     {
@@ -39,13 +39,17 @@ namespace Dataformatter.Dataprocessing.Processors
             }
 
             foreach (var country in interestPerCountryPerYear)
-            foreach (var year in country.Value)
-                interestEntities.Add(entityFactory.Create(new InterestModel
+            {
+                foreach (var year in country.Value)
                 {
-                    CountryName = country.Key,
-                    Value = year.Value.Item1,
-                    Year = year.Key
-                }));
+                    interestEntities.Add(entityFactory.Create(new InterestModel
+                    {
+                        CountryName = country.Key,
+                        Value = year.Value.Item1,
+                        Year = year.Key
+                    }));
+                }
+            }
 
             WriteEntitiesToJson(EntityNames.Interest, interestEntities);
         }

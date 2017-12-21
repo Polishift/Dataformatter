@@ -66,7 +66,7 @@ namespace Dataformatter.Data_accessing.Filters
             var rootFolderPath = Paths.ProcessedDataFolder;
             foreach (var entity in Enum.GetNames(typeof(EntityNames)))
             {
-                Console.WriteLine(entity);
+                Console.WriteLine("Deleting files of: " + entity);
                 var filesToDelete = @"*" + entity + "*.json";
                 var fileList = Directory.GetFiles(rootFolderPath, filesToDelete);
                 foreach (var file in fileList)
