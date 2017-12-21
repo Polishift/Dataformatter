@@ -27,7 +27,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
             var actors = csvDataRow[ActorsColumnIndex].Equals("")
                 ? 0
                 : int.Parse(csvDataRow[ActorsColumnIndex], CultureInfo.InvariantCulture);
-            
+
             return new WarModel
             {
                 Name = name,

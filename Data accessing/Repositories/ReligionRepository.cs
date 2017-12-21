@@ -15,9 +15,7 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             var result = new List<ReligionEntity>();
             foreach (var keyValuePair in AllReligionByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.ToArray();
         }
 
@@ -25,7 +23,7 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             return AllReligionByCountry[countryCode];
         }
-        
+
         public static IEnumerable<string> GetCountryNames()
         {
             return AllReligionByCountry.Keys.ToList();

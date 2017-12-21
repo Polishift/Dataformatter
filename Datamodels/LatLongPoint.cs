@@ -7,9 +7,9 @@ namespace Dataformatter.Datamodels
 
         public XYPoint ToXYPoint()
         {
-            return new XYPoint { X = DegreesToRadians(Y), Y = DegreesToRadians(X)};  
+            return new XYPoint {X = DegreesToRadians(Y), Y = DegreesToRadians(X)};
         }
-        
+
         public override string ToString()
         {
             return X + " <> " + Y;

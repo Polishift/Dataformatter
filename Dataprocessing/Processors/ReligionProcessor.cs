@@ -13,9 +13,7 @@ namespace Dataformatter.Dataprocessing.Processors
             var entityFactory = new ReligionEntityFactory();
 
             for (var i = 0; i < rawModels.Count; i++)
-            {
                 religionEntities.Add(entityFactory.Create(rawModels[i]));
-            }
 
             WriteEntitiesToJson(EntityNames.Religion, religionEntities);
         }

@@ -18,28 +18,24 @@ namespace Dataformatter.Dataprocessing.Processors
             {
                 var currentModel = rawModels[i];
                 if (interestPerCountryPerYear.ContainsKey(currentModel.CountryName))
-                {
                     if (interestPerCountryPerYear[currentModel.CountryName].ContainsKey(currentModel.Year))
                     {
                         var oldtuple = interestPerCountryPerYear[currentModel.CountryName][currentModel.Year];
-                        interestPerCountryPerYear[currentModel.CountryName][currentModel.Year] =
-                            new Tuple<double, int>(
-                                (oldtuple.Item1 * oldtuple.Item2 + currentModel.Value) / 1 + oldtuple.Item2,
-                                1 + oldtuple.Item2);
+                        var newtuple = new Tuple<double, int>(
+                            (oldtuple.Item1 * oldtuple.Item2 + currentModel.Value) / (1 + oldtuple.Item2),
+                            1 + oldtuple.Item2);
+                        interestPerCountryPerYear[currentModel.CountryName][currentModel.Year] = newtuple;
                     }
                     else
                     {
                         interestPerCountryPerYear[currentModel.CountryName].Add(currentModel.Year,
                             new Tuple<double, int>(currentModel.Value, 1));
                     }
-                }
                 else
-                {
                     interestPerCountryPerYear.Add(currentModel.CountryName, new Dictionary<int, Tuple<double, int>>
                     {
                         {currentModel.Year, new Tuple<double, int>(currentModel.Value, 1)}
                     });
-                }
             }
 
             foreach (var country in interestPerCountryPerYear)

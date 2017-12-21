@@ -16,9 +16,7 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             var result = new List<WorkEntity>();
             foreach (var keyValuePair in AllWorkByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.ToArray();
         }
 
@@ -31,9 +29,7 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             var result = new List<WorkEntity>();
             foreach (var keyValuePair in AllWorkByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.Where(e => e.Year == year).ToArray();
         }
 
@@ -42,5 +38,4 @@ namespace Dataformatter.Data_accessing.Repositories
             return AllWorkByCountry.Keys.ToList();
         }
     }
-    
 }

@@ -14,7 +14,7 @@ namespace Dataformatter.Dataprocessing.Parsing
             var counter = 0; //le header skip
             var currentTextRow = new List<string>();
             Console.WriteLine("Now parsing: " + fileLocation);
-            
+
             using (var reader = new CsvFileReader(fileLocation))
             {
                 while (reader.ReadRow(currentTextRow)) //out arguments, wow nice programming brah

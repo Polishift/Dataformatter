@@ -9,13 +9,11 @@ namespace Dataformatter.Dataprocessing.Processors
     {
         public override void SerializeDataToJson(List<GdpPerCapitaModel> rawModels)
         {
-            var gdpEntities= new List<GdpPerCapitaEntity>();
+            var gdpEntities = new List<GdpPerCapitaEntity>();
             var entityFactory = new GdpPerCapitaEntityFactory();
 
             for (var i = 0; i < rawModels.Count; i++)
-            {
                 gdpEntities.AddRange(entityFactory.Convert(rawModels[i]));
-            }     
 
             WriteEntitiesToJson(EntityNames.GdpPerCapita, gdpEntities);
         }

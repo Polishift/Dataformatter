@@ -16,9 +16,7 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             var result = new List<GdpPerCapitaEntity>();
             foreach (var keyValuePair in AllGdpByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.ToArray();
         }
 
@@ -31,9 +29,7 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             var result = new List<GdpPerCapitaEntity>();
             foreach (var keyValuePair in AllGdpByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.Where(e => e.Year == year).ToArray();
         }
 

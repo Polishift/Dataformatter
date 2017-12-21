@@ -5,4 +5,4 @@
         T[] GetAll();
         T[] GetByCountry(string countryCode); //Make a Country class 
     }
-} 
+}

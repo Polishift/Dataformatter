@@ -11,13 +11,11 @@ namespace Dataformatter.Dataprocessing.Processors
         {
             var turnoutEntities = new List<TurnoutEntity>();
             var entityFactory = new TurnoutEntityFactory();
-            
-            for (var i = 0; i < rawModels.Count; i++)
-            {
-                turnoutEntities.Add(entityFactory.Create(rawModels[i]));
-            }
 
-            WriteEntitiesToJson(EntityNames.Turnout, turnoutEntities);   
+            for (var i = 0; i < rawModels.Count; i++)
+                turnoutEntities.Add(entityFactory.Create(rawModels[i]));
+
+            WriteEntitiesToJson(EntityNames.Turnout, turnoutEntities);
         }
     }
 }
