@@ -16,9 +16,7 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             var result = new List<TurnoutEntity>();
             foreach (var keyValuePair in AllTurnoutByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.ToArray();
         }
 
@@ -31,12 +29,10 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             var result = new List<TurnoutEntity>();
             foreach (var keyValuePair in AllTurnoutByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.Where(e => e.Year == year).ToArray();
         }
-        
+
         public List<string> GetCountryNames()
         {
             return AllTurnoutByCountry.Keys.ToList();

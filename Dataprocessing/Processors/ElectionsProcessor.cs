@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
@@ -11,14 +10,12 @@ namespace Dataformatter.Dataprocessing.Processors
     public class ElectionsProcessor : AbstractDataProcessor<ConstituencyElectionModel,
         ElectionEntity>
     {
-        private readonly DefaultElectionEntityFactory _electionEntityFactory = new DefaultElectionEntityFactory();
-        private readonly HashSet<string> _knownConstituencies = new HashSet<string>();
-
-        private readonly Dictionary<Tuple<string, int>, int> _totalAmountOfVotesPerCountryAndYear =
-            new Dictionary<Tuple<string, int>, int>();
+        private readonly ElectionEntityFactory _electionEntityFactory = new ElectionEntityFactory();
 
         private readonly Dictionary<Tuple<string, int>, ElectionEntity> _electionsPerParty =
             new Dictionary<Tuple<string, int>, ElectionEntity>();
+
+        private readonly HashSet<string> _knownConstituencies = new HashSet<string>();
 
         private readonly Dictionary<string, int> _specialPartyNamesAndAmount = new Dictionary<string, int>
         {
@@ -27,6 +24,9 @@ namespace Dataformatter.Dataprocessing.Processors
             {"Independents", 0},
             {"Blank", 0}
         };
+
+        private readonly Dictionary<Tuple<string, int>, int> _totalAmountOfVotesPerCountryAndYear =
+            new Dictionary<Tuple<string, int>, int>();
 
 
         public override void SerializeDataToJson(List<ConstituencyElectionModel> rawModels)
@@ -81,17 +81,11 @@ namespace Dataformatter.Dataprocessing.Processors
             var currentRowCandidate = currentRawElectionModel.CandidateName;
 
             if (_electionsPerParty.ContainsKey(currentPartyAndYearCombination) == false)
-            {
-                //As of yet undiscovered party/year combination 
                 _electionsPerParty.Add(currentPartyAndYearCombination,
                     _electionEntityFactory.Create(currentRawElectionModel));
-            }
             else if (_electionsPerParty[currentPartyAndYearCombination].PartyCandidates
                          .Contains(currentRowCandidate) == false)
-            {
-                //Existing party/year combination, but undiscovered candidate
                 _electionsPerParty[currentPartyAndYearCombination].PartyCandidates.Add(currentRowCandidate);
-            }
         }
 
         private void AddCurrentConstituencyVotesToTotal(ConstituencyElectionModel currentRawElectionModel)
@@ -148,10 +142,8 @@ namespace Dataformatter.Dataprocessing.Processors
 
                 if (totalAmountOfVotesInCountry > 0
                 ) //This ocassionally happens with seat-based elections like Andorra's
-                {
                     _electionsPerParty[currentElectionKey].TotalVotePercentage =
                         amountOfVotesForCurrentParty / totalAmountOfVotesInCountry * 100;
-                }
             }
         }
     }

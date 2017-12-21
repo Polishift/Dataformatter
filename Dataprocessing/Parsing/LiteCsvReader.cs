@@ -7,83 +7,84 @@ using System.Text;
 namespace Dataformatter.Dataprocessing.Parsing
 {
     /// <summary>
-    /// Determines how empty lines are interpreted when reading CSV files.
-    /// These values do not affect empty lines that occur within quoted fields
-    /// or empty lines that appear at the end of the input file.
+    ///     Determines how empty lines are interpreted when reading CSV files.
+    ///     These values do not affect empty lines that occur within quoted fields
+    ///     or empty lines that appear at the end of the input file.
     /// </summary>
     public enum EmptyLineBehavior
     {
         /// <summary>
-        /// Empty lines are interpreted as a line with zero columns.
+        ///     Empty lines are interpreted as a line with zero columns.
         /// </summary>
         NoColumns,
 
         /// <summary>
-        /// Empty lines are interpreted as a line with a single empty column.
+        ///     Empty lines are interpreted as a line with a single empty column.
         /// </summary>
         EmptyColumn,
 
         /// <summary>
-        /// Empty lines are skipped over as though they did not exist.
+        ///     Empty lines are skipped over as though they did not exist.
         /// </summary>
         Ignore,
 
         /// <summary>
-        /// An empty line is interpreted as the end of the input file.
+        ///     An empty line is interpreted as the end of the input file.
         /// </summary>
-        EndOfFile,
+        EndOfFile
     }
 
     /// <summary>
-    /// Common base class for CSV reader and writer classes.
+    ///     Common base class for CSV reader and writer classes.
     /// </summary>
     public abstract class CsvFileCommon
     {
-        /// <summary>
-        /// These are special characters in CSV files. If a column contains any
-        /// of these characters, the entire column is wrapped in double quotes.
-        /// </summary>
-        private readonly char[] _specialChars = { ',', '"', '\r', '\n' };
-
         // Indexes into SpecialChars for characters with specific meaning
         private const int DelimiterIndex = 0;
 
         private const int QuoteIndex = 1;
 
         /// <summary>
-        /// Gets/sets the character used for column delimiters.
+        ///     These are special characters in CSV files. If a column contains any
+        ///     of these characters, the entire column is wrapped in double quotes.
+        /// </summary>
+        private readonly char[] _specialChars = {',', '"', '\r', '\n'};
+
+        /// <summary>
+        ///     Gets/sets the character used for column delimiters.
         /// </summary>
         protected char Delimiter
         {
-            get { return _specialChars[DelimiterIndex]; }
-            set { _specialChars[DelimiterIndex] = value; }
+            get => _specialChars[DelimiterIndex];
+            set => _specialChars[DelimiterIndex] = value;
         }
 
         /// <summary>
-        /// Gets/sets the character used for column quotes.
+        ///     Gets/sets the character used for column quotes.
         /// </summary>
         protected char Quote
         {
-            get { return _specialChars[QuoteIndex]; }
-            set { _specialChars[QuoteIndex] = value; }
+            get => _specialChars[QuoteIndex];
+            set => _specialChars[QuoteIndex] = value;
         }
     }
 
     /// <summary>
-    /// Class for reading from comma-separated-value (CSV) files
+    ///     Class for reading from comma-separated-value (CSV) files
     /// </summary>
     public class CsvFileReader : CsvFileCommon, IDisposable
     {
+        private readonly EmptyLineBehavior _emptyLineBehavior;
+
         // Private members
         private readonly StreamReader _reader;
 
         private string _currLine;
         private int _currPos;
-        private readonly EmptyLineBehavior _emptyLineBehavior;
 
         /// <summary>
-        /// Initializes a new instance of the CsvFileReader class for the
-        /// specified stream.
+        ///     Initializes a new instance of the CsvFileReader class for the
+        ///     specified stream.
         /// </summary>
         /// <param name="reader">The stream to read from</param>
         /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
@@ -108,8 +109,8 @@ namespace Dataformatter.Dataprocessing.Parsing
         //        }
 
         /// <summary>
-        /// Initializes a new instance of the CsvFileReader class for the
-        /// specified file path.
+        ///     Initializes a new instance of the CsvFileReader class for the
+        ///     specified file path.
         /// </summary>
         /// <param name="path">The name of the CSV file to read from</param>
         /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
@@ -120,6 +121,12 @@ namespace Dataformatter.Dataprocessing.Parsing
             _reader = new StreamReader(stream);
             //            Reader = new StreamReader(path);
             _emptyLineBehavior = emptyLineBehavior;
+        }
+
+        // Propagate Dispose to StreamReader
+        public void Dispose()
+        {
+            _reader.Dispose();
         }
 
         //        public static List<List<string>> ReadAll(string path, Encoding encoding)
@@ -137,22 +144,18 @@ namespace Dataformatter.Dataprocessing.Parsing
         {
             // Verify required argument
             if (dataGrid == null)
-            {
                 throw new ArgumentNullException(nameof(dataGrid));
-            }
 
             var row = new List<string>();
             while (ReadRow(row))
-            {
                 dataGrid.Add(new List<string>(row));
-            }
 
             return true;
         }
 
         /// <summary>
-        /// Reads a row of columns from the current CSV file. Returns false if no
-        /// more data could be read because the end of the file was reached.
+        ///     Reads a row of columns from the current CSV file. Returns false if no
+        ///     more data could be read because the end of the file was reached.
         /// </summary>
         /// <param name="columns">Collection to hold the columns read</param>
         public bool ReadRow(List<string> columns)
@@ -170,7 +173,6 @@ namespace Dataformatter.Dataprocessing.Parsing
                 return false;
             // Test for empty line
             if (_currLine.Length == 0)
-            {
                 switch (_emptyLineBehavior)
                 {
                     case EmptyLineBehavior.NoColumns:
@@ -181,7 +183,6 @@ namespace Dataformatter.Dataprocessing.Parsing
                     case EmptyLineBehavior.EndOfFile:
                         return false;
                 }
-            }
 
             // Parse line
             var numColumns = 0;
@@ -214,10 +215,10 @@ namespace Dataformatter.Dataprocessing.Parsing
         }
 
         /// <summary>
-        /// Reads a quoted column by reading from the current line until a
-        /// closing quote is found or the end of the file is reached. On return,
-        /// the current position points to the delimiter or the end of the last
-        /// line in the file. Note: CurrLine may be set to null on return.
+        ///     Reads a quoted column by reading from the current line until a
+        ///     closing quote is found or the end of the file is reached. On return,
+        ///     the current position points to the delimiter or the end of the last
+        ///     line in the file. Note: CurrLine may be set to null on return.
         /// </summary>
         private string ReadQuotedColumn()
         {
@@ -245,7 +246,7 @@ namespace Dataformatter.Dataprocessing.Parsing
                 if (_currLine[_currPos] == Quote)
                 {
                     // If two quotes, skip first and treat second as literal
-                    var nextPos = (_currPos + 1);
+                    var nextPos = _currPos + 1;
                     if (nextPos < _currLine.Length && _currLine[nextPos] == Quote)
                         _currPos++;
                     else
@@ -268,10 +269,10 @@ namespace Dataformatter.Dataprocessing.Parsing
         }
 
         /// <summary>
-        /// Reads an unquoted column by reading from the current line until a
-        /// delimiter is found or the end of the line is reached. On return, the
-        /// current position points to the delimiter or the end of the current
-        /// line.
+        ///     Reads an unquoted column by reading from the current line until a
+        ///     delimiter is found or the end of the line is reached. On return, the
+        ///     current position points to the delimiter or the end of the current
+        ///     line.
         /// </summary>
         private string ReadUnquotedColumn()
         {
@@ -281,13 +282,7 @@ namespace Dataformatter.Dataprocessing.Parsing
                 _currPos = _currLine.Length;
             if (_currPos > startPos)
                 return _currLine.Substring(startPos, _currPos - startPos);
-            return String.Empty;
-        }
-
-        // Propagate Dispose to StreamReader
-        public void Dispose()
-        {
-            _reader.Dispose();
+            return string.Empty;
         }
     }
 }

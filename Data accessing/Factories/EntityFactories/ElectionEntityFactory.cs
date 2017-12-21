@@ -4,7 +4,7 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultElectionEntityFactory : EntityFactory<ConstituencyElectionModel, ElectionEntity>
+    public class ElectionEntityFactory : EntityFactory<ConstituencyElectionModel, ElectionEntity>
     {
         private const int MissingValueKey = -990;
 
@@ -17,7 +17,7 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
                 CountryCode = CreateCountryCode(rawModel.CountryName),
                 PartyClassification = "Unknown", //Where/How will we be doing this?
                 PartyName = rawModel.PartyName,
-                PartyCandidates = new HashSet<string> { rawModel.CandidateName },
+                PartyCandidates = new HashSet<string> {rawModel.CandidateName},
                 TotalAmountOfVotes = 0,
                 TotalVotePercentage = 0.0,
                 TotalAmountOfSeatsGained = GetFormattedSeatsGained(rawModel.SeatsGained)

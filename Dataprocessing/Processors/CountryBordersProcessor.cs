@@ -5,16 +5,16 @@ using Dataformatter.Data_accessing.Factories.EntityFactories;
 
 namespace Dataformatter.Dataprocessing.Processors
 {
-    public class CountryBordersProcessor : AbstractDataProcessor<CountryGeoModel,  
-                                                          CountryBordersEntity>
+    public class CountryBordersProcessor : AbstractDataProcessor<CountryGeoModel,
+        CountryBordersEntity>
     {
-        private readonly DefaultCountryEntityFactory _defaultCountryEntityFactory = new DefaultCountryEntityFactory();
+        private readonly CountryEntityFactory _defaultCountryEntityFactory = new CountryEntityFactory();
 
         public override void SerializeDataToJson(List<CountryGeoModel> rawModels)
         {
             var countryBordersEntities = new List<CountryBordersEntity>();
 
-            for(var i = 0; i < rawModels.Count; i++)
+            for (var i = 0; i < rawModels.Count; i++)
             {
                 var currentRawModel = rawModels[i];
                 countryBordersEntities.Add(_defaultCountryEntityFactory.Create(currentRawModel));

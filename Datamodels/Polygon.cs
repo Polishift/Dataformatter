@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Dataformatter.Datamodels
 {
-    public class Polygon<T> where T: AbstractPoint
+    public class Polygon<T> where T : AbstractPoint
     {
         public List<T> Points = new List<T>();
 

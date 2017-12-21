@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using Dataformatter.Datamodels;
 
 namespace Dataformatter.Data_accessing.Factories.ModelFactories
@@ -20,17 +18,8 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
             {
                 CountryName = csvDataRow[CountryNameColumnIndex],
                 Year = int.Parse(csvDataRow[YearColumnIndex]),
-                EmployedPercentage = double.Parse(csvDataRow[ValueColumnIndex]),
+                EmployedPercentage = double.Parse(csvDataRow[ValueColumnIndex])
             };
-        }
-
-        private string ReplaceCommasInThousands(string input)
-        {
-            if (input.Equals(""))
-                return "-1";
-
-            var output = input.Replace(",", "");
-            return output;
         }
     }
 }

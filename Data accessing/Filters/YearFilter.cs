@@ -7,9 +7,8 @@ namespace Dataformatter.Data_accessing.Filters
 {
     public class YearFilter : IFilter
     {
-        private readonly string _processedPath = Paths.ProcessedDataFolder;
-
         private const int Year = 1945;
+        private readonly string _processedPath = Paths.ProcessedDataFolder;
 
         public void Filter()
         {
@@ -30,7 +29,7 @@ namespace Dataformatter.Data_accessing.Filters
                                 ".json");
                     continue;
                 }
-                
+
                 using (var file =
                     File.CreateText(_processedPath + "Election_" + countryElections[0].CountryCode +
                                     ".json"))

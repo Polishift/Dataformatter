@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using Dataformatter;
+﻿using Dataformatter;
 using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Parsing;
 using Dataformatter.Dataprocessing.Processors;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
 using Dataformatter.Data_accessing.Filters;
-using Dataformatter.Data_accessing.Repositories;
-using Dataformatter.Data_combining.Classification_to_political_family;
-using Microsoft.SqlServer.Server;
 
 namespace ConsoleTester
 {
@@ -17,8 +11,6 @@ namespace ConsoleTester
     {
         private static void Main()
         {
-            //TODO before compiling and running the code, set your own paths to the folders!
-            // run it once, then comment! the region ParseCode, and start again to start merging
             Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
             Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
 
@@ -28,26 +20,28 @@ namespace ConsoleTester
             #region ParseCode
 
             var electionsCsvLocation = Paths.RawDataFolder + @"\Political\ElectionResults\election_data.csv";
+            var interestCsvLocation = Paths.RawDataFolder +
+                                      @"\Economical & Social\Interest rates (incomplete)\interest_data.csv";
+            var warCsvLocation = Paths.RawDataFolder + @"\Economical & Social\Wars\war_data.csv";
+            var tvCsvLocation = Paths.RawDataFolder +
+                                @"\Economical & Social\Households with TV\households_with_television_data.csv";
+            var populationCsvLocation = Paths.RawDataFolder +
+                                        @"\Economical & Social\GDP & Population & GDP Per capita\population_data.csv";
+            var gdpTotalCsvLocation = Paths.RawDataFolder +
+                                      @"\Economical & Social\GDP & Population & GDP Per capita\gdp_data.csv";
+            var gdpCapitaCsvLocation = Paths.RawDataFolder +
+                                       @"\Economical & Social\GDP & Population & GDP Per capita\percapita_gdp_data.csv";
             var partyClassificationCsvLocation =
                 Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
-//            var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
-            
-            //PARSING elections
-            ICsvModelFactory<ConstituencyElectionModel> modelFactory =
-                new ConstituencyElectionModelFactory();
-            var allItemsAsModels = CsvToModel<ConstituencyElectionModel>.ParseAllCsvLinesToModels(
-                electionsCsvLocation, modelFactory);
-            var processor = new ElectionsProcessor();
+            var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
+            var workCsvLocation = Paths.RawDataFolder + @"\Economical & Social\NMC_5_0.csv";
+
+            ICsvModelFactory<PopulationModel> modelFactory =
+                new PopulationModelFactory();
+            var allItemsAsModels = CsvToModel<PopulationModel>.ParseAllCsvLinesToModels(
+                populationCsvLocation, modelFactory);
+            var processor = new PopulationProcessor();
             processor.SerializeDataToJson(allItemsAsModels);
-
-            //PARSING CLASSIFICATION
-            ICsvModelFactory<PartyClassificationModel> modelFactory2 =
-                new PartyClassificationModelFactory();
-            var allItemsAsModels2 = CsvToModel<PartyClassificationModel>.ParseAllCsvLinesToModels(
-                partyClassificationCsvLocation, modelFactory2);
-            var processor2 = new PartyClassificationProcessor();
-            processor2.SerializeDataToJson(allItemsAsModels2);
-
 
             #endregion
 
@@ -80,8 +74,8 @@ namespace ConsoleTester
 
             #endregion
 
-            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
-            partyClassificationAndElectionsMerger.MergeIndividualCountry();
+//            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
+//            partyClassificationAndElectionsMerger.MergeIndividualCountry();
         }
     }
 }

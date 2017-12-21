@@ -5,8 +5,8 @@ namespace Dataformatter.Data_combining.Classification_to_political_family
 {
     public class PartyNameToAbbreviationConnector
     {
-        private readonly ElectionEntity _originalElectionResultForParty;
         private readonly PartyClassificationEntity[] _allPartyClassificationsInCountry;
+        private readonly ElectionEntity _originalElectionResultForParty;
 
 
         public PartyNameToAbbreviationConnector(ElectionEntity originalElectionResultForParty,
@@ -72,16 +72,15 @@ namespace Dataformatter.Data_combining.Classification_to_political_family
 
         private static string AbbreviatePartyName(string partyName)
         {
-            string partyWithoutYear = partyName;
+            var partyWithoutYear = partyName;
             if (partyName.Contains("(1"))
                 partyWithoutYear = partyName.Substring(0, partyName.IndexOf("(1", StringComparison.InvariantCulture));
-            
-            
+
+
             var parts = partyWithoutYear.Split(' ');
 
             var result = "";
             foreach (var part in parts)
-            {
                 try
                 {
                     result = result + part[0];
@@ -90,7 +89,6 @@ namespace Dataformatter.Data_combining.Classification_to_political_family
                 {
                     // ignored
                 }
-            }
             return result;
         }
     }

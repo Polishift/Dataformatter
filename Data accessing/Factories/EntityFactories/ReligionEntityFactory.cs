@@ -3,7 +3,7 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultReligionEntityFactory : EntityFactory<ReligionModel,
+    public class ReligionEntityFactory : EntityFactory<ReligionModel,
         ReligionEntity>
     {
         public override ReligionEntity Create(ReligionModel rawModel)

@@ -2,8 +2,8 @@
 {
     public class PartyClassificationEntity : IEntity
     {
-        public string CountryCode { get; set; }
         public string Name { get; set; }
         public string Classification { get; set; }
+        public string CountryCode { get; set; }
     }
 }

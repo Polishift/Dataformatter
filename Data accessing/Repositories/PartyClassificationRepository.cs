@@ -15,9 +15,7 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             var result = new List<PartyClassificationEntity>();
             foreach (var keyValuePair in AllPartyClassificationsByCountry)
-            {
                 result.AddRange(keyValuePair.Value);
-            }
             return result.ToArray();
         }
 
@@ -25,7 +23,7 @@ namespace Dataformatter.Data_accessing.Repositories
         {
             return AllPartyClassificationsByCountry[countryCode];
         }
-        
+
         public static IEnumerable<string> GetCountryNames()
         {
             return AllPartyClassificationsByCountry.Keys.ToList();

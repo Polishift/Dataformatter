@@ -7,12 +7,12 @@
 
         public static void SetProcessedDataFolder(string path)
         {
-            ProcessedDataFolder = @path;
+            ProcessedDataFolder = path;
         }
-        
+
         public static void SetRawDataFolder(string path)
         {
-            RawDataFolder = @path;
+            RawDataFolder = path;
         }
     }
 }

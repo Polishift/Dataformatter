@@ -3,7 +3,7 @@ using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public class DefaultTurnoutEntityFactory : EntityFactory<TurnoutModel,
+    public class TurnoutEntityFactory : EntityFactory<TurnoutModel,
         TurnoutEntity>
     {
         public override TurnoutEntity Create(TurnoutModel rawModel)
@@ -22,7 +22,5 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
                 Year = rawModel.Year
             };
         }
-
-        
     }
 }

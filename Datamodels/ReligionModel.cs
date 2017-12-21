@@ -2,7 +2,6 @@
 {
     public class ReligionModel : IModel
     {
-        public string CountryName { get; set; }
         public int Year { get; set; }
 
         // Christianity
@@ -25,5 +24,7 @@
 
         // Total 
         public int SumTotal { get; set; }
+
+        public string CountryName { get; set; }
     }
 }

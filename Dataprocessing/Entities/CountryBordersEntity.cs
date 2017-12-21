@@ -5,7 +5,7 @@ namespace Dataformatter.Dataprocessing.Entities
 {
     public class CountryBordersEntity : IEntity
     {
-        public string CountryCode { get; set; }
         public List<Polygon<XYPoint>> Polygons { get; set; }
+        public string CountryCode { get; set; }
     }
 }

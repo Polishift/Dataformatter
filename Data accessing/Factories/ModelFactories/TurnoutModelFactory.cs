@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using Dataformatter.Datamodels;
+using Dataformatter.Misc;
 
 namespace Dataformatter.Data_accessing.Factories.ModelFactories
 {
@@ -21,43 +22,25 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
         {
             return new TurnoutModel
             {
-                InvalidVotes = double.Parse(StripOnSpaces(csvDataRow[InvalidVotesColumnIndex]),
+                InvalidVotes = double.Parse(HelperFunctions.StripOnSpaces(csvDataRow[InvalidVotesColumnIndex]),
                     CultureInfo.InvariantCulture),
                 CountryName = csvDataRow[CountryColumnIndex],
-                Population = int.Parse(ReplaceCommasInThousands(csvDataRow[PopulationColumnIndex]),
+                Population = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[PopulationColumnIndex]),
                     CultureInfo.InvariantCulture),
-                Registration = int.Parse(ReplaceCommasInThousands(csvDataRow[RegistrationColumnIndex]),
+                Registration = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[RegistrationColumnIndex]),
                     CultureInfo.InvariantCulture),
-                TotalVotes = int.Parse(ReplaceCommasInThousands(csvDataRow[TotalVotesColumnIndex]),
+                TotalVotes = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[TotalVotesColumnIndex]),
                     CultureInfo.InvariantCulture),
                 Type = csvDataRow[TypeColumnIndex],
                 VapTurnout =
-                    double.Parse(StripOnSpaces(csvDataRow[VapTurnoutColumnIndex]), CultureInfo.InvariantCulture),
-                VoterTurnout = double.Parse(StripOnSpaces(csvDataRow[VoterTurnoutColumnIndex]),
+                    double.Parse(HelperFunctions.StripOnSpaces(csvDataRow[VapTurnoutColumnIndex]),
+                        CultureInfo.InvariantCulture),
+                VoterTurnout = double.Parse(HelperFunctions.StripOnSpaces(csvDataRow[VoterTurnoutColumnIndex]),
                     CultureInfo.InvariantCulture),
-                VotingAge = int.Parse(ReplaceCommasInThousands(csvDataRow[VotingAgeColumnIndex]),
+                VotingAge = int.Parse(HelperFunctions.ReplaceCommasInThousands(csvDataRow[VotingAgeColumnIndex]),
                     CultureInfo.InvariantCulture),
                 Year = int.Parse(csvDataRow[YearColumnIndex], CultureInfo.InvariantCulture)
             };
-
-        }
-
-        private string StripOnSpaces(string input)
-        {
-            if (input.Equals(""))
-                return "-1";
-
-            var output = input.Substring(0, input.IndexOf(' '));
-            return output;
-        }
-
-        private string ReplaceCommasInThousands(string input)
-        {
-            if (input.Equals(""))
-                return "-1";
-
-            var output = input.Replace(",", "");
-            return output;
         }
     }
 }
