@@ -52,7 +52,7 @@ namespace Dataformatter.Data_combining.Classification_to_political_family
             }
             else //if the above is not the case, the abrevviation is completely unknown and the user has to input it.
             {
-                Console.WriteLine("Enter a abbreviation for " + _originalElectionResultForParty.PartyName);
+                Console.WriteLine("Enter a abbreviation for " + _originalElectionResultForParty.PartyName  + " (" + _originalElectionResultForParty.Year + ")");
 
                 var abbreviationLine = Console.ReadLine();
                 PartyClassificationAndElectionsMerger.PoliticalFamilyPerPartyInCurrentCountry.Add(

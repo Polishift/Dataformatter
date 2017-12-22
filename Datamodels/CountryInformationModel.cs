@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace Dataformatter.Datamodels
+﻿namespace Dataformatter.Datamodels
 {
     public class CountryInformationModel : IModel
     {

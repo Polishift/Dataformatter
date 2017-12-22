@@ -4,6 +4,7 @@ using Dataformatter.Dataprocessing.Parsing;
 using Dataformatter.Dataprocessing.Processors;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
 using Dataformatter.Data_accessing.Filters;
+using Dataformatter.Data_combining.Classification_to_political_family;
 
 namespace ConsoleTester
 {
@@ -74,8 +75,8 @@ namespace ConsoleTester
 
             #endregion
 
-//            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
-//            partyClassificationAndElectionsMerger.MergeIndividualCountry();
+            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
+            partyClassificationAndElectionsMerger.MergeIndividualCountry();
         }
     }
 }

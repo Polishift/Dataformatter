@@ -135,7 +135,7 @@ namespace Dataformatter.Data_combining.Classification_to_political_family
             }
             else
             {
-                Console.WriteLine("Enter a classification for " + electionResultForParty.PartyName);
+                Console.WriteLine("Enter a classification for " + electionResultForParty.PartyName + " (" + electionResultForParty.Year + ")");
                 var manualClassification = Console.ReadLine();
 
                 PoliticalFamilyPerPartyInCurrentCountry[electionResultForParty.PartyName].Classification =
