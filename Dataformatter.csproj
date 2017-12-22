@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data accessing\Factories\EntityFactories\CountryEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\CountryInformationEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\ElectionEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\EmploymentEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\GdpPerCapitaEntityFactory.cs" />
@@ -100,6 +101,7 @@
     <Compile Include="Data combining\Classification to political family\PartyNameToAbbreviationMatcher.cs" />
     <Compile Include="Datamodels\ConstituencyElectionModel.cs" />
     <Compile Include="Datamodels\CountryGeoModel.cs" />
+    <Compile Include="Datamodels\CountryInformationModel.cs" />
     <Compile Include="Datamodels\EmploymentModel.cs" />
     <Compile Include="Datamodels\GdpPerCapitaModel.cs" />
     <Compile Include="Datamodels\IModel.cs" />
@@ -116,6 +118,7 @@
     <Compile Include="Datamodels\WarModel.cs" />
     <Compile Include="Datamodels\WorkModel.cs" />
     <Compile Include="Datamodels\XYPoint.cs" />
+    <Compile Include="Dataprocessing\Entities\CountryInformationEntity.cs" />
     <Compile Include="Dataprocessing\Entities\DictatorshipEntity.cs" />
     <Compile Include="Dataprocessing\Entities\ICountryRuler.cs" />
     <Compile Include="Dataprocessing\Entities\GdpPerCapitaEntity.cs" />
@@ -139,6 +142,7 @@
     <Compile Include="Dataprocessing\Parsing\LiteCsvReader.cs" />
     <Compile Include="Dataprocessing\Processors\AbstractDataProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\CountryBordersProcessor.cs" />
+    <Compile Include="Dataprocessing\Processors\CountryInformationProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\ElectionsProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\EmploymentProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\GdpPerCapitaProcessor.cs" />

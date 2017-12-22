@@ -60,6 +60,13 @@ namespace Dataformatter.Data_accessing.Repositories
             return _collection;
         }
 
+        public static string GetCountryName(this string alpha3)
+        {
+            return _collection.FirstOrDefault(
+                p => p.Alpha3 == alpha3)
+                ?.Name;
+        }
+
 
         public static Iso3166Country FromName(string name)
         {
