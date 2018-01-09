@@ -91,6 +91,7 @@
     <Compile Include="Data accessing\Repositories\PopulationRepository.cs" />
     <Compile Include="Data accessing\Repositories\ReligionRepository.cs" />
     <Compile Include="Data accessing\Repositories\InterestRepository.cs" />
+    <Compile Include="Data accessing\Repositories\TotalCountryInformationRepository.cs" />
     <Compile Include="Data accessing\Repositories\TurnoutRepository.cs" />
     <Compile Include="Data accessing\Repositories\TvRepository.cs" />
     <Compile Include="Data accessing\Repositories\WarRepository.cs" />

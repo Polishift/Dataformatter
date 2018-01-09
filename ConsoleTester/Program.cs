@@ -86,6 +86,11 @@ namespace ConsoleTester
             /* var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
              partyClassificationAndElectionsMerger.MergeIndividualCountry();*/
 
+            
+
+/*
+            #region TotalCountryInformation
+
             var allCountryInfo = new Dictionary<string, Dictionary<int, CountryInformationEntity>>();
             IRepository<IEntity> repository = new EmploymentRepository();
             Console.WriteLine("Doing employment");
@@ -236,6 +241,8 @@ namespace ConsoleTester
             }
             
             WriteEntitiesToJson(EntityNames.TotalCountryInformationEntities,totalCountryInformationEntities.Values.ToList());
+            #endregion
+            */
         }
         
         
