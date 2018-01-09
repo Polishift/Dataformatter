@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using DataDownloader;
 using Dataformatter;
 using Dataformatter.Dataprocessing.Entities;
 using Dataformatter.Dataprocessing.Processors;
 using Dataformatter.Data_accessing.Repositories;
+using Microsoft.SqlServer.Server;
 using Newtonsoft.Json;
 
 namespace ConsoleTester
@@ -85,6 +87,8 @@ namespace ConsoleTester
 
             /* var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
              partyClassificationAndElectionsMerger.MergeIndividualCountry();*/
+            
+            Downloader.DownloadData(Paths.ProcessedDataFolder);
         }
     }
 }
