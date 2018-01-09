@@ -22,7 +22,8 @@ namespace Dataformatter.Dataprocessing.Processors
         Population,
         GdpTotal,
         GdpPerCapita,
-        Work
+        Work,
+        TotalCountryInformationEntities
     }
 
     public abstract class AbstractDataProcessor<I, O> where I : IModel

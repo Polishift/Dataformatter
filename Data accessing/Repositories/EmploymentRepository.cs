@@ -6,7 +6,7 @@ using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public class EmplotymentRepository : IRepository<EmploymentEntity>
+    public class EmploymentRepository : IRepository<EmploymentEntity>
     {
         private static readonly Dictionary<string, EmploymentEntity[]> AllEmploymentsByCountry =
             JsonReader<EmploymentEntity>.ParseJsonToListOfObjects(EntityNames.Employment);

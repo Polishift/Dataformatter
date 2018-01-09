@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data accessing\Factories\EntityFactories\CountryEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\CountryInformationEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\ElectionEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\EmploymentEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\GdpPerCapitaEntityFactory.cs" />
@@ -101,7 +100,6 @@
     <Compile Include="Data combining\Classification to political family\PartyNameToAbbreviationMatcher.cs" />
     <Compile Include="Datamodels\ConstituencyElectionModel.cs" />
     <Compile Include="Datamodels\CountryGeoModel.cs" />
-    <Compile Include="Datamodels\CountryInformationModel.cs" />
     <Compile Include="Datamodels\EmploymentModel.cs" />
     <Compile Include="Datamodels\GdpPerCapitaModel.cs" />
     <Compile Include="Datamodels\IModel.cs" />
@@ -132,6 +130,7 @@
     <Compile Include="Dataprocessing\Entities\PartyClassificationEntity.cs" />
     <Compile Include="Dataprocessing\Entities\PopulationEntity.cs" />
     <Compile Include="Dataprocessing\Entities\ReligionEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\TotalCountryInformationEntity.cs" />
     <Compile Include="Dataprocessing\Entities\TurnoutEntity.cs" />
     <Compile Include="Dataprocessing\Entities\TvEntity.cs" />
     <Compile Include="Dataprocessing\Entities\WarEntity.cs" />
@@ -142,7 +141,6 @@
     <Compile Include="Dataprocessing\Parsing\LiteCsvReader.cs" />
     <Compile Include="Dataprocessing\Processors\AbstractDataProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\CountryBordersProcessor.cs" />
-    <Compile Include="Dataprocessing\Processors\CountryInformationProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\ElectionsProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\EmploymentProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\GdpPerCapitaProcessor.cs" />

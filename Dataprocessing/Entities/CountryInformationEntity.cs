@@ -1,10 +1,8 @@
 ﻿namespace Dataformatter.Dataprocessing.Entities
 {
-    public class CountryInformationEntity : IEntity
+    public class CountryInformationEntity
     {
         public int Year { get; set; }
-        public string Name { get; set; }
-        public string CountryCode { get; set; }
 
         public double EmployedPercentage { get; set; }
 
@@ -39,6 +37,6 @@
         public int MilitairPop { get; set; }
         public int UrbanPop { get; set; }
 
-        public int Interest { get; set; }
+        public double Interest { get; set; }
     }
 }
