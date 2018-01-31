@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using DataDownloader;
+﻿using DataDownloader;
 using Dataformatter;
-using Dataformatter.Dataprocessing.Entities;
-using Dataformatter.Dataprocessing.Processors;
-using Dataformatter.Data_accessing.Repositories;
-using Microsoft.SqlServer.Server;
-using Newtonsoft.Json;
 
 namespace ConsoleTester
 {
-    internal class Program
+    internal static class Program
     {
         private static void Main()
         {
@@ -20,7 +11,6 @@ namespace ConsoleTester
             Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
 
             // ReSharper disable once StaticMemberInGenericType
-
 
 //            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
 //            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
@@ -85,9 +75,7 @@ namespace ConsoleTester
 
             #endregion
 
-            /* var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
-             partyClassificationAndElectionsMerger.MergeIndividualCountry();*/
-            
+
             Downloader.DownloadData(Paths.ProcessedDataFolder);
         }
     }

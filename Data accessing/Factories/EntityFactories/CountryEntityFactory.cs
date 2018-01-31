@@ -17,7 +17,7 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
                 var convertedPolygon = new Polygon<XYPoint>();
                 var currentPolygon = rawModel.Polygons[j];
 
-                convertedPolygon.Points = GetXYPointsFromLatLongs(currentPolygon.Points);
+                convertedPolygon.Points = GetXyPointsFromLatLongs(currentPolygon.Points);
                 convertedPolygons.Add(convertedPolygon);
             }
 
@@ -28,7 +28,7 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
             };
         }
 
-        public static List<XYPoint> GetXYPointsFromLatLongs(List<LatLongPoint> latLongs)
+        public static List<XYPoint> GetXyPointsFromLatLongs(List<LatLongPoint> latLongs)
         {
             var xyPointsForLatLongs = new List<XYPoint>();
 

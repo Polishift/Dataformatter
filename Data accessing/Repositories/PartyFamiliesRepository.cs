@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Dataformatter.Dataprocessing.Entities;
 using Dataformatter.Dataprocessing.Parsing;
@@ -27,8 +28,10 @@ namespace Dataformatter.Data_accessing.Repositories
 
         public static Dictionary<string, PartyFamilyEntity> GetDictionaryByCountry(string countryName)
         {
+            Console.WriteLine(AllFamiliesByCountry.Count);
             if (AllFamiliesByCountry.ContainsKey(countryName))
             {
+                Console.WriteLine(AllFamiliesByCountry[countryName].Length);
                 var allClassificationsInGivenCountry = AllFamiliesByCountry[countryName];
                 return allClassificationsInGivenCountry.ToDictionary(classificationEntity =>
                     classificationEntity.PartyName);

@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
+using System.Linq;
 using Renci.SshNet;
 
 namespace DataDownloader
@@ -22,16 +24,20 @@ namespace DataDownloader
             using (var sftp = new SftpClient(_host, _user, _pass))
             {
                 sftp.Connect();
-                var files = sftp.ListDirectory(directory);
+                var files = sftp.ListDirectory(directory).ToList();
 
+                var count = 1;
+                var totalFiles = files.Count - 2; //-2 to skip current dir and prev dir
                 foreach (var file in files)
                 {
                     if (file.Name.StartsWith(".")) continue;
                     var remoteFileName = file.Name;
-                    using (Stream file1 = File.OpenWrite(localDirectory + remoteFileName))
+                    Console.WriteLine("Downloading " + remoteFileName + "... (" + count + "/" + totalFiles + ")");
+                    using (Stream localFile = File.OpenWrite(localDirectory + remoteFileName))
                     {
-                        sftp.DownloadFile(directory + remoteFileName, file1);
+                        sftp.DownloadFile(directory + remoteFileName, localFile);
                     }
+                    count++;
                 }
             }
         }
