@@ -13,9 +13,7 @@ namespace Dataformatter.Dataprocessing.Processors
             var entityFactory = new PopulationEntityFactory();
 
             for (var i = 0; i < rawModels.Count; i++)
-            {
-                    populationEntities.AddRange(entityFactory.Convert(rawModels[i]));
-            }
+                populationEntities.AddRange(entityFactory.Convert(rawModels[i]));
 
             WriteEntitiesToJson(EntityNames.Population, populationEntities);
         }

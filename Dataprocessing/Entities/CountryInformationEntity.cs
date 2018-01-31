@@ -1,8 +1,15 @@
 ﻿namespace Dataformatter.Dataprocessing.Entities
 {
-    public class ReligionEntity : IEntity
+    public class CountryInformationEntity
     {
         public int Year { get; set; }
+
+        public double EmployedPercentage { get; set; }
+
+        public int GdpTotal { get; set; }
+        public int GdpPerCapita { get; set; }
+
+        public int Population { get; set; }
 
         // Christianity
         public int ChrstProt { get; set; }
@@ -25,9 +32,11 @@
 
         public int Other { get; set; }
 
-        // Total 
-        public int SumTotal { get; set; }
+        public double Tv { get; set; }
 
-        public string CountryCode { get; set; }
+        public int MilitairPop { get; set; }
+        public int UrbanPop { get; set; }
+
+        public double Interest { get; set; }
     }
 }

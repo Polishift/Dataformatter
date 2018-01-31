@@ -13,9 +13,7 @@ namespace Dataformatter.Dataprocessing.Processors
             var entityFactory = new TvEntityFactory();
 
             for (var i = 0; i < rawModels.Count; i++)
-            {
-                tvEntities .Add(entityFactory.Create(rawModels[i]));
-            }
+                tvEntities.Add(entityFactory.Create(rawModels[i]));
 
             WriteEntitiesToJson(EntityNames.Tv, tvEntities);
         }

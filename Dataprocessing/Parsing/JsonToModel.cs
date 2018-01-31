@@ -23,9 +23,8 @@ namespace Dataformatter.Dataprocessing.Parsing
                 {
                     var currentFileModels = ParseJsonFileToModel(currentFile, modelFactory);
                     resultList.AddRange(currentFileModels);
-
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     Console.WriteLine("Encountered unreadable file: " + currentFile);
                 }

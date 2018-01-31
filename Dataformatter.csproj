@@ -1,4 +1,4 @@
-﻿﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -45,13 +45,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultCountryEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultElectionEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultEmploymentEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultPartyClassificationEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultReligionEntityFactory.cs" />
-    <Compile Include="Data accessing\Factories\EntityFactories\DefaultTurnoutEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\CountryEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\ElectionEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\EmploymentEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\EntityFactories\EntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\GdpPerCapitaEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\GdpTotalEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\InterestEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\PartyClassificationEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\PopulationEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\ReligionEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\TurnoutEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\TvEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\WarEntityFactory.cs" />
+    <Compile Include="Data accessing\Factories\EntityFactories\WorkEntityFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\ConstituencyElectionModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\CountryGeoModelFactory.cs" />
     <Compile Include="Data accessing\Factories\ModelFactories\EmploymentModelFactory.cs" />
@@ -73,6 +80,8 @@
     <Compile Include="Data accessing\Repositories\ISO3166Repository.cs" />
     <Compile Include="Data accessing\Repositories\PartyClassificationRepository.cs" />
     <Compile Include="Data accessing\Repositories\ReligionRepository.cs" />
+    <Compile Include="Data accessing\Repositories\InterestRepository.cs" />
+    <Compile Include="Data accessing\Repositories\TotalCountryInformationRepository.cs" />
     <Compile Include="Data accessing\Repositories\TurnoutRepository.cs" />
     <Compile Include="Data combining\Classification to political family\ClassificationToElectionResultConnector.cs" />
     <Compile Include="Data combining\Classification to political family\PartyClassificationAndElectionsMerger.cs" />
@@ -80,24 +89,40 @@
     <Compile Include="Datamodels\ConstituencyElectionModel.cs" />
     <Compile Include="Datamodels\CountryGeoModel.cs" />
     <Compile Include="Datamodels\EmploymentModel.cs" />
+    <Compile Include="Datamodels\GdpPerCapitaModel.cs" />
+    <Compile Include="Datamodels\GdpTotalModel.cs" />
     <Compile Include="Datamodels\IModel.cs" />
     <Compile Include="Datamodels\AbstractPoint.cs" />
+    <Compile Include="Datamodels\InterestModel.cs" />
     <Compile Include="Datamodels\LatLongPoint.cs" />
     <Compile Include="Datamodels\PartyClassificationModel.cs" />
     <Compile Include="Datamodels\Polygon.cs" />
+    <Compile Include="Datamodels\PopulationModel.cs" />
     <Compile Include="Datamodels\ReligionModel.cs" />
     <Compile Include="Datamodels\TurnoutModel.cs" />
+    <Compile Include="Datamodels\TvModel.cs" />
+    <Compile Include="Datamodels\WarModel.cs" />
+    <Compile Include="Datamodels\WorkModel.cs" />
     <Compile Include="Datamodels\XYPoint.cs" />
+    <Compile Include="Dataprocessing\Entities\CountryInformationEntity.cs" />
     <Compile Include="Dataprocessing\Entities\DictatorshipEntity.cs" />
     <Compile Include="Dataprocessing\Entities\ICountryRuler.cs" />
+    <Compile Include="Dataprocessing\Entities\GdpPerCapitaEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\GdpTotalEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\InterestEntity.cs" />
     <Compile Include="Dataprocessing\Entities\PartyFamilyEntity.cs" />
     <Compile Include="Dataprocessing\Entities\CountryBordersEntity.cs" />
     <Compile Include="Dataprocessing\Entities\ElectionEntity.cs" />
     <Compile Include="Dataprocessing\Entities\EmploymentEntity.cs" />
     <Compile Include="Dataprocessing\Entities\IEntity.cs" />
     <Compile Include="Dataprocessing\Entities\PartyClassificationEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\PopulationEntity.cs" />
     <Compile Include="Dataprocessing\Entities\ReligionEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\TotalCountryInformationEntity.cs" />
     <Compile Include="Dataprocessing\Entities\TurnoutEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\TvEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\WarEntity.cs" />
+    <Compile Include="Dataprocessing\Entities\WorkEntity.cs" />
     <Compile Include="Dataprocessing\Parsing\CsvToModel.cs" />
     <Compile Include="Dataprocessing\Parsing\JsonReader.cs" />
     <Compile Include="Dataprocessing\Parsing\JsonToModel.cs" />
@@ -109,12 +134,19 @@
     <Compile Include="Dataprocessing\Processors\PartyClassificationProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\ReligionProcessor.cs" />
     <Compile Include="Dataprocessing\Processors\TurnoutProcessor.cs" />
+    <Compile Include="Misc\HelperFunctions.cs" />
     <Compile Include="Misc\Tuple.cs" />
     <Compile Include="Paths.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="DataDownloader\DataDownloader.csproj">
+      <Project>{3adb9cb0-f3de-44f2-8c44-8c3089f11e9a}</Project>
+      <Name>DataDownloader</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

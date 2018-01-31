@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Dataformatter.Datamodels;
+﻿using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
@@ -15,10 +12,8 @@ namespace Dataformatter.Data_accessing.Factories.EntityFactories
                 CountryCode = CreateCountryCode(rawModel.CountryName),
                 Year = rawModel.Year,
                 MilitairPop = (int) (rawModel.MilitairPop * 1000),
-                UrbanPop =  (int) (rawModel.UrbanPop * 1000)
+                UrbanPop = (int) (rawModel.UrbanPop * 1000)
             };
         }
-
-      
     }
 }

@@ -13,9 +13,7 @@ namespace Dataformatter.Dataprocessing.Processors
             var entityFactory = new EmploymentEntityFactory();
 
             for (var i = 0; i < rawModels.Count; i++)
-            {
                 employmentEntities.Add(entityFactory.Create(rawModels[i]));
-            }
 
             WriteEntitiesToJson(EntityNames.Employment, employmentEntities);
         }

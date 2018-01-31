@@ -18,7 +18,7 @@ namespace Dataformatter.Data_accessing.Factories.ModelFactories
             {
                 CountryName = csvDataRow[CountryNameColumnIndex],
                 Year = int.Parse(csvDataRow[YearColumnIndex]),
-                EmployedPercentage = double.Parse(csvDataRow[ValueColumnIndex]),
+                EmployedPercentage = double.Parse(csvDataRow[ValueColumnIndex])
             };
         }
     }

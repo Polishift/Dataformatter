@@ -4,6 +4,8 @@ using Dataformatter.Dataprocessing.Parsing;
 using Dataformatter.Dataprocessing.Processors;
 using Dataformatter.Data_accessing.Factories.ModelFactories;
 using Dataformatter.Data_accessing.Filters;
+﻿using DataDownloader;
+using Dataformatter;
 
 namespace ConsoleTester
 {
@@ -11,13 +13,15 @@ namespace ConsoleTester
     {
         private static void Main()
         {
-            Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
-            Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
+            //Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
+            //Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
 
-//            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
-//            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
+            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
+            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
 
             #region ParseCode
+
+/*
 
             var electionsCsvLocation = Paths.RawDataFolder + @"\Political\ElectionResults\election_data.csv";
             var interestCsvLocation = Paths.RawDataFolder +
@@ -28,20 +32,21 @@ namespace ConsoleTester
             var populationCsvLocation = Paths.RawDataFolder +
                                         @"\Economical & Social\GDP & Population & GDP Per capita\population_data.csv";
             var gdpTotalCsvLocation = Paths.RawDataFolder +
-                                        @"\Economical & Social\GDP & Population & GDP Per capita\gdp_data.csv";
+                                      @"\Economical & Social\GDP & Population & GDP Per capita\gdp_data.csv";
             var gdpCapitaCsvLocation = Paths.RawDataFolder +
-                                        @"\Economical & Social\GDP & Population & GDP Per capita\percapita_gdp_data.csv";
+                                       @"\Economical & Social\GDP & Population & GDP Per capita\percapita_gdp_data.csv";
             var partyClassificationCsvLocation =
                 Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
             var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
             var workCsvLocation = Paths.RawDataFolder + @"\Economical & Social\NMC_5_0.csv";
 
-            ICsvModelFactory<WorkModel> modelFactory =
-                new WorkModelFactory();
-            var allItemsAsModels = CsvToModel<WorkModel>.ParseAllCsvLinesToModels(
-                workCsvLocation, modelFactory);
-            var processor = new WorkProcessor();
+            ICsvModelFactory<PopulationModel> modelFactory =
+                new PopulationModelFactory();
+            var allItemsAsModels = CsvToModel<PopulationModel>.ParseAllCsvLinesToModels(
+                populationCsvLocation, modelFactory);
+            var processor = new PopulationProcessor();
             processor.SerializeDataToJson(allItemsAsModels);
+*/
 
             #endregion
 
@@ -66,16 +71,16 @@ namespace ConsoleTester
 
             #region Filtering
 
-            IFilter filter = new YearFilter();
-            filter.Filter();
-
-            filter = new EuropeFilter();
-            filter.Filter();
+            /*   IFilter filter = new YearFilter();
+               filter.Filter();
+   
+               filter = new EuropeFilter();
+               filter.Filter();*/
 
             #endregion
 
-//            var partyClassificationAndElectionsMerger = new PartyClassificationAndElectionsMerger();
-//            partyClassificationAndElectionsMerger.MergeIndividualCountry();
+
+            Downloader.DownloadData(Paths.ProcessedDataFolder);
         }
     }
 }
