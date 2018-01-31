@@ -10,6 +10,7 @@ namespace ConsoleTester
             Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
             Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
 
+            //todo ?? what is diss
             // ReSharper disable once StaticMemberInGenericType
 
 //            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
