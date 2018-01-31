@@ -6,14 +6,14 @@ using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public class CountryBordersRepository : IRepository<CountryBordersEntity>
+    public class CountryBordersRepository : AbstractRepository<CountryBordersEntity>
     {
         //Keeping one static reference instead of recalling the parser means less GC work :)
         //Make sure this OVERWRITES, what is meant by thiss
         private static readonly Dictionary<string, CountryBordersEntity[]> AllBordersByCountry =
             JsonReader<CountryBordersEntity>.ParseJsonToListOfObjects(EntityNames.CountryBorders);
 
-        public CountryBordersEntity[] GetAll()
+        public override CountryBordersEntity[] GetAll()
         {
             var result = new List<CountryBordersEntity>();
             foreach (var keyValuePair in AllBordersByCountry)
@@ -21,9 +21,9 @@ namespace Dataformatter.Data_accessing.Repositories
             return result.ToArray();
         }
 
-        public CountryBordersEntity[] GetByCountry(string countryCode)
+        public override CountryBordersEntity[] GetByCountry(string countryCode)
         {
-            return AllBordersByCountry[countryCode];
+            return GetFromDictionarySafely(countryCode, AllBordersByCountry);
         }
 
         public List<string> GetCountryNames()

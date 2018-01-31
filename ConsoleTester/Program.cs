@@ -1,11 +1,5 @@
-﻿﻿using Dataformatter;
-using Dataformatter.Datamodels;
-using Dataformatter.Dataprocessing.Parsing;
-using Dataformatter.Dataprocessing.Processors;
-using Dataformatter.Data_accessing.Factories.ModelFactories;
-using Dataformatter.Data_accessing.Filters;
-﻿using DataDownloader;
-using Dataformatter;
+﻿using Dataformatter;
+using DataDownloader;
 
 namespace ConsoleTester
 {
@@ -32,21 +26,22 @@ namespace ConsoleTester
             var populationCsvLocation = Paths.RawDataFolder +
                                         @"\Economical & Social\GDP & Population & GDP Per capita\population_data.csv";
             var gdpTotalCsvLocation = Paths.RawDataFolder +
-                                      @"\Economical & Social\GDP & Population & GDP Per capita\gdp_data.csv";
+                                        @"\Economical & Social\GDP & Population & GDP Per capita\gdp_data.csv";
             var gdpCapitaCsvLocation = Paths.RawDataFolder +
-                                       @"\Economical & Social\GDP & Population & GDP Per capita\percapita_gdp_data.csv";
+                                        @"\Economical & Social\GDP & Population & GDP Per capita\percapita_gdp_data.csv";
             var partyClassificationCsvLocation =
                 Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
             var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
             var workCsvLocation = Paths.RawDataFolder + @"\Economical & Social\NMC_5_0.csv";
 
-            ICsvModelFactory<PopulationModel> modelFactory =
-                new PopulationModelFactory();
-            var allItemsAsModels = CsvToModel<PopulationModel>.ParseAllCsvLinesToModels(
-                populationCsvLocation, modelFactory);
-            var processor = new PopulationProcessor();
+            
+            ICsvModelFactory<GdpPerCapitaModel> modelFactory =
+                new GdpPerCapitaModelFactory();
+            var allItemsAsModels = CsvToModel<GdpPerCapitaModel>.ParseAllCsvLinesToModels(
+                gdpCapitaCsvLocation, modelFactory);
+            
+            var processor = new GdpPerCapitaProcessor();
             processor.SerializeDataToJson(allItemsAsModels);
-*/
 
             #endregion
 

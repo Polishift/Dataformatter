@@ -7,7 +7,7 @@ namespace Dataformatter.Data_accessing.Filters
 {
     public class EuropeFilter : IFilter
     {
-        private readonly HashSet<string> _europeanSet = new HashSet<string>
+        public readonly HashSet<string> EuropeanSet = new HashSet<string>
         {
             "ALB",
             "AND",
@@ -60,7 +60,7 @@ namespace Dataformatter.Data_accessing.Filters
             "VAT",
             "RSB"
         };
-
+        
         public void Filter()
         {
             var rootFolderPath = Paths.ProcessedDataFolder;
@@ -72,7 +72,7 @@ namespace Dataformatter.Data_accessing.Filters
                 foreach (var file in fileList)
                 {
                     var countryName = file.Substring(file.IndexOf('_') + 1, 3);
-                    if (_europeanSet.Contains(countryName)) continue;
+                    if (EuropeanSet.Contains(countryName)) continue;
                     Console.WriteLine(file + " will be deleted");
                     File.Delete(file);
                 }

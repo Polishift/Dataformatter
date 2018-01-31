@@ -36,7 +36,7 @@ namespace Dataformatter.Dataprocessing.Entities
 
                 PartyName = "None",
                 PartyAbbreviation = "NA",
-                PartyClassification = "Unknown",
+                PartyClassification = "unknown",
                 PartyCandidates = new HashSet<string> {"No candidates found"},
 
                 TotalAmountOfVotes = 0,
@@ -45,9 +45,17 @@ namespace Dataformatter.Dataprocessing.Entities
             };
         }
 
+        public RulerType GetRulerType()
+        {
+            return RulerType.Elected;
+        }
+
         public override string ToString()
         {
-            return PartyName + ", who are '" + PartyClassification + "'. They gained " 
+            var guaranteedLowerCaseClassification = PartyClassification.ToLower();
+            var prettifiedClassification = PrettifiedPartyClassifications.prettifiedPartyClassifications[guaranteedLowerCaseClassification];
+            
+            return PartyName + ",\n" + "who are " + prettifiedClassification + ".\n" + "They gained " 
                    + GetFormattedVotePercentage() + "% of the votes.";
         }
 
