@@ -6,13 +6,13 @@ using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public class TurnoutRepository : IRepository<TurnoutEntity>
+    public class TurnoutRepository : AbstractRepository<TurnoutEntity>
     {
         //Keeping one static reference instead of recalling the parser means less GC work :)
         private static readonly Dictionary<string, TurnoutEntity[]> AllTurnoutByCountry =
             JsonReader<TurnoutEntity>.ParseJsonToListOfObjects(EntityNames.Turnout);
 
-        public TurnoutEntity[] GetAll()
+        public override TurnoutEntity[] GetAll()
         {
             var result = new List<TurnoutEntity>();
             foreach (var keyValuePair in AllTurnoutByCountry)
@@ -20,9 +20,9 @@ namespace Dataformatter.Data_accessing.Repositories
             return result.ToArray();
         }
 
-        public TurnoutEntity[] GetByCountry(string countryCode)
+        public override TurnoutEntity[] GetByCountry(string countryCode)
         {
-            return AllTurnoutByCountry[countryCode];
+            return GetFromDictionarySafely(countryCode, AllTurnoutByCountry);
         }
 
         public TurnoutEntity[] GetByYear(int year)

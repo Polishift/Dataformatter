@@ -30,8 +30,9 @@ namespace Dataformatter.Misc
         
         public static double ToDouble(this string value)
         {
+            double result;
             //Try parsing in the current culture
-            if (!double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out var result) &&
+            if (!double.TryParse(value, NumberStyles.Any, CultureInfo.CurrentCulture, out result) &&
                 //Then try in US english
                 !double.TryParse(value, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out result) &&
                 //Then in neutral language

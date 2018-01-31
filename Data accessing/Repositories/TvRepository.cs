@@ -6,13 +6,13 @@ using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public class TvRepository : IRepository<TvEntity>
+    public class TvRepository : AbstractRepository<TvEntity>
     {
         //Keeping one static reference instead of recalling the parser means less GC work :)
         private static readonly Dictionary<string, TvEntity[]> AllTvByCountry =
             JsonReader<TvEntity>.ParseJsonToListOfObjects(EntityNames.Tv);
 
-        public TvEntity[] GetAll()
+        public override TvEntity[] GetAll()
         {
             var result = new List<TvEntity>();
             foreach (var keyValuePair in AllTvByCountry)
@@ -20,9 +20,9 @@ namespace Dataformatter.Data_accessing.Repositories
             return result.ToArray();
         }
 
-        public TvEntity[] GetByCountry(string countryCode)
+        public override TvEntity[] GetByCountry(string countryCode)
         {
-            return AllTvByCountry[countryCode];
+            return GetFromDictionarySafely(countryCode, AllTvByCountry);
         }
 
         public TvEntity[] GetByYear(int year)

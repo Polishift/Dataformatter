@@ -6,13 +6,13 @@ using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public class WorkRepository : IRepository<WorkEntity>
+    public class WorkRepository : AbstractRepository<WorkEntity>
     {
         //Keeping one static reference instead of recalling the parser means less GC work :)
         private static readonly Dictionary<string, WorkEntity[]> AllWorkByCountry =
             JsonReader<WorkEntity>.ParseJsonToListOfObjects(EntityNames.Work);
 
-        public WorkEntity[] GetAll()
+        public override WorkEntity[] GetAll()
         {
             var result = new List<WorkEntity>();
             foreach (var keyValuePair in AllWorkByCountry)
@@ -20,9 +20,9 @@ namespace Dataformatter.Data_accessing.Repositories
             return result.ToArray();
         }
 
-        public WorkEntity[] GetByCountry(string countryCode)
+        public override WorkEntity[] GetByCountry(string countryCode)
         {
-            return AllWorkByCountry[countryCode];
+            return GetFromDictionarySafely(countryCode, AllWorkByCountry);
         }
 
         public WorkEntity[] GetByYear(int year)

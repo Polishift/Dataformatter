@@ -79,12 +79,13 @@
     <Compile Include="Data accessing\Filters\YearFilter.cs" />
     <Compile Include="Data accessing\Repositories\DictatorshipsRepository.cs" />
     <Compile Include="Data accessing\Repositories\EmploymentRepository.cs" />
+    <Compile Include="Data accessing\Repositories\FutureRulersRepository.cs" />
     <Compile Include="Data accessing\Repositories\GdpPerCapitaRepository.cs" />
     <Compile Include="Data accessing\Repositories\GdpTotalRepository.cs" />
     <Compile Include="Data accessing\Repositories\PartyFamiliesRepository.cs" />
     <Compile Include="Data accessing\Repositories\CountryBordersRepository.cs" />
     <Compile Include="Data accessing\Repositories\ElectionsRepository.cs" />
-    <Compile Include="Data accessing\Repositories\IRepository.cs" />
+    <Compile Include="Data accessing\Repositories\AbstractRepository.cs" />
     <Compile Include="Data accessing\Repositories\Iso3166Country.cs" />
     <Compile Include="Data accessing\Repositories\ISO3166Repository.cs" />
     <Compile Include="Data accessing\Repositories\PartyClassificationRepository.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Datamodels\WarModel.cs" />
     <Compile Include="Datamodels\WorkModel.cs" />
     <Compile Include="Datamodels\XYPoint.cs" />
+    <Compile Include="Dataprocessing\Entities\FutureRulerEntity.cs" />
     <Compile Include="Dataprocessing\Entities\GdpPerCapitaEntity.cs" />
     <Compile Include="Dataprocessing\Entities\GdpTotalEntity.cs" />
     <Compile Include="Dataprocessing\Entities\InterestEntity.cs" />

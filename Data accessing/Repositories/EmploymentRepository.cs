@@ -6,12 +6,12 @@ using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public class EmplotymentRepository : IRepository<EmploymentEntity>
+    public class EmplotymentRepository : AbstractRepository<EmploymentEntity>
     {
         private static readonly Dictionary<string, EmploymentEntity[]> AllEmploymentsByCountry =
             JsonReader<EmploymentEntity>.ParseJsonToListOfObjects(EntityNames.Employment);
 
-        public EmploymentEntity[] GetAll()
+        public override EmploymentEntity[] GetAll()
         {
             var result = new List<EmploymentEntity>();
             foreach (var keyValuePair in AllEmploymentsByCountry)
@@ -19,9 +19,9 @@ namespace Dataformatter.Data_accessing.Repositories
             return result.ToArray();
         }
 
-        public EmploymentEntity[] GetByCountry(string countryCode)
+        public override EmploymentEntity[] GetByCountry(string countryCode)
         {
-            return AllEmploymentsByCountry[countryCode];
+            return GetFromDictionarySafely(countryCode, AllEmploymentsByCountry);
         }
 
         public static IEnumerable<string> GetCountryNames()

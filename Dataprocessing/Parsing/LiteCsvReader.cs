@@ -55,8 +55,8 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// </summary>
         protected char Delimiter
         {
-            get => _specialChars[DelimiterIndex];
-            set => _specialChars[DelimiterIndex] = value;
+            get { return _specialChars[DelimiterIndex]; }
+            set { _specialChars[DelimiterIndex] = value; }
         }
 
         /// <summary>
@@ -64,8 +64,8 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// </summary>
         protected char Quote
         {
-            get => _specialChars[QuoteIndex];
-            set => _specialChars[QuoteIndex] = value;
+            get { return _specialChars[QuoteIndex]; }
+            set { _specialChars[QuoteIndex] = value; }
         }
     }
 
@@ -88,8 +88,7 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// </summary>
         /// <param name="reader">The stream to read from</param>
         /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
-        public CsvFileReader(StreamReader reader,
-            EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
+        public CsvFileReader(StreamReader reader, EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
         {
             _reader = reader;
             _emptyLineBehavior = emptyLineBehavior;
@@ -114,8 +113,7 @@ namespace Dataformatter.Dataprocessing.Parsing
         /// </summary>
         /// <param name="path">The name of the CSV file to read from</param>
         /// <param name="emptyLineBehavior">Determines how empty lines are handled</param>
-        public CsvFileReader(string path,
-            EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
+        public CsvFileReader(string path, EmptyLineBehavior emptyLineBehavior = EmptyLineBehavior.NoColumns)
         {
             var stream = new FileStream(path, FileMode.Open);
             _reader = new StreamReader(stream);
