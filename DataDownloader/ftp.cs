@@ -19,6 +19,18 @@ namespace DataDownloader
             _pass = password;
         }
 
+        public int GetAmountOfFiles(string directory)
+        {
+            using (var sftp = new SftpClient(_host, _user, _pass))
+            {
+                sftp.Connect();
+                var files = sftp.ListDirectory(directory).ToList();
+
+                var totalFiles = files.Count - 2; //-2 to skip current dir and prev dir
+                return totalFiles;
+            }
+        }
+
         public void DownloadAll(string directory, string localDirectory)
         {
             using (var sftp = new SftpClient(_host, _user, _pass))
