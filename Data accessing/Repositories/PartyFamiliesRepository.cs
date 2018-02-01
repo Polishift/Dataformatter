@@ -7,13 +7,13 @@ using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public class PartyFamiliesRepository : IRepository<PartyFamilyEntity>
+    public class PartyFamiliesRepository : AbstractRepository<PartyFamilyEntity>
     {
         //Keeping one static reference instead of recalling the parser means less GC work :)
         private static readonly Dictionary<string, PartyFamilyEntity[]> AllFamiliesByCountry =
             JsonReader<PartyFamilyEntity>.ParseJsonToListOfObjects(EntityNames.PartyFamilies);
 
-        public PartyFamilyEntity[] GetAll()
+        public override PartyFamilyEntity[] GetAll()
         {
             var result = new List<PartyFamilyEntity>();
             foreach (var keyValuePair in AllFamiliesByCountry)
@@ -21,9 +21,9 @@ namespace Dataformatter.Data_accessing.Repositories
             return result.ToArray();
         }
 
-        public PartyFamilyEntity[] GetByCountry(string countryCode)
+        public override PartyFamilyEntity[] GetByCountry(string countryCode)
         {
-            return AllFamiliesByCountry[countryCode];
+            return GetFromDictionarySafely(countryCode, AllFamiliesByCountry);
         }
 
         public static Dictionary<string, PartyFamilyEntity> GetDictionaryByCountry(string countryName)

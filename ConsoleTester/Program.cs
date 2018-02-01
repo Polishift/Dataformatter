@@ -15,15 +15,12 @@ namespace ConsoleTester
             Paths.SetProcessedDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\ProcessedData\");
             Paths.SetRawDataFolder(@"C:\Users\ceesj\Documents\hogeschool\minor\Code\Datasources\");
 
-            //todo ?? what is diss
-            // ReSharper disable once StaticMemberInGenericType
-
 //            Paths.SetProcessedDataFolder(@"E:\Hogeschool\Polishift Organization\ProcessedData\");
 //            Paths.SetRawDataFolder(@"E:\Hogeschool\Polishift Organization\Datasources\");
 
             #region ParseCode
 
-/*
+
 
             var interestCsvLocation = Paths.RawDataFolder +
                                       @"\Economical & Social\Interest rates (incomplete)\interest_data.csv";
@@ -33,7 +30,7 @@ namespace ConsoleTester
             var populationCsvLocation = Paths.RawDataFolder +
                                         @"\Economical & Social\GDP & Population & GDP Per capita\population_data.csv";
             var gdpTotalCsvLocation = Paths.RawDataFolder +
-                                      @"\Economical & Social\GDP & Population & GDP Per capita\gdp_data.csv";
+                                        @"\Economical & Social\GDP & Population & GDP Per capita\gdp_data.csv";
             var gdpCapitaCsvLocation = Paths.RawDataFolder +
                                        @"\Economical & Social\GDP & Population & GDP Per capita\percapita_gdp_data.csv";
             var workCsvLocation = Paths.RawDataFolder + @"\Economical & Social\NMC_5_0.csv";
@@ -45,7 +42,8 @@ namespace ConsoleTester
             var processor = new WorkProcessor();
             processor.SerializeDataToJson(allItemsAsModels);
 
-*/
+
+          
 
             #endregion
 

@@ -1,11 +1,12 @@
-﻿using System;
+﻿﻿using System;
 using Dataformatter.Datamodels;
 using Dataformatter.Dataprocessing.Entities;
 using Dataformatter.Data_accessing.Repositories;
 
 namespace Dataformatter.Data_accessing.Factories.EntityFactories
 {
-    public abstract class EntityFactory<I, O> where O : IEntity
+    public abstract class EntityFactory<I, O> where I : IModel
+        where O : IEntity
     {
         public abstract O Create(I rawModel);
 

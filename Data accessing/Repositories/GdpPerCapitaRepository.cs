@@ -6,13 +6,13 @@ using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public class GdpPerCapitaRepository : IRepository<GdpPerCapitaEntity>
+    public class GdpPerCapitaRepository : AbstractRepository<GdpPerCapitaEntity>
     {
         //Keeping one static reference instead of recalling the parser means less GC work :)
         private static readonly Dictionary<string, GdpPerCapitaEntity[]> AllGdpByCountry =
             JsonReader<GdpPerCapitaEntity>.ParseJsonToListOfObjects(EntityNames.GdpPerCapita);
 
-        public GdpPerCapitaEntity[] GetAll()
+        public override GdpPerCapitaEntity[] GetAll()
         {
             var result = new List<GdpPerCapitaEntity>();
             foreach (var keyValuePair in AllGdpByCountry)
@@ -20,9 +20,9 @@ namespace Dataformatter.Data_accessing.Repositories
             return result.ToArray();
         }
 
-        public GdpPerCapitaEntity[] GetByCountry(string countryCode)
+        public override GdpPerCapitaEntity[] GetByCountry(string countryCode)
         {
-            return AllGdpByCountry[countryCode];
+            return GetFromDictionarySafely(countryCode, AllGdpByCountry);
         }
 
         public GdpPerCapitaEntity[] GetByYear(int year)

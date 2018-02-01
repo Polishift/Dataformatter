@@ -14,9 +14,12 @@ namespace DataDownloader
 
             Console.WriteLine(serverCount + " / " + localCount);
 
-            if (serverCount == localCount)
+            if (serverCount <= localCount)
+            {
+                Console.WriteLine("Already up-to-date.");
                 return;
-
+            }
+            
             Console.WriteLine("Start downloading");
             ftp.DownloadAll("ProcessedFiles/", localDirectory);
             Console.WriteLine("Finished downloading");

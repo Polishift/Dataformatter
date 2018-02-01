@@ -6,12 +6,12 @@ using Dataformatter.Dataprocessing.Processors;
 
 namespace Dataformatter.Data_accessing.Repositories
 {
-    public class ReligionRepository : IRepository<ReligionEntity>
+    public class ReligionRepository : AbstractRepository<ReligionEntity>
     {
         private static readonly Dictionary<string, ReligionEntity[]> AllReligionByCountry =
             JsonReader<ReligionEntity>.ParseJsonToListOfObjects(EntityNames.Religion);
 
-        public ReligionEntity[] GetAll()
+        public override ReligionEntity[] GetAll()
         {
             var result = new List<ReligionEntity>();
             foreach (var keyValuePair in AllReligionByCountry)
@@ -19,9 +19,9 @@ namespace Dataformatter.Data_accessing.Repositories
             return result.ToArray();
         }
 
-        public ReligionEntity[] GetByCountry(string countryCode)
+        public override ReligionEntity[] GetByCountry(string countryCode)
         {
-            return AllReligionByCountry[countryCode];
+            return GetFromDictionarySafely(countryCode, AllReligionByCountry);
         }
 
         public static IEnumerable<string> GetCountryNames()
