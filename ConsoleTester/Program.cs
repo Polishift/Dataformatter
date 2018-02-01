@@ -1,5 +1,10 @@
 ﻿using DataDownloader;
 using Dataformatter;
+using Dataformatter.Datamodels;
+using Dataformatter.Dataprocessing.Parsing;
+using Dataformatter.Dataprocessing.Processors;
+using Dataformatter.Data_accessing.Factories.ModelFactories;
+using Dataformatter.Data_accessing.Filters;
 
 namespace ConsoleTester
 {
@@ -20,7 +25,6 @@ namespace ConsoleTester
 
 /*
 
-            var electionsCsvLocation = Paths.RawDataFolder + @"\Political\ElectionResults\election_data.csv";
             var interestCsvLocation = Paths.RawDataFolder +
                                       @"\Economical & Social\Interest rates (incomplete)\interest_data.csv";
             var warCsvLocation = Paths.RawDataFolder + @"\Economical & Social\Wars\war_data.csv";
@@ -32,17 +36,15 @@ namespace ConsoleTester
                                       @"\Economical & Social\GDP & Population & GDP Per capita\gdp_data.csv";
             var gdpCapitaCsvLocation = Paths.RawDataFolder +
                                        @"\Economical & Social\GDP & Population & GDP Per capita\percapita_gdp_data.csv";
-            var partyClassificationCsvLocation =
-                Paths.RawDataFolder + @"/Political/PartyClassification\classificationData.csv";
-            var turnoutCsvLocation = Paths.RawDataFolder + @"\Political\Turnout\turnout_data.csv";
             var workCsvLocation = Paths.RawDataFolder + @"\Economical & Social\NMC_5_0.csv";
 
-            ICsvModelFactory<PopulationModel> modelFactory =
-                new PopulationModelFactory();
-            var allItemsAsModels = CsvToModel<PopulationModel>.ParseAllCsvLinesToModels(
-                populationCsvLocation, modelFactory);
-            var processor = new PopulationProcessor();
+            ICsvModelFactory<WorkModel> modelFactory =
+                new WorkModelFactory();
+            var allItemsAsModels = CsvToModel<WorkModel>.ParseAllCsvLinesToModels(
+                workCsvLocation, modelFactory);
+            var processor = new WorkProcessor();
             processor.SerializeDataToJson(allItemsAsModels);
+
 */
 
             #endregion
@@ -68,14 +70,15 @@ namespace ConsoleTester
 
             #region Filtering
 
-            /*   IFilter filter = new YearFilter();
-               filter.Filter();
-   
-               filter = new EuropeFilter();
-               filter.Filter();*/
+/*
+            IFilter filter = new YearFilter();
+            filter.Filter();
+
+            filter = new EuropeFilter();
+            filter.Filter();
+*/
 
             #endregion
-
 
             Downloader.DownloadData(Paths.ProcessedDataFolder);
         }
